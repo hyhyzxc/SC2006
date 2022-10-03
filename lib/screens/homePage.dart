@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:next_stage/screens/googleMap.dart';
 
 import '../main.dart';
 import 'loginPage.dart';
@@ -21,13 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: ElevatedButton(
-          child: Text("Logout"),
-          onPressed: () {
-            print("Signed Out");
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => loginPage()));
-          },
+        child: Container(
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(10),
+          child: FloatingActionButton(
+            child: Text("Google Maps"),
+            onPressed: () {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MapSample()));
+            },
+          )
         ),
       ),
     );
