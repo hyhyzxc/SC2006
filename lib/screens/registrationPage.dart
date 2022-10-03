@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'homePage.dart';
 
@@ -90,10 +91,17 @@ class _registerPageState extends State<registerPage> {
                     child: ElevatedButton(
                       child: const Text('Register'),
                       onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => HomeScreen()));
+                        FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text)
+                            .then((value) {
+                          print("Created New Account");
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => HomeScreen()));
+                        }).onError((error, stackTrace) {
+                          print("Error ${error.toString()}");
+                        });
                       },
                     )
                 ),
