@@ -16,7 +16,6 @@ class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
   TextEditingController _originController = TextEditingController();
   TextEditingController _destinationController = TextEditingController();
-
   Set<Marker> _markers = Set<Marker>();
   Set<Polygon> _polygons = Set<Polygon>();
   Set<Polyline> _polylines = Set<Polyline>();
