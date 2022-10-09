@@ -2,7 +2,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:next_stage/main.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/homePage.dart';
 import 'package:next_stage/screens/Obituary/obituary_form_confirm.dart';
@@ -15,6 +14,7 @@ class ObituaryForm extends StatefulWidget {
 
   final NewspaperData newspaper;
   ObituaryForm({Key? key, required this.trip, required this.newspaper}) : super(key: key);
+  //ObituaryForm({Key? key, required this.trip}) : super(key: key);
 
   static const String routeName = '/obituary-form';
 
@@ -30,6 +30,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
   TextEditingController _funeraltimecontroller = new TextEditingController();
   TextEditingController _familycontroller = new TextEditingController();
   TextEditingController _newscontroller = new TextEditingController();
+  TextEditingController _phonecontroller = new TextEditingController();
 
   List<NewspaperData> _newspaper = NewspaperData.getNewspaper();
   late List<DropdownMenuItem<NewspaperData>> _dropdownMenuItems;
@@ -71,8 +72,8 @@ class _ObituaryFormState extends State<ObituaryForm> {
                     onTap: () async {
                       if(_selectedCompany != null){
                         setState(() {
-                          _selectedCompany = _selectedCompany;
-                          _newscontroller.text = _selectedCompany as String; //set output date to TextField value.
+                          _newscontroller.text = _selectedCompany?.name as String;
+                          _phonecontroller.text = _selectedCompany?.phone as String;
                         });
                       }else{
                         return;
@@ -302,9 +303,12 @@ class _ObituaryFormState extends State<ObituaryForm> {
                       widget.trip.funeraldate = _funeraldatecontroller.text;
                       widget.trip.funeraltime = _funeraltimecontroller.text;
                       widget.trip.familynames = _familycontroller.text;
+                      widget.trip.phone = _phonecontroller.text;
                       widget.trip.newspaper = _newscontroller.text;
+
                       Navigator.push(
                         context,
+                        //MaterialPageRoute(builder: (context) => ObituaryConfirm(trip: widget.trip)),
                         MaterialPageRoute(builder: (context) => ObituaryConfirm(trip: widget.trip, newspaper: widget.newspaper)),
                       );
                     },
@@ -321,7 +325,8 @@ class _ObituaryFormState extends State<ObituaryForm> {
   onChangeDropdownItem(NewspaperData? selectedCompany) {
     setState(() {
       _selectedCompany = selectedCompany!;
-      _newscontroller = _selectedCompany as TextEditingController;
+      _newscontroller = _selectedCompany?.name as TextEditingController;
+      _phonecontroller = _selectedCompany?.phone as TextEditingController;
     });
   }
 

@@ -7,12 +7,12 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
-//import 'package:next_stage/screens/Obituary/obituary_save_send.dart';
 
 class ObituaryConfirm extends StatefulWidget {
   final Trip trip;
 
   final NewspaperData newspaper;
+  //ObituaryConfirm({Key? key, required this.trip}) : super(key: key);
   ObituaryConfirm({Key? key, required this.trip, required this.newspaper}) : super(key: key);
 
   @override
@@ -23,13 +23,13 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   final db = FirebaseFirestore.instance;
 
   var productName = "";
-  NewspaperData? newspaper;
+  // NewspaperData? newspaper;
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.trip!.newspaper),),
+      appBar: AppBar(title: Text(widget.trip.newspaper),),
       backgroundColor: Colors.lightGreen[200],
       body: ListView(
         children: <Widget> [
@@ -341,7 +341,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           color: Color(0xFFF17532)
                       ),
                       child: Center(
-                          child: Text('Call ' + widget.newspaper!.phone,
+                          child: Text('Call ' + widget.trip.phone,
                             style: TextStyle(
                                 fontFamily: 'Varela',
                                 fontSize: 14.0,
@@ -352,7 +352,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                       )
                   ),
                   onTap: () {
-                    _callNumber(widget.newspaper!.phone);
+                    _callNumber(widget.trip.phone);
                   }
               )
           ),
@@ -383,39 +383,6 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
       ),
     );
 
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text('Confirm Particulars'),
-    //     ),
-    //     body: Center(
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: <Widget>[
-    //             Text("Particulars"),
-    //             Text("Name ${trip.name}"),
-    //             Text("Date of Death ${trip.dateofdeath}"),
-    //             Text("Location of Wake ${trip.locationofwake}"),
-    //             Text("Funeral Date ${trip.funeraldate}"),
-    //             Text("Funeral Time ${trip.funeraltime}"),
-    //             Text("Names of Family Members ${trip.familynames}"),
-    //
-    //             ElevatedButton(
-    //               child: Text("Confirm"),
-    //               onPressed: () async {
-    //                 // save data to firebase
-    //                 //await db.collection("trips").add(trip.toJson());
-    //                 //Navigator.of(context).pushNamed(ObituarySaveSend.routeName);
-    //                 Navigator.push(
-    //                   context,
-    //                   MaterialPageRoute(builder: (context) => ObituarySaveSend(trip: trip)),
-    //                 );
-    //                 //Navigator.of(context).popUntil((route) => route.isFirst);
-    //               },
-    //             ),
-    //           ],
-    //         )
-    //     )
-    // );
   }
 }
 

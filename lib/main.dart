@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final newTrip = new Trip("","","","","","","");
+    final newTrip = new Trip("","","","","","","","");
     final newObituary = new Obituary();
     final newNewspaper = new NewspaperData(0,"","","");
     return MaterialApp(
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const WillFill(),
+      home: ObituaryForm(trip: newTrip, newspaper: newNewspaper),
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
         ViewPlans.routeName: (context) => ViewPlans(),
