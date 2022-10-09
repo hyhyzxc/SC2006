@@ -76,8 +76,8 @@ class _DeathCertMainState extends State<DeathCertMain> {
                       ),
                       onTap: () {
                         // print(jsonEncode(products[index]));
-                        // Navigator.of(context).pushNamed(ViewCert.routeName,
-                        //     arguments: "view");
+                        Navigator.of(context).pushNamed(ViewCert.routeName,
+                            arguments: "view");
                       },
                     )
                 ),
