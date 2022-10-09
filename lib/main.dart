@@ -10,6 +10,8 @@ import 'package:next_stage/screens/Funeral/product_detail_screen.dart';
 import 'package:next_stage/screens/Funeral/product_list_screen.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
+import 'package:next_stage/screens/Plans/plans_main.dart';
+import 'package:next_stage/screens/Wills/will_main.dart';
 
 import 'models/obituary.dart';
 
@@ -43,9 +45,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const DeathCertMain(),
+      home: const WillFill(),
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
+        ViewPlans.routeName: (context) => ViewPlans(),
+        WillFill.routeName: (context) => WillFill(),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
         SearchDoctor.routeName: (context) => SearchDoctor(),
         DoctorDetail.routeName: (context) => DoctorDetail(),
