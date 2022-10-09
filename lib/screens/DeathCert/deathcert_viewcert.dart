@@ -11,7 +11,6 @@ const fileName = '/pspdfkit-flutter-quickstart-guide.pdf';
 // URL of the PDF file you'll download.
 const imageUrl = 'https://pspdfkit.com/downloads' + fileName;
 
-
 class ViewCert extends StatefulWidget {
   const ViewCert({Key? key, required this.title}) : super(key: key);
   static const String routeName = '/deathcert-viewcert';

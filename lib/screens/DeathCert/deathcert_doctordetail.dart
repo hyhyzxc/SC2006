@@ -195,7 +195,6 @@ class _DoctorDetailState extends State<DoctorDetail> {
 }
 
 
-
 _callNumber(String phoneNumber) async {
   String number = phoneNumber;
   await FlutterPhoneDirectCaller.callNumber(number);

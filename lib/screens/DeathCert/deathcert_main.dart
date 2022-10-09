@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_hospital.dart';
-
 import 'package:next_stage/screens/DeathCert/deathcert_searchdoctor.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_viewcert.dart';
 

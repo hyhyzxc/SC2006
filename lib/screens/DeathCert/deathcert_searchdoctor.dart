@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:next_stage/models/deathcert_doctor.dart';
 import 'package:next_stage/models/funeralparlor.dart';
-
-import 'dart:convert';
-
 import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
+import 'dart:convert';
 
 class SearchDoctor extends StatefulWidget {
   const SearchDoctor({ Key? key }) : super(key: key);

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-
 class DeathAtHospital extends StatefulWidget {
   const DeathAtHospital({ Key? key }) : super(key: key);
 
