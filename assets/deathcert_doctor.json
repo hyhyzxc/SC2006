@@ -1,0 +1,167 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "corlong": 103.874304200449998,
+      "corlat": 1.32034910001846,
+      "name": "Dr Alex Tan",
+      "clinic": "Tan Family Clinic",
+      "address": "88 Geylang Bahru, #01-2724, Singapore 339696",
+      "rating": 5,
+      "description": "Ang Chin Moh Funeral Directors provides funeral services for Buddhists,Taoists,Christian,Catholics in Singapore",
+      "phone": "62263333"
+    },
+    {
+      "id": 2,
+      "corlong": 103.837907100322994,
+      "corlat": 1.36117749999608,
+      "name": "Dr Benjamin Tay",
+      "clinic": "Tay Family Clinic",
+      "address": "Blk 38 Sin Ming Dr, #01-537, Singapore 575712",
+      "rating": 3,
+      "description": "Ang Yew Seng Funeral Parlour provides funeral services for Buddhists,Taoists,Christian,Catholics in Singapore",
+      "phone": "90901999"
+    },
+    {
+      "id": 3,
+      "corlong": 103.837893699912001,
+      "corlat": 1.36161329963547,
+      "name": "Dr Mary Chua",
+      "clinic": "Excel Family Clinic",
+      "address": "Sin Ming Dr, #01-571 Blk 37, Singapore 575711",
+      "rating": 2,
+      "description": "Casket Fairprice is a reliable funeral services provider and undertaker in Singapore that has grown steadily since our establishment in 1993, to stand as one of Singapore’s leading funeral service groups",
+      "phone": "64559909"
+    },
+    {
+      "id": 4,
+      "corlong": 103.837907100322994,
+      "corlat": 1.36117749999608,
+      "name": "Dr Phillip White",
+      "clinic": "Sin Ming Family Clinic",
+      "address": "174 Sin Ming Dr, Singapore 575715",
+      "rating": 0,
+      "description": "",
+      "phone": "64577785"
+    },
+    {
+      "id": 5,
+      "corlong": 103.837893699912001,
+      "corlat": 1.36161329963547,
+      "name": "Dr George Tan",
+      "clinic": "Tan Family Clinic",
+      "address": "88 Geylang Bahru, #01-2724, Singapore 339696",
+      "rating": 5,
+      "description": "",
+      "phone": "64591242"
+    },
+    {
+      "id": 6,
+      "corlong": 103.874056799900004,
+      "corlat": 1.32070970043141,
+      "name": "Dr Raphael Tan",
+      "clinic": "Tan Family Clinic",
+      "address": "88 Geylang Bahru, #01-2724, Singapore 339696",
+      "rating": 3,
+      "description": "Chng Hoon Casket has professional and caring team is experienced in providing full, affordable funeral services with attention to detail and our commitment to you is to listen and guide you through all of the options available",
+      "phone": "91166689"
+    },
+    {
+      "id": 7,
+      "corlong": 103.861374300221996,
+      "corlat": 1.33576200015127,
+      "name": "Dr May Lim",
+      "clinic": "Lim Family Clinic",
+      "address": "4 Toa Payoh Industrial Park, Singapore 319056",
+      "rating": 5,
+      "description": "CHYE SENG UNDERTAKER is an ACRA-registered entity that has been operating for 25 years 9 months in Singapore since its incorporation in 1996",
+      "phone": "62512833"
+    },
+    {
+      "id": 8,
+      "corlong": 103.874304200449998,
+      "corlat": 1.32034910001846,
+      "name": "Dr Christina Lee",
+      "clinic": "Lee Family Clinic",
+      "address": "88 Geylang Bahru, #01-2726, Singapore 339696",
+      "rating": 5,
+      "description": "Our Dignity Funeral Team pride ourselves in service excellence - with Sincerity, Kindness and Compassion as our Core Values. I personally believe in serving with a caring heart as we accompany you through the journey of honouring the lives of whom we love and respect",
+      "phone": "65552225"
+    },
+    {
+      "id": 9,
+      "corlong": 103.874304200449998,
+      "corlat": 1.32034910001846,
+      "name": "Dr Mary Yeo",
+      "clinic": "Yeo Family Clinic",
+      "address": "88 Geylang Bahru,#01-2726 Singapore 339696",
+      "rating": 5,
+      "description": "Our Dignity Funeral Team pride ourselves in service excellence - with Sincerity, Kindness and Compassion as our Core Values. I personally believe in serving with a caring heart as we accompany you through the journey of honouring the lives of whom we love and respect",
+      "phone": "65552225"
+    },
+    {
+      "id": 10,
+      "corlong": 103.861374300221996,
+      "corlat": 1.33576200015127,
+      "name": "Dr Ann Lee",
+      "clinic": "Lee Family Clinic",
+      "address": "#01-1345A, 4 Toa Payoh Industrial Park, 319056",
+      "rating": 5,
+      "description": "Our services cover travel arrangements for family members to the country where the death occurred, the facilitation of repatriation with the local authorities and funeral director, and transportation of the remains to Singapore. When the deceased is back in Singapore, we are able to assist in arranging a proper funeral wake/service and cremation/burial",
+      "phone": "62530001"
+    },
+    {
+      "id": 11,
+      "corlong": 103.861374300221996,
+      "corlat": 1.33576200015127,
+      "name": "Dr Zen Tan",
+      "clinic": "Toa Payoh Family Clinic",
+      "address": "Block 4,#01-1333 ,Toa Payoh Industrial Park, 699815",
+      "rating": 5,
+      "description": "HBS ensures highest quality of services provided and reasonable fees set by all its sub-contractors. Hosanna will deal with sloppy services or over-charging complaints against its sub-contractors",
+      "phone": "63527797"
+    },
+    {"id": 12,
+      "corlong": 103.874056799900004,
+      "corlat": 1.32070970043141,
+      "name": "Dr Lee Jin Lu",
+      "clinic": "Jin Lu Family Clinic",
+      "address": "89 Geylang Bahru, Singapore 339697",
+      "rating": 0,
+      "description": "",
+      "phone": "98538582"
+    },
+    {"id": 13,
+      "corlong": 103.861374300221996,
+      "corlat": 1.33576200015127,
+      "name": "Dr Lam Bee Hwa",
+      "clinic": "Lam Family Clinic",
+      "address": "704 Yishun Ave 5, Singapore 760704",
+      "rating": 0,
+      "description": "",
+      "phone": "62557694"
+    },
+    {
+      "id": 14,
+      "corlong": 103.837893699912001,
+      "corlat": 1.36161329963547,
+      "name": "Dr Michael Lin",
+      "clinic": "Simplicity Family Clinic",
+      "address": " Blk 37 Sin Ming Drive #01-575 , Singapore 575711",
+      "rating": 4,
+      "description": "Singapore Funeral Services For All The Religions. Supporting Families During Their Times of Bereavement",
+      "phone": "64567423"
+    },
+    {
+      "id": 15,
+      "corlong": 103.837893699912001,
+      "corlat": 1.36161329963547,
+      "name": "Dr Lincoln Toh",
+      "clinic": "Toh Family Clinic",
+      "address": "37 Sin Ming Dr, #01-577, Singapore 575711",
+      "rating": 4,
+      "description": "",
+      "phone": "64568989"
+    }
+  ]
+}
