@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:next_stage/screens/loginPage.dart';
+import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
+import 'package:next_stage/screens/DeathCert/deathcert_searchdoctor.dart';
+import 'package:next_stage/screens/DeathCert/deathcert_hospital.dart';
+import 'package:next_stage/screens/DeathCert/deathcert_viewcert.dart';
+import 'package:next_stage/screens/Obituary/obituary_main.dart';
+import 'package:next_stage/screens/Funeral/product_detail_screen.dart';
+import 'package:next_stage/screens/Funeral/product_list_screen.dart';
+import 'package:next_stage/screens/Obituary/obituary_form.dart';
+import 'package:next_stage/models/obituaryform.dart';
+
+import 'models/obituary.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +26,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final newTrip = new Trip("","","","","","","");
+    final newObituary = new Obituary();
+    final newNewspaper = new NewspaperData(0,"","","");
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -30,7 +43,19 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const loginPage(),
+      home: const DeathCertMain(),
+      routes: {
+        ProductListScreen.routeName: (context) => ProductListScreen(),
+        ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+        SearchDoctor.routeName: (context) => SearchDoctor(),
+        DoctorDetail.routeName: (context) => DoctorDetail(),
+        DeathCertMain.routeName: (context) => DeathCertMain(),
+        DeathAtHospital.routeName: (context) => DeathAtHospital(),
+        ObituaryMainNew.routeName: (context) => ObituaryMainNew(),
+        ObituaryForm.routeName: (context) =>
+            ObituaryForm(trip: newTrip, newspaper: newNewspaper,),
+        ViewCert.routeName: (context) => ViewCert(title: "view",),
+      }
     );
   }
 }
@@ -42,7 +67,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           title: Text('Doggie'),
         ),
-        body: const loginPage());
+        body: const DeathCertMain());
   }
 }
 
