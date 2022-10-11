@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:next_stage/main.dart';
 //import 'package:next_stage/models/deathcert_doctor.dart';
 //import 'package:next_stage/models/obituary.dart';
 import 'package:next_stage/models/obituaryform.dart';
@@ -394,6 +395,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
 
                           saveObituaryPlan(obituary: obituary);
                           _showMyDialog();
+
                       }
                   )
               )
@@ -421,9 +423,10 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Approve'),
+              child: const Text('Go back to Home Page'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Home()));
               },
             ),
           ],
