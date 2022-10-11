@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 //import 'package:next_stage/models/deathcert_doctor.dart';
@@ -24,7 +25,11 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
 
   var productName = "";
   // NewspaperData? newspaper;
-
+  Future saveObituaryPlan({required ObituaryPlan obituary}) async {
+    final docUser = FirebaseFirestore.instance.collection('Obituary').doc();
+    final json = obituary.getJson();
+    await docUser.set(json);
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -365,7 +370,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                       borderRadius: BorderRadius.circular(25.0),
                       color: Color(0xFFF17532)
                   ),
-                  child: Center(
+                  child: ElevatedButton(
                       child: Text('Add to plans',
                         style: TextStyle(
                             fontFamily: 'Varela',
@@ -373,7 +378,23 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white
                         ),
-                      )
+                      ),
+                      onPressed: () {
+                        final FirebaseAuth auth = FirebaseAuth.instance;
+                        final User? user = auth.currentUser;
+                        final String uid = user!.uid;
+                        ObituaryPlan obituary = ObituaryPlan(
+                            user_id: uid,
+                            deceased_name: widget.trip.name,
+                            date_of_death: widget.trip.dateofdeath,
+                            location_of_wake: widget.trip.locationofwake,
+                            funeral_date: widget.trip.funeraldate,
+                            funeral_time: widget.trip.funeraltime,
+                            names_of_family: widget.trip.familynames);
+
+                          saveObituaryPlan(obituary: obituary);
+                          _showMyDialog();
+                      }
                   )
               )
           ),
@@ -382,7 +403,33 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
 
       ),
     );
+  }
 
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Plan saved successfully'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 

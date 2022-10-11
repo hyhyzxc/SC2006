@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,8 @@ import 'package:next_stage/screens/Obituary/obituary_form_confirm.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class ObituaryForm extends StatefulWidget {
   final Trip trip;
@@ -45,6 +48,8 @@ class _ObituaryFormState extends State<ObituaryForm> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Particulars'),
@@ -306,6 +311,8 @@ class _ObituaryFormState extends State<ObituaryForm> {
                       widget.trip.phone = _phonecontroller.text;
                       widget.trip.newspaper = _newscontroller.text;
 
+
+
                       Navigator.push(
                         context,
                         //MaterialPageRoute(builder: (context) => ObituaryConfirm(trip: widget.trip)),
@@ -318,6 +325,9 @@ class _ObituaryFormState extends State<ObituaryForm> {
             )
         )
     );
+
+
+
   }
 
 
@@ -405,5 +415,44 @@ class NewspaperData {
           9, 'Tamil Murasu', 'assets/images/tamilmurasu.png', '60000000'),
     ];
   }
+
+}
+
+
+
+class ObituaryPlan {
+  String user_id;
+  String deceased_name;
+  String date_of_death;
+  String location_of_wake;
+  String funeral_date;
+  String funeral_time;
+  String names_of_family;
+
+
+
+  ObituaryPlan( {
+    this.user_id = "",
+    required this.deceased_name,
+    required this.date_of_death,
+    required this.location_of_wake,
+    required this.funeral_date,
+    required this.funeral_time,
+    required this.names_of_family,
+
+  });
+
+  Map<String, String> getJson() {
+    return {
+      'user_id' : this.user_id,
+      'deceased_name' : this.deceased_name,
+      'date_of_death' : this.date_of_death,
+      'location_of_wake' : this.location_of_wake,
+      'funeral_date' : this.funeral_date,
+      'funeral_time': this.funeral_time,
+      'names_of_family' : this.names_of_family
+    };
+  }
+
 
 }
