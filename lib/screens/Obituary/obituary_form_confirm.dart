@@ -10,6 +10,8 @@ import 'package:next_stage/models/obituaryform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 
+import '../../models/obituaryPlan.dart';
+
 class ObituaryConfirm extends StatefulWidget {
   final Trip trip;
 
@@ -26,10 +28,11 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
 
   var productName = "";
   // NewspaperData? newspaper;
-  Future saveObituaryPlan({required ObituaryPlan obituary}) async {
+  Future<String>saveObituaryPlan({required ObituaryPlan obituary}) async {
     final docUser = FirebaseFirestore.instance.collection('Obituary').doc();
     final json = obituary.getJson();
     await docUser.set(json);
+    return docUser.id;
   }
   @override
   Widget build(BuildContext context) {
@@ -380,7 +383,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                             color: Colors.white
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         final FirebaseAuth auth = FirebaseAuth.instance;
                         final User? user = auth.currentUser;
                         final String uid = user!.uid;
@@ -393,8 +396,19 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                             funeral_time: widget.trip.funeraltime,
                             names_of_family: widget.trip.familynames);
 
-                          saveObituaryPlan(obituary: obituary);
-                          _showMyDialog();
+                        String docID = await saveObituaryPlan(obituary: obituary);
+
+                        final planData = FirebaseFirestore.instance.collection('Plan').doc(uid);
+                        final snapshot = await planData.get();
+                        print(docID);
+                        if (snapshot.exists) {
+                          planData.update({
+                            'obituaryPlanID': docID!,
+                          });
+                        } else {
+                          print("Error: cannot find Plan");
+                        }
+                        _showMyDialog();
 
                       }
                   )
@@ -413,7 +427,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('AlertDialog Title'),
+          title: const Text('Notification'),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[

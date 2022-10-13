@@ -1,9 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:next_stage/models/deathcert_doctor.dart';
 import 'package:next_stage/models/funeralparlor.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
+import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'dart:convert';
+
+import '../../models/obituaryPlan.dart';
+import '../../models/plan.dart';
 
 class ViewPlans extends StatefulWidget {
   const ViewPlans({ Key? key }) : super(key: key);
@@ -15,10 +21,26 @@ class ViewPlans extends StatefulWidget {
 }
 
 class _ViewPlansState extends State<ViewPlans> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   List<DeathCertDoctor> allProducts = [];
   List<DeathCertDoctor> filteredProducts = [];
 
+  Future<Plan?> getPlan() async {
+    final User? user = auth.currentUser;
+    final String uid = user!.uid;
+    final planData = FirebaseFirestore.instance.collection('Plan').doc(uid);
+    final snapshot = await planData.get();
+
+    if(snapshot.exists) {
+      return Plan.fromJson(snapshot.data()!);
+    }
+  }
+
+  /*Widget displayObituaryPlan(ObituaryPlan obituaryPlan) => ListTile(
+    leading: CircleAvatar();
+    title:
+  )*/
   Future<void> readJsonFile() async {
 
     final String response = await rootBundle.loadString('assets/deathcert_doctor.json'); //change file

@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'homePage.dart';
+import 'package:next_stage/models/plan.dart';
 
 class registerPage extends StatefulWidget {
   const registerPage({Key? key}) : super(key: key);
@@ -16,6 +18,12 @@ class _registerPageState extends State<registerPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController ContactNumber = TextEditingController();
   @override
+
+  Future saveNewPlan({required Plan plan, required String user_id}) async {
+    final docUser = FirebaseFirestore.instance.collection('Plan').doc(user_id);
+    final json = plan.getJson();
+    await docUser.set(json);
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -97,6 +105,11 @@ class _registerPageState extends State<registerPage> {
                             password: passwordController.text)
                             .then((value) {
                           print("Created New Account");
+                          final FirebaseAuth auth = FirebaseAuth.instance;
+                          final User? user = auth.currentUser;
+                          final String uid = user!.uid;
+                          Plan newPlan = Plan(user_id: uid, obituaryPlanID: "");
+                          saveNewPlan(plan: newPlan, user_id: uid);
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => HomeScreen()));
                         }).onError((error, stackTrace) {
