@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/screens/googleMap.dart';
 
 import '../main.dart';
+import 'NavBar.dart';
 import 'loginPage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,10 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         centerTitle: true,
         title: Text('MENU'),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
       ),
       body: Center(
         child: Container(

@@ -5,6 +5,7 @@ class obiTrip {
   String funeraldate;
   String funeraltime;
   String familynames;
+  String phone;
   String newspaper;
   //DateTime startDate;
   //DateTime endDate;
@@ -16,6 +17,7 @@ class obiTrip {
       this.funeraldate,
       this.funeraltime,
       this.familynames,
+      this.phone,
       this.newspaper
       );
 
@@ -26,6 +28,7 @@ class obiTrip {
     'funeraldate': funeraldate,
     'funeraltime': funeraltime,
     'familynames': familynames,
+    'phone': phone,
     'newspaper': newspaper,
   };
 }

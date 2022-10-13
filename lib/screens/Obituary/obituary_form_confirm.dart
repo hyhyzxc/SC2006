@@ -1,18 +1,23 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:next_stage/main.dart';
 //import 'package:next_stage/models/deathcert_doctor.dart';
 //import 'package:next_stage/models/obituary.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
-//import 'package:next_stage/screens/Obituary/obituary_save_send.dart';
+import 'package:next_stage/screens/homePage.dart';
+
+import '../../models/obituaryPlan.dart';
 
 class ObituaryConfirm extends StatefulWidget {
   final obiTrip trip;
 
   final NewspaperData newspaper;
+  //ObituaryConfirm({Key? key, required this.trip}) : super(key: key);
   ObituaryConfirm({Key? key, required this.trip, required this.newspaper}) : super(key: key);
 
   @override
@@ -23,16 +28,20 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   final db = FirebaseFirestore.instance;
 
   var productName = "";
-  NewspaperData? newspaper;
-
+  // NewspaperData? newspaper;
+  Future<String>saveObituaryPlan({required ObituaryPlan obituary}) async {
+    final docUser = FirebaseFirestore.instance.collection('Obituary').doc();
+    final json = obituary.getJson();
+    await docUser.set(json);
+    return docUser.id;
+  }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(title: Text(widget.trip!.newspaper),),
+      appBar: AppBar(title: Text(widget.trip.newspaper),),
       backgroundColor: Colors.lightGreen[200],
       body: ListView(
-        children: <Widget> [
+        children: <Widget>[
           Padding(padding: const EdgeInsets.all(10.0)),
           Center(
             child: Card(
@@ -62,22 +71,29 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           'Confirmation',
 
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline5,
                         ),
                         Text(widget.trip!.name,
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headline6),
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headline6),
                         SizedBox(
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -112,13 +128,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -152,13 +169,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -192,13 +210,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -232,13 +251,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -272,13 +292,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -312,13 +333,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -333,15 +355,18 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
           Center(
               child: InkWell(
 
-                  child:Container(
-                      width: MediaQuery.of(context).size.width - 50.0,
+                  child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width - 50.0,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
                           color: Color(0xFFF17532)
                       ),
                       child: Center(
-                          child: Text('Call ' + widget.newspaper!.phone,
+                          child: Text('Call ' + widget.trip.phone,
                             style: TextStyle(
                                 fontFamily: 'Varela',
                                 fontSize: 14.0,
@@ -352,20 +377,23 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                       )
                   ),
                   onTap: () {
-                    _callNumber(widget.newspaper!.phone);
+                    _callNumber(widget.trip.phone);
                   }
               )
           ),
           SizedBox(height: 20.0),
           Center(
               child: Container(
-                  width: MediaQuery.of(context).size.width - 50.0,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width - 50.0,
                   height: 50.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
                       color: Color(0xFFF17532)
                   ),
-                  child: Center(
+                  child: ElevatedButton(
                       child: Text('Add to plans',
                         style: TextStyle(
                             fontFamily: 'Varela',
@@ -373,7 +401,37 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white
                         ),
-                      )
+                      ),
+                      onPressed: () async {
+                        final FirebaseAuth auth = FirebaseAuth.instance;
+                        final User? user = auth.currentUser;
+                        final String uid = user!.uid;
+                        ObituaryPlan obituary = ObituaryPlan(
+                            user_id: uid,
+                            deceased_name: widget.trip.name,
+                            date_of_death: widget.trip.dateofdeath,
+                            location_of_wake: widget.trip.locationofwake,
+                            funeral_date: widget.trip.funeraldate,
+                            funeral_time: widget.trip.funeraltime,
+                            names_of_family: widget.trip.familynames);
+/**/
+                        String docID = await saveObituaryPlan(
+                            obituary: obituary);
+
+                        final planData = FirebaseFirestore.instance.collection(
+                            'Plan').doc(uid);
+                        final snapshot = await planData.get();
+
+                        print(docID);
+                        if (snapshot.exists) {
+                          planData.update({
+                            'obituaryPlanID': docID!,
+                          });
+                        } else {
+                          print("Error: cannot find Plan");
+                        }
+                        _showMyDialog();
+                      }
                   )
               )
           ),
@@ -383,39 +441,34 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
       ),
     );
 
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text('Confirm Particulars'),
-    //     ),
-    //     body: Center(
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: <Widget>[
-    //             Text("Particulars"),
-    //             Text("Name ${trip.name}"),
-    //             Text("Date of Death ${trip.dateofdeath}"),
-    //             Text("Location of Wake ${trip.locationofwake}"),
-    //             Text("Funeral Date ${trip.funeraldate}"),
-    //             Text("Funeral Time ${trip.funeraltime}"),
-    //             Text("Names of Family Members ${trip.familynames}"),
-    //
-    //             ElevatedButton(
-    //               child: Text("Confirm"),
-    //               onPressed: () async {
-    //                 // save data to firebase
-    //                 //await db.collection("trips").add(trip.toJson());
-    //                 //Navigator.of(context).pushNamed(ObituarySaveSend.routeName);
-    //                 Navigator.push(
-    //                   context,
-    //                   MaterialPageRoute(builder: (context) => ObituarySaveSend(trip: trip)),
-    //                 );
-    //                 //Navigator.of(context).popUntil((route) => route.isFirst);
-    //               },
-    //             ),
-    //           ],
-    //         )
-    //     )
-    // );
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Plan saved successfully'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Go back to Home Page'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 

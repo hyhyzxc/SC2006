@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'homePage.dart';
+import 'package:next_stage/models/plan.dart';
+import 'package:next_stage/models/user.dart';
 
 class registerPage extends StatefulWidget {
   const registerPage({Key? key}) : super(key: key);
@@ -16,6 +19,18 @@ class _registerPageState extends State<registerPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController ContactNumber = TextEditingController();
   @override
+
+  Future saveNewPlan({required Plan plan, required String user_id}) async {
+    final docUser = FirebaseFirestore.instance.collection('Plan').doc(user_id);
+    final json = plan.getJson();
+    await docUser.set(json);
+  }
+
+  Future saveNewUser({required Users user, required String user_id}) async {
+    final docUser = FirebaseFirestore.instance.collection("User").doc(user_id);
+    final json = user.getJson();
+    await docUser.set(json);
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -97,6 +112,16 @@ class _registerPageState extends State<registerPage> {
                             password: passwordController.text)
                             .then((value) {
                           print("Created New Account");
+                          final FirebaseAuth auth = FirebaseAuth.instance;
+                          final User? user = auth.currentUser;
+                          final String uid = user!.uid;
+                          Plan newPlan = Plan(user_id: uid, obituaryPlanID: "");
+                          Users newUser = Users(user_id: uid,
+                              username :  nameController.text,
+                              email: emailController.text,
+                              contactNumber: ContactNumber.text,);
+                          saveNewUser(user: newUser, user_id: uid);
+                          saveNewPlan(plan: newPlan, user_id: uid);
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => HomeScreen()));
                         }).onError((error, stackTrace) {
@@ -109,3 +134,4 @@ class _registerPageState extends State<registerPage> {
             )));
   }
 }
+/**/
