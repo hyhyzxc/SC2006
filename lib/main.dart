@@ -12,7 +12,6 @@ import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
-import 'package:next_stage/screens/homePage.dart';
 import 'package:next_stage/screens/loginPage.dart';
 
 import 'models/obituary.dart';
@@ -73,7 +72,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           title: Text('Doggie'),
         ),
-        body: const DeathCertMain());
+        body: const loginPage());
   }
 }
 
