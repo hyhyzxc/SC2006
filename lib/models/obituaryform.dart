@@ -1,4 +1,4 @@
-class Trip {
+class obiTrip {
   String name;
   String dateofdeath;
   String locationofwake;
@@ -9,7 +9,7 @@ class Trip {
   //DateTime startDate;
   //DateTime endDate;
 
-  Trip(
+  obiTrip(
       this.name,
       this.dateofdeath,
       this.locationofwake,

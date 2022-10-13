@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:next_stage/models/willform.dart';
+import 'package:next_stage/screens/Wills/will_confirm.dart';
+import 'package:next_stage/screens/Wills/willFilling.dart';
 import 'dart:convert';
 
-class WillFill extends StatefulWidget {
-  static const String routeName = '/fill-will';
+import 'package:next_stage/screens/Wills/willFilling.dart';
 
-  const WillFill({Key? key}) : super(key: key);
+class WillMain extends StatefulWidget {
+  static const String routeName = '/willFill';
+
+  const WillMain({Key? key}) : super(key: key);
 
   @override
-  _WillFillState createState() => _WillFillState();
+  _WillMainState createState() => _WillMainState();
 }
 
 
-class _WillFillState extends State<WillFill> {
+class _WillMainState extends State<WillMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +40,7 @@ class _WillFillState extends State<WillFill> {
               width: 350.0,
               child: ElevatedButton(
                 onPressed: () {
-                  //Navigator.pushNamed(context,'/willFilling');
+                  Navigator.pushNamed(context, '/willFilling');
                 },
                 child: Text(
                   'Next',

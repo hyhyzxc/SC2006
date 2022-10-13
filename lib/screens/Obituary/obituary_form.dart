@@ -11,7 +11,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
 
 class ObituaryForm extends StatefulWidget {
-  final Trip trip;
+  final obiTrip trip;
 
   final NewspaperData newspaper;
   ObituaryForm({Key? key, required this.trip, required this.newspaper}) : super(key: key);

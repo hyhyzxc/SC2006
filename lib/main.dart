@@ -11,7 +11,9 @@ import 'package:next_stage/screens/Funeral/product_list_screen.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
+import 'package:next_stage/screens/Wills/willFilling.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
+import 'package:next_stage/models/willform.dart';
 
 import 'models/obituary.dart';
 
@@ -28,7 +30,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final newTrip = new Trip("","","","","","","");
+    final obituaryTrip = new obiTrip("","","","","","","");
+    final willTrip = new Trip("","","","","","",);
     final newObituary = new Obituary();
     final newNewspaper = new NewspaperData(0,"","","");
     return MaterialApp(
@@ -45,11 +48,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const WillFill(),
+      home: const WillMain(),
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
         ViewPlans.routeName: (context) => ViewPlans(),
-        WillFill.routeName: (context) => WillFill(),
+        WillMain.routeName: (context) => WillMain(),
+        WillForm.routeName: (context) => WillForm(trip: willTrip),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
         SearchDoctor.routeName: (context) => SearchDoctor(),
         DoctorDetail.routeName: (context) => DoctorDetail(),
@@ -57,7 +61,7 @@ class MyApp extends StatelessWidget {
         DeathAtHospital.routeName: (context) => DeathAtHospital(),
         ObituaryMainNew.routeName: (context) => ObituaryMainNew(),
         ObituaryForm.routeName: (context) =>
-            ObituaryForm(trip: newTrip, newspaper: newNewspaper,),
+            ObituaryForm(trip: obituaryTrip, newspaper: newNewspaper,),
         ViewCert.routeName: (context) => ViewCert(title: "view",),
       }
     );

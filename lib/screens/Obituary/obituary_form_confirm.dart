@@ -10,7 +10,7 @@ import 'package:next_stage/screens/Obituary/obituary_form.dart';
 //import 'package:next_stage/screens/Obituary/obituary_save_send.dart';
 
 class ObituaryConfirm extends StatefulWidget {
-  final Trip trip;
+  final obiTrip trip;
 
   final NewspaperData newspaper;
   ObituaryConfirm({Key? key, required this.trip, required this.newspaper}) : super(key: key);
