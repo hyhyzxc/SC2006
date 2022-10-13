@@ -13,6 +13,7 @@ import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
 import 'package:next_stage/screens/loginPage.dart';
+import 'package:next_stage/models/willform.dart';
 
 import 'models/obituary.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final newTrip = new Trip("","","","","","","","");
+    final newTrip = new obiTrip("","","","","","","","");
     final newObituary = new Obituary();
     final newNewspaper = new NewspaperData(0,"","","");
     return MaterialApp(
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
         ViewPlans.routeName: (context) => ViewPlans(),
-        WillFill.routeName: (context) => WillFill(),
+        WillMain.routeName: (context) => WillMain(),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
         SearchDoctor.routeName: (context) => SearchDoctor(),
         DoctorDetail.routeName: (context) => DoctorDetail(),

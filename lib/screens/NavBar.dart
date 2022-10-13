@@ -15,7 +15,7 @@ import 'Plans/plans_main.dart';
 import 'Wills/will_main.dart';
 
 class NavBar extends StatelessWidget {
-  final newTrip = new Trip("","","","","","","","");
+  final newTrip = new obiTrip("","","","","","","","");
   final newObituary = new Obituary();
   final newNewspaper = new NewspaperData(0,"","","");
   final FirebaseAuth auth = FirebaseAuth.instance;
