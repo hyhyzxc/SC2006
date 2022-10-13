@@ -2,9 +2,10 @@ import 'dart:async';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:next_stage/screens/location_service.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+
 
 
 class MapSample extends StatefulWidget {
@@ -20,14 +21,15 @@ class MapSampleState extends State<MapSample> {
   Set<Polygon> _polygons = Set<Polygon>();
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polygonLatLngs = <LatLng>[];
+  CameraPosition _GooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
 
   int _polygonIdCounter = 1;
   int _polylineIdCounter = 1;
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+
 
   @override
   void initState() {
@@ -134,7 +136,7 @@ class MapSampleState extends State<MapSample> {
               markers: _markers,
               polygons: _polygons,
               polylines: _polylines,
-              initialCameraPosition: _kGooglePlex,
+              initialCameraPosition: _GooglePlex,
               onMapCreated: (GoogleMapController controller) {
                 _controller.complete(controller);
               },

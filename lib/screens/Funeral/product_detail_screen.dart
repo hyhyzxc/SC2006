@@ -1,7 +1,13 @@
+import 'dart:async';
+
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:next_stage/models/funeralparlor.dart';
 import 'dart:convert';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+
+import '../googleMap.dart';
 
 
 class ProductDetailScreen extends StatefulWidget {
@@ -14,7 +20,11 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
-
+  Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> _markers = Set<Marker>();
+  Set<Polygon> _polygons = Set<Polygon>();
+  Set<Polyline> _polylines = Set<Polyline>();
+  List<LatLng> polygonLatLngs = <LatLng>[];
   var productName = "";
   FuneralParlor? product;
 
@@ -44,6 +54,27 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    CameraPosition funeralPosition = CameraPosition(
+      target: LatLng(product!.corlat, product!.corlong),
+      zoom: 14.4746,
+    );
+
+    void _setMarker(LatLng point) {
+      setState(() {
+        _markers.add(
+          Marker(
+            markerId: MarkerId('marker'),
+            infoWindow: InfoWindow(title: product!.name),
+            position: point,
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          ),
+        );
+      });
+    }
+    _setMarker(LatLng(product!.corlat, product!.corlong));
+
 
     final ButtonStyle style =
     ElevatedButton.styleFrom(textStyle: TextStyle(
@@ -160,35 +191,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       onPressed: () {showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
-                          return Container(
-                            height: 200,
-                            color: Colors.amber,
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  const Text('Modal BottomSheet'),
-                                  ElevatedButton(
-                                    child: const Text('Close BottomSheet'),
-                                    onPressed: () => Navigator.pop(context),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                          return GoogleMap(
+                            mapType: MapType.normal,
+                              markers: _markers,
+                              initialCameraPosition: funeralPosition,
+                          onMapCreated: (GoogleMapController controller) {
+                          _controller.complete(controller);
+                          },
                       );}
-                  ),
+                  );},
                 )
             ),
-            SizedBox(height: 20.0),
-            
-          ]
+          )
+        ],
       ),
-
-
-
     );
   }
 }
