@@ -8,7 +8,7 @@ class ObituaryPlan {
   String funeral_time;
   String names_of_family;
 
-
+/**/
 
   ObituaryPlan( {
     this.user_id = "",

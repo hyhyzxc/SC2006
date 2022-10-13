@@ -395,7 +395,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                             funeral_date: widget.trip.funeraldate,
                             funeral_time: widget.trip.funeraltime,
                             names_of_family: widget.trip.familynames);
-
+/**/
                         String docID = await saveObituaryPlan(obituary: obituary);
 
                         final planData = FirebaseFirestore.instance.collection('Plan').doc(uid);
