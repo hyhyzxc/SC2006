@@ -9,6 +9,7 @@ import 'package:next_stage/main.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
+import 'package:next_stage/screens/homePage.dart';
 
 import '../../models/obituaryPlan.dart';
 
@@ -36,12 +37,11 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(title: Text(widget.trip.newspaper),),
       backgroundColor: Colors.lightGreen[200],
       body: ListView(
-        children: <Widget> [
+        children: <Widget>[
           Padding(padding: const EdgeInsets.all(10.0)),
           Center(
             child: Card(
@@ -71,22 +71,29 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           'Confirmation',
 
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline5,
                         ),
                         Text(widget.trip!.name,
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headline6),
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headline6),
                         SizedBox(
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -121,13 +128,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -161,13 +169,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -201,13 +210,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -241,13 +251,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -281,13 +292,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -321,13 +333,14 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           height: 10,
                         ),
                         Row(
-                          children: List.generate(400~/5, (index) => Expanded(
-                            child: Container(
-                              color: index%2==0?Colors.transparent
-                                  :Colors.grey,
-                              height: 2,
-                            ),
-                          )),
+                          children: List.generate(400 ~/ 5, (index) =>
+                              Expanded(
+                                child: Container(
+                                  color: index % 2 == 0 ? Colors.transparent
+                                      : Colors.grey,
+                                  height: 2,
+                                ),
+                              )),
                         ),
 
                       ],
@@ -342,8 +355,11 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
           Center(
               child: InkWell(
 
-                  child:Container(
-                      width: MediaQuery.of(context).size.width - 50.0,
+                  child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width - 50.0,
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
@@ -368,7 +384,10 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
           SizedBox(height: 20.0),
           Center(
               child: Container(
-                  width: MediaQuery.of(context).size.width - 50.0,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width - 50.0,
                   height: 50.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
@@ -396,10 +415,13 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                             funeral_time: widget.trip.funeraltime,
                             names_of_family: widget.trip.familynames);
 /**/
-                        String docID = await saveObituaryPlan(obituary: obituary);
+                        String docID = await saveObituaryPlan(
+                            obituary: obituary);
 
-                        final planData = FirebaseFirestore.instance.collection('Plan').doc(uid);
+                        final planData = FirebaseFirestore.instance.collection(
+                            'Plan').doc(uid);
                         final snapshot = await planData.get();
+
                         print(docID);
                         if (snapshot.exists) {
                           planData.update({
@@ -409,7 +431,6 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                           print("Error: cannot find Plan");
                         }
                         _showMyDialog();
-
                       }
                   )
               )
@@ -419,6 +440,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
 
       ),
     );
+
   }
 
   Future<void> _showMyDialog() async {
@@ -440,7 +462,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
               child: const Text('Go back to Home Page'),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Home()));
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
               },
             ),
           ],
