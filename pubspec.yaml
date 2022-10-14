@@ -47,6 +47,7 @@ dependencies:
   firebase_storage: ^10.3.10
   image_picker: ^0.8.5+3
   permission_handler: ^10.0.2
+  firebase_messaging_platform_interface: 3.1.6
 #  pspdfkit_flutter: ^3.3.0
   path_provider: ^2.0.11
   dio: ^4.0.6

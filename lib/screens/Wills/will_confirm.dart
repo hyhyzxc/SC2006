@@ -54,7 +54,7 @@ class _WillConfirmState extends State<WillConfirm> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Tester Name',
+                              'Will Confirmation',
 
                               textAlign: TextAlign.center,
                               style: Theme
@@ -62,12 +62,6 @@ class _WillConfirmState extends State<WillConfirm> {
                                   .textTheme
                                   .headline5,
                             ),
-                            Text(widget.trip!.tester,
-                                textAlign: TextAlign.center,
-                                style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .headline6),
                             SizedBox(
                               height: 10,
                             ),
@@ -92,6 +86,47 @@ class _WillConfirmState extends State<WillConfirm> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
+                              'Tester Name',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+
+                              ),
+                            ),
+                            Text(
+                              widget.trip!.tester,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: List.generate(400 ~/ 5, (index) =>
+                                  Expanded(
+                                    child: Container(
+                                      color: index % 2 == 0 ? Colors.transparent
+                                          : Colors.grey,
+                                      height: 2,
+                                    ),
+                                  )),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
                               'Executor and Trustee',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -103,6 +138,47 @@ class _WillConfirmState extends State<WillConfirm> {
                             ),
                             Text(
                               widget.trip!.executorAndTrustee,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: List.generate(400 ~/ 5, (index) =>
+                                  Expanded(
+                                    child: Container(
+                                      color: index % 2 == 0 ? Colors.transparent
+                                          : Colors.grey,
+                                      height: 2,
+                                    ),
+                                  )),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Type of Assets',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+
+                              ),
+                            ),
+                            Text(
+                              widget.trip!.typeOfAssets,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Varela',
@@ -261,37 +337,6 @@ class _WillConfirmState extends State<WillConfirm> {
               ),
               SizedBox(height: 20.0),
               Center(
-                  child: InkWell(
-
-                      child: Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width - 50.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25.0),
-                              color: Color(0xFFF17532)
-                          ),
-                          // child: Center(
-                          //     child: Text(
-                          //       'Call ' + widget.lawyer!.contactNumber,
-                          //       style: TextStyle(
-                          //           fontFamily: 'Varela',
-                          //           fontSize: 14.0,
-                          //           fontWeight: FontWeight.bold,
-                          //           color: Colors.white
-                          //       ),
-                          //     )
-                          // )
-                      ),
-                      // onTap: () {
-                      //   _callNumber(widget.lawyer!.contactNumber);
-                      // }
-                  )
-              ),
-              SizedBox(height: 20.0),
-              Center(
                   child: Container(
                       width: MediaQuery
                           .of(context)
@@ -302,16 +347,59 @@ class _WillConfirmState extends State<WillConfirm> {
                           borderRadius: BorderRadius.circular(25.0),
                           color: Color(0xFFF17532)
                       ),
-                      child: Center(
-                          child: Text('Add to plans',
-                            style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                            ),
+                      child:  Center(
+                          child: Container(
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width - 50.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  color: Color(0xFFF17532)
+                              ),
+                              child: ElevatedButton(
+                                  child: Text('Add to plans',
+                                    style: TextStyle(
+                                        fontFamily: 'Varela',
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    final FirebaseAuth auth = FirebaseAuth.instance;
+                                    final User? user = auth.currentUser;
+                                    final String uid = user!.uid;
+                                    WillPlan obituary = ObituaryPlan(
+                                        user_id: uid,
+                                        deceased_name: widget.trip.name,
+                                        date_of_death: widget.trip.dateofdeath,
+                                        location_of_wake: widget.trip.locationofwake,
+                                        funeral_date: widget.trip.funeraldate,
+                                        funeral_time: widget.trip.funeraltime,
+                                        names_of_family: widget.trip.familynames);
+/**/
+                                    String docID = await saveObituaryPlan(
+                                        obituary: obituary);
+
+                                    final planData = FirebaseFirestore.instance.collection(
+                                        'Plan').doc(uid);
+                                    final snapshot = await planData.get();
+
+                                    print(docID);
+                                    if (snapshot.exists) {
+                                      planData.update({
+                                        'obituaryPlanID': docID!,
+                                      });
+                                    } else {
+                                      print("Error: cannot find Plan");
+                                    }
+                                    _showMyDialog();
+                                  }
+                              )
                           )
-                      )
+                      ),
                   )
               ),
               SizedBox(height: 20.0),

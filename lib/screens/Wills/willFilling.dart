@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/screens/Wills/will_confirm.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
 import 'package:next_stage/models/willform.dart';
+import 'package:next_stage/screens/Wills/alert_dialog.dart';
+
+import '../homePage.dart';
 
 class WillForm extends StatefulWidget {
   final Trip trip;
@@ -16,6 +19,7 @@ class WillForm extends StatefulWidget {
 
 class _WillFormState extends State<WillForm> {
   TextEditingController _testerController = new TextEditingController();
+  TextEditingController _assetsPassedController = new TextEditingController();
   TextEditingController _executorsandtrusteeController = new TextEditingController();
   TextEditingController _executor1Controller = new TextEditingController();
   TextEditingController _substituteexecutorController = new TextEditingController();
@@ -24,6 +28,8 @@ class _WillFormState extends State<WillForm> {
   List<String> options=['Singapore Assets Only','Worldwide Assets Only'];
   String? selectedOption='Singapore Assets Only';
 
+  String title='AlertDialog';
+  bool tappedYes=false;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +108,10 @@ class _WillFormState extends State<WillForm> {
                               color: Colors.black38)
                       ),
                     )).toList(),
-                    onChanged: (option) => setState(() => selectedOption=option),
+                    onChanged: (option) {
+                      setState(() => selectedOption=option);
+                      _assetsPassedController.text=option!;
+                    },
                   ),
                 ),
                 Container(
@@ -170,6 +179,7 @@ class _WillFormState extends State<WillForm> {
                   child: ElevatedButton(
                     onPressed: () {
                       widget.trip.tester = _testerController.text;
+                      widget.trip.typeOfAssets = _assetsPassedController.text;
                       widget.trip.executorAndTrustee = _executorsandtrusteeController.text;
                       widget.trip.executor1 = _executor1Controller.text;
                       widget.trip.substituteExecutor = _substituteexecutorController.text;
@@ -192,21 +202,20 @@ class _WillFormState extends State<WillForm> {
                 Container(
                   padding: const EdgeInsets.all(5),
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                        'Save to Plans',
-                        style: TextStyle(
-                            fontFamily: 'NATS',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black38)
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final action=await AlertDialogs.yesCancelDialog(context, 'Delete Plans', 'Are you sure?');
+                      if (action == DialogsAction.Yes) {
+                        setState(() => tappedYes = true);
+                        Navigator.pushAndRemoveUntil<void>(
+                          context,
+                          MaterialPageRoute<void>(builder: (BuildContext context) => const HomeScreen()),
+                          ModalRoute.withName('/'),
+                        );
+                      }
+                      else {
+                        setState(() => tappedYes=false);
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[400],
                     ),

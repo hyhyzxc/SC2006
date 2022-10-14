@@ -86,6 +86,12 @@ class NavBar extends StatelessWidget {
                       context, MaterialPageRoute(builder: (context) => ProductListScreen())),
                 ),
                 ListTile(
+                  leading: Icon(Icons.share),
+                  title: Text('Will'),
+                  onTap: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => WillMain())),
+                ),
+                ListTile(
                   leading: Icon(Icons.notifications),
                   title: Text('Crematoria'),
                   // onTap: () => Navigator.push(

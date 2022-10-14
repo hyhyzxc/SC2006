@@ -29,10 +29,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-<<<<<<< Updated upstream
     compileSdkVersion flutter.compileSdkVersion
-=======
->>>>>>> Stashed changes
     compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 

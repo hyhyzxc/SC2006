@@ -18,6 +18,8 @@ class WillMain extends StatefulWidget {
 
 
 class _WillMainState extends State<WillMain> {
+  final trip=new Trip("","","","","","","");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,7 @@ class _WillMainState extends State<WillMain> {
               width: 350.0,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/willFilling');
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => WillForm(trip: trip)));
                 },
                 child: Text(
                   'Next',
