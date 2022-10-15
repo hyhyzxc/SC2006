@@ -73,6 +73,9 @@ class _WillFormState extends State<WillForm> {
                             fontWeight: FontWeight.normal,
                             color: Colors.black38)
                     ),
+                    onTap: () {
+                      _assetsPassedController.text=selectedOption!;
+                    },
                     textInputAction: TextInputAction.next,
                   ),
                 ),
