@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/models/user.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
+import 'package:next_stage/screens/Plans/plans_trial.dart';
 import 'package:next_stage/screens/loginPage.dart';
 
 import '../models/obituary.dart';
@@ -13,6 +14,8 @@ import 'Funeral/product_list_screen.dart';
 import 'Obituary/obituary_form.dart';
 import 'Plans/plans_main.dart';
 import 'Wills/will_main.dart';
+import 'package:next_stage/screens/Crematoria/crematoria_detail_screen.dart';
+import 'package:next_stage/screens/Crematoria/crematoria_list_screen.dart';
 
 class NavBar extends StatelessWidget {
   final newTrip = new obiTrip("","","","","","","","");
@@ -94,14 +97,20 @@ class NavBar extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.notifications),
                   title: Text('Crematoria'),
-                  // onTap: () => Navigator.push(
-                  //   context, MaterialPageRoute(builder: (context) => null ())),
+                   onTap: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Crematoria())),
                 ),
                 ListTile(
                   leading: Icon(Icons.notifications),
                   title: Text('Doctors Detail'),
                   /*    onTap: () => Navigator.push(
                 context, MaterialPageRoute(builder: (context) => DoctorDetail())),*/
+                ),
+                ListTile(
+                  leading: Icon(Icons.notifications),
+                  title: Text('Plans'),
+                  onTap: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => PlansTrial())),
                 ),
                 Divider(),
                 ListTile(

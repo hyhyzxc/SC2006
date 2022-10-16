@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:next_stage/screens/Crematoria/crematoria_add_appointment.dart';
+import 'package:next_stage/screens/Crematoria/crematoria_detail_screen.dart';
+import 'package:next_stage/screens/Crematoria/crematoria_list_screen.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
@@ -11,6 +14,7 @@ import 'package:next_stage/screens/Funeral/product_list_screen.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
+import 'package:next_stage/screens/Plans/plans_trial.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
 import 'package:next_stage/screens/loginPage.dart';
 import 'package:next_stage/models/willform.dart';
@@ -61,6 +65,10 @@ class MyApp extends StatelessWidget {
         ObituaryForm.routeName: (context) =>
             ObituaryForm(trip: newTrip, newspaper: newNewspaper,),
         ViewCert.routeName: (context) => ViewCert(title: "view",),
+        Crematoria.routeName:(context)=>Crematoria(),
+        CrematoriaDetails.routeName:(context)=>CrematoriaDetails(),
+        AddAppointmentCrematoria.routeName:(context)=>AddAppointmentCrematoria(),
+        PlansTrial.routeName:(context)=>PlansTrial(),
       }
     );
   }

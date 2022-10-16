@@ -1,0 +1,136 @@
+{
+  "facilities": [
+    {
+      "id": 1,
+      "corlong": 103.683932300856895,
+      "corlat": 1.37021755941472,
+      "name": "Chua Chu Kang Hindu Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Hindu Cemetery Path 1, Singapore 339696",
+      "rating": 5,
+      "description": "Choa Chu Kang Cemetery: Singapore’s Last Open Burial Site And Largest Cemetery.",
+      "phone": "6795 5511"
+    },
+    {
+      "id": 2,
+      "corlong": 103.757544717066494,
+      "corlat": 1.419188153577126,
+      "name": "State Cemetery, Kranji",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "9 Woodlands Rd, Singapore 738656",
+      "rating": 4,
+      "description": "The Kranji State Cemetery is a national cemetery of Singapore. This cemetery is located at Kranji near Kranji War Cemetery.",
+      "phone": "1800 225 5632"
+    },
+    {
+      "id": 3,
+      "corlong": 103.691068646743702,
+      "corlat": 1.379123605474914,
+      "name": "Chua Chu Kang Chinese Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Chinese Cemetry Path 17",
+      "rating": 5,
+      "description": "The Kranji State Cemetery is a national cemetery of Singapore. This cemetery is located at Kranji near Kranji War Cemetery.",
+      "phone": "6795 5511"
+    },
+    {
+      "id": 4,
+      "corlong": 103.6913514044832,
+      "corlat": 1.385554807687213,
+      "name": "Chua Chu Kang Muslim Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Muslim Cemetery Path 4",
+      "rating": 5,
+      "description": "The Kranji State Cemetery is a national cemetery of Singapore. This cemetery is located at Kranji near Kranji War Cemetery.",
+      "phone": "6795 5511"
+    },
+    {
+      "id": 5,
+      "corlong": 103.697164628178399,
+      "corlat": 1.371465015655494,
+      "name": "Chua Chu Kang Parsi Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Christian Cemetery Path 1, Singapore 64",
+      "rating": 5,
+      "description": "Choa Chu Kang is the only graveyard in Singapore where you can still be buried. ",
+      "phone": "6795 5511"
+    },
+    {
+      "id": 6,
+      "corlong": 103.688627576924901,
+      "corlat": 1.368866914394084,
+      "name": "Chua Chu Kang Ahmadiyya Jama'at Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "910 Choa Chu Kang Rd, Singapore 699819",
+      "rating": 5,
+      "description": "Choa Chu Kang is the only graveyard in Singapore where you can still be buried. ",
+      "phone": "6795 5511"
+    },
+    {
+      "id": 7,
+      "corlong": 103.686990643141897,
+      "corlat": 1.370580850445311,
+      "name": "Choa Chu Kang Crematorium",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "960 Old Choa Chu Kang Rd, Singapore 699818",
+      "rating": 5,
+      "description": "Choa Chu Kang is the only graveyard in Singapore where you can still be buried. ",
+      "phone": "6795 5511"
+    },
+    {
+      "id": 8,
+      "corlong": 103.687107115806299,
+      "corlat": 1.373239679854736,
+      "name": "Choa Chu Kang Columbarium",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "51 Chinese Cemetery Path 4, Singapore 698932",
+      "rating": 5,
+      "description": "The Choa Chu Kang Columbarium is located within the Choa Chu Kang Cemetery Complex, in Singapore and operated by the National Environment Agency. It houses some 147,000 niches spread over 18 four-storey blocks. ",
+      "phone": "6795 9731"
+    },
+    {
+      "id": 8,
+      "corlong": 103.8772779927898,
+      "corlat": 1.340376107121172,
+      "name": "Mount Vernon Columbarium",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Block 89 Geylang Bahru, #01-2730 & 2732, Singapore 339697",
+      "rating": 5,
+      "description": "Mount Vernon Columbarium was a columbarium complex on Mount Vernon, Singapore. Built in 1962 as a crematorium, the columbarium closed in 2018 to make way for future redevelopments in the upcoming Bidadari housing estate, with plans for a new funeral parlour complex to be completed by 2025. ",
+      "phone": "6795 9731"
+    },
+    {
+      "id": 9,
+      "corlong": 103.699638324566195,
+      "corlat": 1.434755223071413,
+      "name": "The Yishun Columbarium",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Yishun Ring Rd, 768691",
+      "rating": 5,
+      "description": "The Yishun Columbarium houses some 16,000 niches and has an architecture similar to a Chinese temple, which offers families a choice of a more traditional temple-like environment. ",
+      "phone": "6554 5655"
+    },
+    {
+      "id": 10,
+      "corlong": 103.699638324566195,
+      "corlat": 1.370973725782966,
+      "name": "Chua Chu Kang Jewish Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "Christian Cemetery Path 1, Singapore 64",
+      "rating": 5,
+      "description": "Chua Chu Kang Road 24 km.",
+      "phone": "6554 5655"
+    },
+    {
+      "id": 11,
+      "corlong": 103.6950179125364,
+      "corlat": 1.376773675282105,
+      "name": "Chua Chu Kang Bahai Cemetery",
+      "link": "http://www.nea.gov.sg/public-health/care-for-the-dead/care-for-the-dead-services",
+      "address": "910 Choa Chu Kang Rd, Singapore 699819",
+      "rating": 5,
+      "description": "Chua Chu Kang Road / Lim Chu Kang Road",
+      "phone": "6554 5655"
+    }
+  ]
+}
