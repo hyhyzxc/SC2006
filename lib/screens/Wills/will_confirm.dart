@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:next_stage/screens/Wills/lawyers_search.dart';
 import 'package:next_stage/screens/Wills/willFilling.dart';
 import 'package:next_stage/models/willform.dart';
 import '../../models/willPlan.dart';
@@ -11,6 +12,8 @@ class WillConfirm extends StatefulWidget {
   final Trip trip;
 
   WillConfirm({Key? key, required this.trip}) : super(key: key);
+
+  static const String routeName = '/willConfirm';
 
   @override
   State<WillConfirm> createState() => _WillConfirmState();
@@ -22,8 +25,8 @@ class _WillConfirmState extends State<WillConfirm> {
   var productName = "";
   LawyerData? lawyer;
 
-  Future<String> saveWillPlan({required WillPlan will}) async {
-    final docUser = FirebaseFirestore.instance.collection('Will').doc();
+  Future<String> saveWillPlan({required WillPlan will,required String uid}) async {
+    final docUser = db.collection("userData").doc(uid).collection('Will').doc();
     final json = will.getJson();
     await docUser.set(json);
     return docUser.id;
@@ -376,38 +379,8 @@ class _WillConfirmState extends State<WillConfirm> {
                               ),
                             ),
                             onPressed: () async {
-                              final FirebaseAuth auth = FirebaseAuth.instance;
-                              final User? user = auth.currentUser;
-                              final String uid = user!.uid;
-                              WillPlan will = WillPlan(
-                                  user_id: uid,
-                                  tester_name: widget.trip.tester,
-                                  executor_and_trustee: widget.trip
-                                      .executorAndTrustee,
-                                  type_of_assets: widget.trip.typeOfAssets,
-                                  executor_1: widget.trip.executor1,
-                                  substitute_executor: widget.trip
-                                      .substituteExecutor,
-                                  specific_gifts: widget.trip.gifts);
-/**/
-                              String docID = await saveWillPlan(
-                                  will: will);
-
-                              final planData = FirebaseFirestore.instance
-                                  .collection(
-                                  'Will').doc(uid);
-                              final snapshot = await planData.get();
-
-                              print(docID);
-                              if (snapshot.exists) {
-                                planData.update({
-                                  'willPlanID': docID!,
-                                });
-                              } else {
-                                print("Error: cannot find Plan");
+                                 _showMyDialog();
                               }
-                              _showMyDialog();
-                            }
                         )
                     )
                 ),
@@ -429,7 +402,56 @@ class _WillConfirmState extends State<WillConfirm> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('Plan saved successfully'),
+                Text('Are you sure that you want to save into plans?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () async {
+                final FirebaseAuth auth = FirebaseAuth.instance;
+                final User? user = auth.currentUser;
+                final String uid = user!.uid;
+                WillPlan will = WillPlan(
+                    user_id: uid,
+                    tester_name: widget.trip.tester,
+                    executor_and_trustee: widget.trip.executorAndTrustee,
+                    type_of_assets: widget.trip.typeOfAssets,
+                    executor_1: widget.trip.executor1,
+                    substitute_executor: widget.trip.substituteExecutor,
+                    specific_gifts: widget.trip.gifts);
+                /**/
+                String docID = await saveWillPlan(
+                    will: will,uid: uid);
+
+
+                _showMyDialogconfirm();
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: ()  =>
+                  Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  Future<void> _showMyDialogconfirm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Plan Saved!'),
               ],
             ),
           ),
@@ -439,6 +461,13 @@ class _WillConfirmState extends State<WillConfirm> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+            TextButton(
+              child: const Text('View Lawyers'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchLawyer()));
               },
             ),
           ],

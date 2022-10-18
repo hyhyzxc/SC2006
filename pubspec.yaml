@@ -82,6 +82,7 @@ flutter:
     - AfterLifeFacilities.json
     - funeralplace.json
     - deathcert_doctor.json
+    - lawyers.json
     - assets/images/
     - assets/PDFs/Document.pdf
   # assets:

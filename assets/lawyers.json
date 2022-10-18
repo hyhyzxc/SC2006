@@ -3,56 +3,63 @@
     {
       "id": 1,
       "firm": "Bhavini S Law Practice",
+      "address": "10 Anson Road, #14-15 International Plaza,\nSingapore 079903",
       "name": "Bhavini Shah",
-      "experience": "26 Years",
+      "experience": 26,
       "fluency": "English, Gujarati",
       "phone": "65924589"
     },
     {
       "id": 2,
       "firm": "PKWA Law Practice",
+      "address": "480 Lorong 6 Toa Payoh #16-01 HDB Hub East Wing, \nSingapore 310480",
       "name": "Lim Chong Boon",
-      "experience": "33 Years",
+      "experience": 33,
       "fluency": "English, Mandarin",
       "phone": "68545336"
     },
     {
       "id": 3,
       "firm": "IRB Law LLP",
+      "address": "119 Jalan Sultan, Singapore 199007",
       "name": "Mohamed Baiross",
-      "experience": "14 Years",
+      "experience": 14,
       "fluency": "English, Malay, Tamil",
       "phone": "62982537"
     },
     {
       "id": 4,
       "firm": "K K Lee Law Corporation",
+      "address": "511 Guillemard Road #03-13 Grandlink Square,\nSingapore 399849",
       "name": "Lee Kim Kee",
-      "experience": "39 Years",
+      "experience": 39,
       "fluency": "English, Mandarin, Hokkien, Cantonese",
       "phone": "67431904"
     },
     {
       "id": 5,
       "firm": "Yuen Law LLC",
+      "address": "50 South Bridge Road #03-00,\nSingapore 058682",
       "name": "Lim Fung Peen",
-      "experience": "26 Years",
+      "experience": 26,
       "fluency": "English, Mandarin",
       "phone": "96246855"
     },
     {
       "id": 6,
       "firm": "PY Legal LLC",
+      "address": "12 Eu Tong Sen Street #06-163 The Central (SOHO 2),\nSingapore 059819",
       "name": "Peggy Sarah Yee May Kuen",
-      "experience": "34 Years",
+      "experience": 34,
       "fluency": "English, Mandarin, Malay",
       "phone": "62254155"
     },
     {
       "id": 7,
       "firm": "IRB Law LLP",
+      "address": "42 Sam Leong Rd, Singapore 207932",
       "name": "Cherie Tan",
-      "experience": "7 Years",
+      "experience": 7,
       "fluency": "English, Mandarin, Hokkien",
       "phone": "97556550"
     }

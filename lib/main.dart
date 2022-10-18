@@ -15,6 +15,10 @@ import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
 import 'package:next_stage/screens/Plans/plans_trial.dart';
+import 'package:next_stage/screens/Wills/lawyers_details.dart';
+import 'package:next_stage/screens/Wills/lawyers_search.dart';
+import 'package:next_stage/screens/Wills/willFilling.dart';
+import 'package:next_stage/screens/Wills/will_confirm.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
 import 'package:next_stage/screens/loginPage.dart';
 import 'package:next_stage/models/willform.dart';
@@ -34,7 +38,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final newTrip = new obiTrip("","","","","","","","");
+    final ObituaryTrip = new obiTrip("","","","","","","","");
+    final WillTrip = new Trip("","","","","","","");
     final newObituary = new Obituary();
     final newNewspaper = new NewspaperData(0,"","","");
     return MaterialApp(
@@ -55,7 +60,12 @@ class MyApp extends StatelessWidget {
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
         ViewPlans.routeName: (context) => ViewPlans(),
+
         WillMain.routeName: (context) => WillMain(),
+        WillForm.routeName: (context) => WillForm(trip: WillTrip),
+        WillConfirm.routeName: (context) => WillConfirm(trip: WillTrip),
+        SearchLawyer.routeName: (context) => SearchLawyer(),
+        LawyerDetail.routeName: (context) => LawyerDetail(),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
         SearchDoctor.routeName: (context) => SearchDoctor(),
         DoctorDetail.routeName: (context) => DoctorDetail(),
@@ -63,7 +73,7 @@ class MyApp extends StatelessWidget {
         DeathAtHospital.routeName: (context) => DeathAtHospital(),
         ObituaryMainNew.routeName: (context) => ObituaryMainNew(),
         ObituaryForm.routeName: (context) =>
-            ObituaryForm(trip: newTrip, newspaper: newNewspaper,),
+            ObituaryForm(trip: ObituaryTrip, newspaper: newNewspaper,),
         ViewCert.routeName: (context) => ViewCert(title: "view",),
         Crematoria.routeName:(context)=>Crematoria(),
         CrematoriaDetails.routeName:(context)=>CrematoriaDetails(),
