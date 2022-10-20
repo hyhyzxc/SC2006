@@ -59,12 +59,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(title: Text("Funeral Parlours"),),
+        appBar: AppBar(title: Text("Funeral Parlours"),
+        backgroundColor: Colors.blue[200],),
         body:  Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: ElevatedButton(onPressed: readJsonFile, child: Text("Load Locations")),
+              child: ElevatedButton(onPressed: readJsonFile, child: Text("Load Locations"),
+                style: ElevatedButton.styleFrom(primary: Colors.blue[200]),),
             ),
             // if (allProducts.length > 0)
             Padding(
@@ -74,7 +76,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   SizedBox(height: 10,),
                   TextField(
                     onChanged: (value) => _runFilter(value),
-                    decoration: InputDecoration(labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),),labelText: 'Search', suffixIcon: Icon(Icons.search)),
                   ),
                   SizedBox(height: 10,),
                 ],

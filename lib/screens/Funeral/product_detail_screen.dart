@@ -100,13 +100,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     ));
 
     return Scaffold(
-      appBar: AppBar(title: Text(product!.name),),
+      appBar: AppBar(title: Text(product!.name),
+      backgroundColor: Colors.blue[200],),
       body: ListView(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 20.0),
-
-            ),
             Center(
                 child: Image.asset('assets/images/funeral_parlour.jpeg',
                     height: 300.0,
@@ -114,23 +111,29 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     fit: BoxFit.fitHeight
                 )
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 30.0),
             Center(
+            child: Container(
+            width: MediaQuery.of(context).size.width - 50.0,
               child: Text(product!.name,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))),
-            ),
+                      color: Colors.blue[200])),
+            )),
             SizedBox(height: 10.0),
             Center(
+            child: Container(
+            width: MediaQuery.of(context).size.width - 50.0,
               child: Text(product!.address,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color(0xFF575E67),
                       fontFamily: 'Varela',
                       fontSize: 16)),
-            ),
+            )),
             SizedBox(height: 20.0),
             Center(
               child: Container(
@@ -140,7 +143,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 16.0,
-                        color: Color(0xFFB4B8B9))
+                        color: Colors.grey)
                 ),
               ),
             ),
@@ -153,7 +156,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Colors.blue[200],
                         ),
                         child: Center(
                             child: Text('Call ' + product!.phone,
@@ -171,7 +174,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     }
                 )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
             Center(
                 child: Container(
                     width: MediaQuery.of(context).size.width - 50.0,
@@ -187,7 +190,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         )
                     )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
 
             Center(
                 child: Container(
@@ -211,7 +214,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 )
             ),
           ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
         ],
       ),
     );

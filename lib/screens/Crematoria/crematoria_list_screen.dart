@@ -74,7 +74,7 @@ class _CrematoriaState extends State<Crematoria> {
                   SizedBox(height: 10,),
                   TextField(
                     onChanged: (value) => _runFilter(value),
-                    decoration: InputDecoration(labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),),labelText: 'Search', suffixIcon: Icon(Icons.search)),
                   ),
                   SizedBox(height: 10,),
                 ],

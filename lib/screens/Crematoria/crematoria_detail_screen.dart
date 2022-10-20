@@ -80,23 +80,35 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                     fit: BoxFit.fitHeight
                 )
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 30.0),
             Center(
+            child: Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width - 50.0,
               child: Text(facility!.name,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.orange[300])),
-            ),
+            )),
             SizedBox(height: 10.0),
             Center(
+              child: Container(
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width - 50.0,
               child: Text(facility!.address,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color(0xFF575E67),
                       fontFamily: 'Varela',
                       fontSize: 16)),
-            ),
+            )),
             SizedBox(height: 20.0),
             Center(
               child: Container(
@@ -113,7 +125,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 40.0),
+            SizedBox(height: 60.0),
             Center(
                 child: InkWell(
 
@@ -143,7 +155,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                     }
                 )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
             Center(
                 child: Container(
                   width: MediaQuery
@@ -160,7 +172,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                   ),
                 )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
 
             Center(
                 child: Container(
@@ -203,7 +215,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                   ),
                 )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
 
           ]
       ),
