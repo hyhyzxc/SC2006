@@ -199,7 +199,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   height: 50.0,
                   child: ElevatedButton(
                       style:style,
-                      child: const Text('show in Maps'),
+                      child: const Text('Show in Maps'),
                       onPressed: () {showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {

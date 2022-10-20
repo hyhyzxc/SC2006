@@ -173,7 +173,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                       // style: ElevatedButton.styleFrom(
                       //     primary: Colors.orangeAccent),
 
-                      child: const Text('show in Maps'),
+                      child: const Text('Show in Maps'),
                       onPressed: () {
                         showModalBottomSheet<void>(
                           context: context,
