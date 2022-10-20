@@ -20,8 +20,7 @@ class _WillMainState extends State<WillMain> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('Formalities of a Will'),
-        centerTitle: true,
+        title: Text('Will'),
         backgroundColor: Colors.blueGrey[300],
         elevation: 0.0,
       ),
@@ -29,11 +28,21 @@ class _WillMainState extends State<WillMain> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20,),
-            Image(
-              image: AssetImage('assets/images/Formalities of a will.PNG'),
+            SizedBox(height: 30,),
+            Container(
+              padding: EdgeInsets.all(20),
+              height: 520,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/Formalities of a will.PNG'),
+                      fit: BoxFit.fitHeight
+                  )
+              ),
             ),
-            SizedBox(height: 20.0),
+            // Image(
+            //   image: AssetImage('assets/images/Formalities of a will.PNG'),
+            // ),
+            SizedBox(height: 60.0),
             Container(
               width: MediaQuery.of(context).size.width - 50.0,
               height: 50.0,
@@ -49,6 +58,7 @@ class _WillMainState extends State<WillMain> {
                 ),
               ),
             ),
+            SizedBox(height: 10.0),
           ],
         ),
       ),

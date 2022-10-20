@@ -36,8 +36,7 @@ class _WillFormState extends State<WillForm> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey[300],
-          centerTitle: true,
-          title: Text('Make Will'),
+          title: Text('Will'),
         ),
         body: Center(
             child: ListView(
@@ -46,7 +45,7 @@ class _WillFormState extends State<WillForm> {
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.fromLTRB(20,10,20,0),
                     child: const Text(
-                      'Please key in details for your will',
+                      'Please key in details for your Will',
                       style: TextStyle(
                           fontFamily: 'NATS',
                           fontSize: 18.0,

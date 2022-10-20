@@ -323,7 +323,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
                   padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                   child: ElevatedButton(
                     //icon: Icon(Icons.upload),
-                    child: Text('UPLOAD FILE'),
+                    child: Text('Upload File'),
                     onPressed: () async {
                       selectFile();
                       uploadFile(pickedFile);
@@ -347,7 +347,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
                   height: 70,
                   padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                   child: ElevatedButton(
-                    child: Text("PROCEED"),
+                    child: Text("Proceed"),
                     onPressed: () {
                       widget.trip.name = _nameController.text;
                       widget.trip.dateofdeath = _dateoofdeathController.text;

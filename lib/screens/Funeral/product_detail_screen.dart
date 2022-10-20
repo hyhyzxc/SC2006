@@ -103,17 +103,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       appBar: AppBar(title: Text(product!.name),),
       body: ListView(
           children: [
-            SizedBox(height: 15.0),
             Padding(
               padding: EdgeInsets.only(left: 20.0),
 
             ),
-            SizedBox(height: 10.0),
             Center(
                 child: Image.asset('assets/images/funeral_parlour.jpeg',
                     height: 300.0,
                     width: 500.0,
-                    fit: BoxFit.contain
+                    fit: BoxFit.fitHeight
                 )
             ),
             SizedBox(height: 10.0),
@@ -181,7 +179,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.0),
                     ),
-                    child: Center(
                         child: ElevatedButton(
                           child: Text("Add to Plans"),
                           onPressed: () async {
@@ -189,7 +186,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           },
                         )
                     )
-                )
             ),
             SizedBox(height: 20.0),
 
