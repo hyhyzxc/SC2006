@@ -35,6 +35,20 @@ class DeathCertDoctor{
     );
   }
 
+  Map<String, String> getJson() {
+    return {
+      //'id' : this.id,
+      'name' : this.name,
+      'clinic' : this.clinic,
+      'address' : this.address,
+      'description' : this.description,
+      'phone' : this.phone,
+      // 'rating': this.rating,
+      // 'corlong' : this.corlong,
+
+    };
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:next_stage/models/deathcert_doctor.dart';
@@ -22,11 +21,17 @@ class DoctorDetail extends StatefulWidget {
 }
 
 class _DoctorDetailState extends State<DoctorDetail> {
-  Completer<GoogleMapController> _controller = Completer();
-  Set<Marker> _markers = Set<Marker>();
-  Set<Polygon> _polygons = Set<Polygon>();
-  Set<Polyline> _polylines = Set<Polyline>();
-  List<LatLng> polygonLatLngs = <LatLng>[];
+
+  @override
+  final db = FirebaseFirestore.instance;
+
+  Future<String>saveDoctorPlan({required DeathCertDoctor deathCertDoctor,required String uid}) async {
+    final docUser = db.collection("userData").doc(uid).collection('Death Certificate').doc();
+    final json = deathCertDoctor.getJson();
+    await docUser.set(json);
+    return docUser.id;
+  }
+
   var productName = "";
   DeathCertDoctor? product;
 
@@ -35,7 +40,11 @@ class _DoctorDetailState extends State<DoctorDetail> {
     super.initState();
   }
 
-
+  Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> _markers = Set<Marker>();
+  Set<Polygon> _polygons = Set<Polygon>();
+  Set<Polyline> _polylines = Set<Polyline>();
+  List<LatLng> polygonLatLngs = <LatLng>[];
 
   @override
   void didChangeDependencies() {
@@ -59,33 +68,6 @@ class _DoctorDetailState extends State<DoctorDetail> {
   @override
   Widget build(BuildContext context) {
 
-    Future<void> _showMyDialog() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Notification'),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: const <Widget>[
-                  Text('Plan saved successfully'),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Go back to Home Page'),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
     final ButtonStyle style =
     ElevatedButton.styleFrom(textStyle: TextStyle(
         fontFamily: 'Varela',
@@ -209,29 +191,15 @@ class _DoctorDetailState extends State<DoctorDetail> {
                     ),
                     child: Center(
                         child: ElevatedButton(
-                          child: Text("Add to Plans"),
+                          child: Text("Add to Plans",
+                            style: TextStyle(
+                              fontFamily: 'Varela',
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                            ),
+                          ),
                           onPressed: () async {
-                            final FirebaseAuth auth = FirebaseAuth.instance;
-                            final User? user = auth.currentUser;
-                            final String uid = user!.uid;
-                            final db = FirebaseFirestore.instance;
-
-                            Map<String, dynamic>json = product!.toJson();
-                            final setDoctorPlan = db.collection('Doctor').doc();
-                            await setDoctorPlan.set(json);
-
-                            String newDoctorPlanID = setDoctorPlan.id;
-
-                            final updateMainPlan = db.collection('Plan').doc(
-                                uid);
-                            final snapshotPlan = await updateMainPlan.get();
-                            if (snapshotPlan.exists) {
-                              updateMainPlan.update({
-                                'doctorPlanID': newDoctorPlanID,
-                              });
-                            } else {
-                              print("Error: cannot find Plan");
-                            }
                             _showMyDialog();
                           },
                         )
@@ -272,6 +240,98 @@ class _DoctorDetailState extends State<DoctorDetail> {
       ),
     );
 
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Are you sure that you want to save into plans?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () async {
+                final FirebaseAuth auth = FirebaseAuth.instance;
+                final User? user = auth.currentUser;
+                final String uid = user!.uid;
+                DeathCertDoctor deathCertDoctor = DeathCertDoctor(
+                    id : product!.id,
+                    name : product!.name,
+                    address : product!.address,
+                    description : product!.description,
+                    phone : product!.phone,
+                    rating: product!.rating,
+                    corlong : product!.corlong,
+                    corlat: product!.corlat
+                );
+
+                String docID = await saveDoctorPlan(
+                    deathCertDoctor: deathCertDoctor, uid:uid);
+
+                /*final planData = FirebaseFirestore.instance.collection(
+                    'Plan').doc(uid);
+                final snapshot = await planData.get();
+
+                print(docID);
+                if (snapshot.exists) {
+                  planData.update({
+                    'crematoriumApptID': docID!,
+                  });
+                } else {
+                  print("Error: cannot find Plan");
+                }*/
+                _showMyDialogconfirm();
+
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: ()  =>
+                  Navigator.pop(context),
+
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  Future<void> _showMyDialogconfirm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Plan Saved!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Go back to Home Page'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
 }
