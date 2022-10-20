@@ -46,5 +46,18 @@ class FuneralParlor{
     return data;
   }
 
+  Map<String, String> getJson() {
+    return {
+      'id' : this.id.toString(),
+      'name' : this.name,
+      'address' : this.address,
+      'description' : this.description,
+      'phone' : this.phone,
+      'rating': this.rating.toString(),
+      'corlong' : this.corlong.toString(),
+      'corlat' : this.corlat.toString()
+    };
+  }
+
 
 }

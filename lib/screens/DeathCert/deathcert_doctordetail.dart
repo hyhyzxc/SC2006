@@ -266,6 +266,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
                 DeathCertDoctor deathCertDoctor = DeathCertDoctor(
                     id : product!.id,
                     name : product!.name,
+                    clinic: product!.clinic,
                     address : product!.address,
                     description : product!.description,
                     phone : product!.phone,

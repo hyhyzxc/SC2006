@@ -23,11 +23,17 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  Completer<GoogleMapController> _controller = Completer();
-  Set<Marker> _markers = Set<Marker>();
-  Set<Polygon> _polygons = Set<Polygon>();
-  Set<Polyline> _polylines = Set<Polyline>();
-  List<LatLng> polygonLatLngs = <LatLng>[];
+
+  @override
+  final db = FirebaseFirestore.instance;
+
+  Future<String>saveFuneralPlan({required FuneralParlor funeralParlor,required String uid}) async {
+    final docUser = db.collection("userData").doc(uid).collection('Funeral').doc();
+    final json = funeralParlor.getJson();
+    await docUser.set(json);
+    return docUser.id;
+  }
+
   var productName = "";
   FuneralParlor? product;
 
@@ -35,6 +41,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState(){
     super.initState();
   }
+
+
+  Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> _markers = Set<Marker>();
+  Set<Polygon> _polygons = Set<Polygon>();
+  Set<Polyline> _polylines = Set<Polyline>();
+  List<LatLng> polygonLatLngs = <LatLng>[];
 
   @override
   void didChangeDependencies() {
@@ -57,33 +70,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _showMyDialog() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Notification'),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: const <Widget>[
-                  Text('Plan saved successfully'),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Go back to Home Page'),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
 
     CameraPosition funeralPosition = CameraPosition(
       target: LatLng(product!.corlat, product!.corlong),
@@ -200,27 +186,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         child: ElevatedButton(
                           child: Text("Add to Plans"),
                           onPressed: () async {
-                            final FirebaseAuth auth = FirebaseAuth.instance;
-                            final User? user = auth.currentUser;
-                            final String uid = user!.uid;
-                            final db = FirebaseFirestore.instance;
-
-                            Map<String, dynamic>json = product!.toJson();
-                            final setFuneralPlan = db.collection('Funeral').doc();
-                            await setFuneralPlan.set(json);
-
-                            String newFuneralPlanID = setFuneralPlan.id;
-
-                            final updateMainPlan = db.collection('Plan').doc(
-                                uid);
-                            final snapshotPlan = await updateMainPlan.get();
-                            if (snapshotPlan.exists) {
-                              updateMainPlan.update({
-                                'funeralPlanID': newFuneralPlanID,
-                              });
-                            } else {
-                              print("Error: cannot find Plan");
-                            }
                             _showMyDialog();
                           },
                         )
@@ -253,6 +218,97 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           )
         ],
       ),
+    );
+  }
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Are you sure that you want to save into plans?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () async {
+                final FirebaseAuth auth = FirebaseAuth.instance;
+                final User? user = auth.currentUser;
+                final String uid = user!.uid;
+                FuneralParlor funeralParlor = FuneralParlor(
+                    id : product!.id,
+                    name : product!.name,
+                    address : product!.address,
+                    description : product!.description,
+                    phone : product!.phone,
+                    rating: product!.rating,
+                    corlong : product!.corlong,
+                    corlat: product!.corlat
+                );
+
+                String docID = await saveFuneralPlan(
+                    funeralParlor: funeralParlor, uid:uid);
+
+                /*final planData = FirebaseFirestore.instance.collection(
+                    'Plan').doc(uid);
+                final snapshot = await planData.get();
+
+                print(docID);
+                if (snapshot.exists) {
+                  planData.update({
+                    'crematoriumApptID': docID!,
+                  });
+                } else {
+                  print("Error: cannot find Plan");
+                }*/
+                _showMyDialogconfirm();
+
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: ()  =>
+                  Navigator.pop(context),
+
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  Future<void> _showMyDialogconfirm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Plan Saved!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Go back to Home Page'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

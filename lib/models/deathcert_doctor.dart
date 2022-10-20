@@ -37,14 +37,15 @@ class DeathCertDoctor{
 
   Map<String, String> getJson() {
     return {
-      //'id' : this.id,
+      'id' : this.id.toString(),
       'name' : this.name,
       'clinic' : this.clinic,
       'address' : this.address,
       'description' : this.description,
       'phone' : this.phone,
-      // 'rating': this.rating,
-      // 'corlong' : this.corlong,
+      'rating': this.rating.toString(),
+      'corlong' : this.corlong.toString(),
+      'corlat' : this.corlat.toString()
 
     };
   }
