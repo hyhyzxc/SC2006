@@ -21,15 +21,25 @@ class _DeathCertMainState extends State<DeathCertMain> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
           resizeToAvoidBottomInset: true,
-          appBar: AppBar(title: Text("Location of Death"),),
+          appBar: AppBar(title: Text("Location of Death"),
+          backgroundColor: Colors.indigo[200],),
           body:  Column(
               children: [
-                Card(
+                Container(
+                    height: 100,
+                    alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
                     color: Colors.indigo[200],
                     child: ListTile(
+                      leading: Container(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Icon(Icons.health_and_safety_outlined),
+                          )
+                      ),
                       title: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(0),
                         child: Text("Instructions of Death at Hospital"),
                       ),
                       trailing: Container(
@@ -43,12 +53,21 @@ class _DeathCertMainState extends State<DeathCertMain> {
                     )
                 ),
 
-                Card(
+                Container(
+                    height: 100,
+                    alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
                     color: Colors.indigo[200],
                     child: ListTile(
+                      leading: Container(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Icon(Icons.house_outlined),
+                          )
+                      ),
                       title: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(0),
                         child: Text("Instructions of Death at Home"),
                       ),
                       trailing: Container(
@@ -62,12 +81,21 @@ class _DeathCertMainState extends State<DeathCertMain> {
                     )
                 ),
 
-                Card(
+                Container(
+                    height: 100,
+                    alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
                     color: Colors.indigo[200],
                     child: ListTile(
+                      leading: Container(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Icon(Icons.remove_red_eye_outlined),
+                          )
+                      ),
                       title: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(0),
                         child: Text("View Past Death Certificate(s)"),
                       ),
                       trailing: Container(

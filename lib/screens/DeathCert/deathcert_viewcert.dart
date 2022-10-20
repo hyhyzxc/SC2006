@@ -27,7 +27,15 @@ class _ViewCertState extends State<ViewCert> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.network('https://www.ica.gov.sg/images/default-source/media-releases/2022/05/220505-04.jpg?sfvrsn=7691f3a0_4'),
-            ElevatedButton(
+            SizedBox(height: 20,),
+            Center(
+            child: Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width - 50.0,
+            height: 50.0,
+            child: ElevatedButton(
               onPressed: () async {
                 String url = 'https://www.ica.gov.sg/images/default-source/media-releases/2022/05/220505-04.jpg?sfvrsn=7691f3a0_4';
                 final tempDir = await getTemporaryDirectory();
@@ -39,9 +47,9 @@ class _ViewCertState extends State<ViewCert> {
                     const SnackBar(content: Text('Downloaded to Gallery!'))
                 );
               },
-              child: Text('Download Death Certificate'),
+              child: Text('Download'),
             ),
-          ],
+            ))],
         ),
       ),
     );
