@@ -43,7 +43,7 @@ class _DeathAtHospitalState extends State<DeathAtHospital> {
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))),
+                      color: Colors.indigo[200])),
             ),
             SizedBox(height: 20.0),
             Center(

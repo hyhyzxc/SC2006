@@ -70,20 +70,14 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
 
     return Scaffold(
       appBar: AppBar(title: Text(facility!.name),
-        backgroundColor: Colors.orangeAccent,),
+        backgroundColor: Colors.orange[300],),
       body: ListView(
           children: [
-            SizedBox(height: 15.0),
-            Padding(
-              padding: EdgeInsets.only(left: 20.0),
-
-            ),
-            SizedBox(height: 10.0),
             Center(
                 child: Image.asset('assets/images/funeral_parlour.jpeg',
                     height: 300.0,
                     width: 500.0,
-                    fit: BoxFit.contain
+                    fit: BoxFit.fitHeight
                 )
             ),
             SizedBox(height: 10.0),
@@ -93,7 +87,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))),
+                      color: Colors.orange[300])),
             ),
             SizedBox(height: 10.0),
             Center(
@@ -119,7 +113,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 40.0),
             Center(
                 child: InkWell(
 
@@ -131,7 +125,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Colors.orange[300]
                         ),
                         child: Center(
                             child: Text('Call ' + facility!.phone,
@@ -158,8 +152,8 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                       .width - 50.0,
                   height: 50.0,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.orangeAccent),
+                      // style: ElevatedButton.styleFrom(
+                      //     primary: Colors.orangeAccent),
                       child: const Text('Book an appointment'),
                       onPressed: () {
                         Navigator.of(context).pushNamed(AddAppointmentCrematoria.routeName, arguments: jsonEncode(facility));}
@@ -176,8 +170,8 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                       .width - 50.0,
                   height: 50.0,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.orangeAccent),
+                      // style: ElevatedButton.styleFrom(
+                      //     primary: Colors.orangeAccent),
 
                       child: const Text('show in Maps'),
                       onPressed: () {
@@ -194,8 +188,8 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                                   children: <Widget>[
                                     const Text('Modal BottomSheet'),
                                     ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.orangeAccent),
+                                      // style: ElevatedButton.styleFrom(
+                                      //     primary: Colors.orangeAccent),
                                       child: const Text('Close BottomSheet'),
                                       onPressed: () => Navigator.pop(context),
                                     ),

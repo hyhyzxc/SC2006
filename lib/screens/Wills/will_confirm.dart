@@ -356,7 +356,7 @@ class _WillConfirmState extends State<WillConfirm> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25.0),
-                    color: Color(0xFFF17532)
+                    color: Colors.blueGrey[300]
                 ),
                 child: Center(
                     child: Container(
@@ -367,7 +367,7 @@ class _WillConfirmState extends State<WillConfirm> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Colors.blueGrey[300]
                         ),
                         child: ElevatedButton(
                             child: Text('Add to plans',

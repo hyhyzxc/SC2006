@@ -26,7 +26,7 @@ class _DeathCertMainState extends State<DeathCertMain> {
               children: [
                 Card(
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.yellow[100],
+                    color: Colors.indigo[200],
                     child: ListTile(
                       title: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -45,7 +45,7 @@ class _DeathCertMainState extends State<DeathCertMain> {
 
                 Card(
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.yellow[100],
+                    color: Colors.indigo[200],
                     child: ListTile(
                       title: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -64,7 +64,7 @@ class _DeathCertMainState extends State<DeathCertMain> {
 
                 Card(
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.yellow[100],
+                    color: Colors.indigo[200],
                     child: ListTile(
                       title: Padding(
                         padding: const EdgeInsets.all(8.0),

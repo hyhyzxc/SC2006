@@ -180,7 +180,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     height: 50.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.0),
-                        color: Color(0xFFF17532)
                     ),
                     child: Center(
                         child: ElevatedButton(
@@ -215,7 +214,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   );},
                 )
             ),
-          )
+          ),
+            SizedBox(height: 20.0),
         ],
       ),
     );

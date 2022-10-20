@@ -64,7 +64,8 @@ class _SearchLawyerState extends State<SearchLawyer> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(onPressed: readJsonFile,
-                  child: Text("Load Lawyers")),
+                  child: Text("Load Lawyers"),
+                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[300]),),
             ),
             // if (allProducts.length > 0)
             Padding(
@@ -124,7 +125,7 @@ class _SearchLawyerState extends State<SearchLawyer> {
                     },
                     child: Card(
                         margin: EdgeInsets.all(15.0),
-                        color: Colors.blue[100],
+                        color: Colors.blueGrey[300],
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 10.0),
@@ -136,36 +137,29 @@ class _SearchLawyerState extends State<SearchLawyer> {
                                           width: 1.0, color: Colors.white24))),
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
-                                child: Icon(Icons.person,
-                                    color: Colors.blueGrey),
+                                child: Icon(Icons.person,),
                               )
                           ),
                           title: Text(
                             filteredProducts[index].name,
-                            style: TextStyle(color: Colors.blueGrey,
+                            style: TextStyle(
                                 fontWeight: FontWeight.bold),
                           ),
-                          // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                          // subtitle: Row(
-                          //   children: <Widget>[
-                          //     Icon(Icons.linear_scale, color: Colors.yellow[500]),
-                          //     Text(filteredProducts[index].rating.toString(), style: TextStyle(color: Colors.blueGrey))
-                          //   ],
-                          // ),
 
                           subtitle: Row(
                             children: <Widget>[
                               Expanded(
                                 flex: 1,
-                                child: Text(
-                                    filteredProducts[index].experience.toString(),
-                                    style: TextStyle(color: Colors.white)),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(0,5,0,0),
+                                  child: Text(filteredProducts[index].experience.toString(),
+                                      style: TextStyle(color: Colors.white)),
+                                ),
                               ),
                               Expanded(
-                                  flex: 10,
+                                  flex: 8,
                                   child: Padding(
-                                      padding: EdgeInsets.only(right: 80.0),
+                                      padding: EdgeInsets.fromLTRB(0,5,80,0),
                                       child: Container(
                                         alignment: Alignment.centerLeft,
                                         // tag: 'hero',
@@ -175,7 +169,7 @@ class _SearchLawyerState extends State<SearchLawyer> {
                                             value: filteredProducts[index]
                                                 .experience.toDouble(),
                                             valueColor: AlwaysStoppedAnimation(
-                                                Colors.yellow[700])),
+                                                Colors.yellow[300])),
                                       )
                                   )
                               )

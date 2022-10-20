@@ -35,6 +35,7 @@ class _WillFormState extends State<WillForm> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey[300],
           centerTitle: true,
           title: Text('Make Will'),
         ),
@@ -42,8 +43,8 @@ class _WillFormState extends State<WillForm> {
             child: ListView(
               children: <Widget>[
                 Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(5),
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.fromLTRB(20,10,20,0),
                     child: const Text(
                       'Please key in details for your will',
                       style: TextStyle(
@@ -61,7 +62,7 @@ class _WillFormState extends State<WillForm> {
                 ),
                 SizedBox(height: 10),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: TextField(
                     controller: _testerController,
                     decoration: const InputDecoration(
@@ -80,7 +81,7 @@ class _WillFormState extends State<WillForm> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: TextField(
                     controller: _executorsandtrusteeController,
                     decoration: const InputDecoration(
@@ -96,7 +97,7 @@ class _WillFormState extends State<WillForm> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: DropdownButton<String>(
                     value: selectedOption,
                     items: options.map((option)
@@ -118,7 +119,7 @@ class _WillFormState extends State<WillForm> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: TextField(
                     controller: _executor1Controller,
                     decoration: const InputDecoration(
@@ -134,7 +135,7 @@ class _WillFormState extends State<WillForm> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: TextField(
                     controller: _substituteexecutorController,
                     decoration: const InputDecoration(
@@ -150,7 +151,7 @@ class _WillFormState extends State<WillForm> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: Row(
                       children:[
                         SizedBox(width: 16,),
@@ -159,7 +160,7 @@ class _WillFormState extends State<WillForm> {
                 ),
 
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   child: TextField(
                     controller: _specificgiftsController,
                     decoration: const InputDecoration(
@@ -176,9 +177,14 @@ class _WillFormState extends State<WillForm> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: 30),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,0,10,0),
+                  width: MediaQuery.of(context).size.width - 50.0,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
                   child: ElevatedButton(
                     onPressed: () {
                       widget.trip.tester = _testerController.text;
@@ -198,13 +204,20 @@ class _WillFormState extends State<WillForm> {
                           fontFamily: 'NATS',
                           fontSize: 20.0,
                           fontWeight: FontWeight.normal,
-                          color: Colors.black38)
+                          )
                     ),
                   ),
                 ),
+                SizedBox(height: 10,),
                 Container(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.fromLTRB(10,0,10,0),
+                  width: MediaQuery.of(context).size.width - 50.0,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
                   child: ElevatedButton(
+
                     onPressed: () async {
                       final action=await AlertDialogs.yesCancelDialog(context, 'Delete Plans', 'Are you sure?');
                       if (action == DialogsAction.Yes) {
@@ -220,7 +233,7 @@ class _WillFormState extends State<WillForm> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red[400],
+                      backgroundColor: Colors.red[300],
                     ),
                     child: Text(
                         'Delete',
@@ -228,10 +241,11 @@ class _WillFormState extends State<WillForm> {
                             fontFamily: 'NATS',
                             fontSize: 20.0,
                             fontWeight: FontWeight.normal,
-                            color: Colors.black38)
+                        )
                     ),
                   ),
                 ),
+
               ],
             )
         )

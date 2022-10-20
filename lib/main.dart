@@ -20,6 +20,7 @@ import 'package:next_stage/screens/Wills/lawyers_search.dart';
 import 'package:next_stage/screens/Wills/willFilling.dart';
 import 'package:next_stage/screens/Wills/will_confirm.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
+import 'package:next_stage/screens/homePage.dart';
 import 'package:next_stage/screens/loginPage.dart';
 import 'package:next_stage/models/willform.dart';
 
@@ -54,9 +55,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.teal,
       ),
-      home: loginPage(),
+      home: HomeScreen(),
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
         ViewPlans.routeName: (context) => ViewPlans(),

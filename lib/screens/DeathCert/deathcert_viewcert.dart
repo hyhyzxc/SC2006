@@ -20,6 +20,7 @@ class _ViewCertState extends State<ViewCert> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.indigo[200],
       ),
       body: Center(
         child: Column(
