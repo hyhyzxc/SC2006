@@ -211,7 +211,7 @@ class _WillFormState extends State<WillForm> {
                         setState(() => tappedYes = true);
                         Navigator.pushAndRemoveUntil<void>(
                           context,
-                          MaterialPageRoute<void>(builder: (BuildContext context) => const HomeScreen()),
+                          MaterialPageRoute<void>(builder: (BuildContext context) => HomeScreen()),
                           ModalRoute.withName('/'),
                         );
                       }
