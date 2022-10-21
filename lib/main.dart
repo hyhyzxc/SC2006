@@ -14,7 +14,7 @@ import 'package:next_stage/screens/Funeral/product_list_screen.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
-import 'package:next_stage/screens/Plans/plans_trial.dart';
+import 'package:next_stage/screens/Plans/crematorium_plans.dart';
 import 'package:next_stage/screens/Wills/lawyers_details.dart';
 import 'package:next_stage/screens/Wills/lawyers_search.dart';
 import 'package:next_stage/screens/Wills/willFilling.dart';
@@ -60,7 +60,6 @@ class MyApp extends StatelessWidget {
       routes: {
         ProductListScreen.routeName: (context) => ProductListScreen(),
         ViewPlans.routeName: (context) => ViewPlans(),
-
         WillMain.routeName: (context) => WillMain(),
         WillForm.routeName: (context) => WillForm(trip: WillTrip),
         WillConfirm.routeName: (context) => WillConfirm(trip: WillTrip),
@@ -78,7 +77,7 @@ class MyApp extends StatelessWidget {
         Crematoria.routeName:(context)=>Crematoria(),
         CrematoriaDetails.routeName:(context)=>CrematoriaDetails(),
         AddAppointmentCrematoria.routeName:(context)=>AddAppointmentCrematoria(),
-        PlansTrial.routeName:(context)=>PlansTrial(),
+        CrematoriumPlans.routeName:(context)=>CrematoriumPlans(),
       }
     );
   }

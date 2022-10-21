@@ -5,7 +5,7 @@ import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
 import 'package:next_stage/screens/NavBar.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
-import 'package:next_stage/screens/Plans/plans_trial.dart';
+import 'package:next_stage/screens/Plans/crematorium_plans.dart';
 
 import '../models/obituaryform.dart';
 import 'Crematoria/crematoria_list_screen.dart';
@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       GestureDetector(
                         onTap: () => Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => PlansTrial())),
+                            context, MaterialPageRoute(builder: (context) => CrematoriumPlans())),
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                           child: Column(children:[

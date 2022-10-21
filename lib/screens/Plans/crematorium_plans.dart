@@ -1,26 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
-import 'package:next_stage/models/deathcert_doctor.dart';
-import 'package:next_stage/models/funeralparlor.dart';
-import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
-import 'package:next_stage/screens/Obituary/obituary_form.dart';
-import 'dart:convert';
-/**/
-import '../../models/obituaryPlan.dart';
-import '../../models/plan.dart';
 
-class PlansTrial extends StatefulWidget {
-  const PlansTrial({Key? key}) : super(key: key);
-  static const String routeName = '/plans-trial';
+
+class CrematoriumPlans extends StatefulWidget {
+  const CrematoriumPlans({Key? key}) : super(key: key);
+  static const String routeName = '/crematorium-plans';
 
   @override
-  State<PlansTrial> createState() => _PlansTrialState();
+  State<CrematoriumPlans> createState() => _CrematoriumPlansState();
 }
 
-class _PlansTrialState extends State<PlansTrial> {
+class _CrematoriumPlansState extends State<CrematoriumPlans> {
 
   final db = FirebaseFirestore.instance;
   Stream<QuerySnapshot<Object?>> getCrematoriaSnapshots(BuildContext context) async* {

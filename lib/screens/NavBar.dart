@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/models/user.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
-import 'package:next_stage/screens/Plans/plans_trial.dart';
+import 'package:next_stage/screens/Plans/crematorium_plans.dart';
 import 'package:next_stage/screens/Wills/selection_page.dart';
 import 'package:next_stage/screens/loginPage.dart';
 
@@ -111,7 +111,7 @@ class NavBar extends StatelessWidget {
                   leading: Icon(Icons.notifications),
                   title: Text('Plans'),
                   onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => PlansTrial())),
+                      context, MaterialPageRoute(builder: (context) => ViewPlans())),
                 ),
                 Divider(),
                 ListTile(
