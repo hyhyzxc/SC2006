@@ -83,7 +83,7 @@ class _LawyerDetailState extends State<LawyerDetail> {
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))),
+                      color: Colors.blueGrey[300])),
             ),
             SizedBox(height: 10.0),
             Center(
@@ -99,7 +99,8 @@ class _LawyerDetailState extends State<LawyerDetail> {
                   style: TextStyle(
                       color: Color(0xFF575E67),
                       fontFamily: 'Varela',
-                      fontSize: 16)),
+                      fontSize: 16),
+                  textAlign: TextAlign.center,),
             ),
             SizedBox(height: 20.0),
             Center(
@@ -117,7 +118,7 @@ class _LawyerDetailState extends State<LawyerDetail> {
                 ),
               ),
             ),
-            SizedBox(height: 100.0),
+            SizedBox(height: 140.0),
             Center(
                 child: InkWell(
 
@@ -129,7 +130,7 @@ class _LawyerDetailState extends State<LawyerDetail> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Colors.blueGrey[300]
                         ),
                         child: Center(
                             child: Text('Call ' + product!.phone,
@@ -147,7 +148,7 @@ class _LawyerDetailState extends State<LawyerDetail> {
                     }
                 )
             ),
-            SizedBox(height: 50.0),
+            SizedBox(height: 10.0),
           ]
       ),
     );

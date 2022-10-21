@@ -53,27 +53,29 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(title: Text("Death at Home"),),
+        appBar: AppBar(title: Text("Death at Home"),
+        backgroundColor: Colors.indigo[200],),
         body:  Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: ElevatedButton(onPressed: readJsonFile, child: Text("Load Death Certificate Doctors")),
+              child: ElevatedButton(onPressed: readJsonFile,
+                  child: Text("Load Death Certificate Doctors"),
+                  style: ElevatedButton.styleFrom(primary: Colors.indigo[200]),),
             ),
-            // if (allProducts.length > 0)
+            if (allProducts.length > 0)
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.fromLTRB(20,0,20,20),
               child: Column(
                 children: [
                   SizedBox(height: 10,),
                   TextField(
                     onChanged: (value) => _runFilter(value),
-                    decoration: InputDecoration(labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),), labelText: 'Search', suffixIcon: Icon(Icons.search)),
                   ),
                   SizedBox(height: 10,),
                 ],
@@ -126,7 +128,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
                     },
                     child: Card(
                         margin: EdgeInsets.all(15.0),
-                        color: Colors.blue[100],
+                        color: Colors.indigo[200],
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                           leading: Container(
@@ -136,12 +138,12 @@ class _SearchDoctorState extends State<SearchDoctor> {
                                       right: new BorderSide(width: 1.0, color: Colors.white24))),
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
-                                child: Icon(Icons.location_city, color: Colors.blueGrey),
+                                child: Icon(Icons.health_and_safety_outlined),
                               )
                           ),
                           title: Text(
                             filteredProducts[index].name,
-                            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
@@ -156,13 +158,16 @@ class _SearchDoctorState extends State<SearchDoctor> {
                             children: <Widget>[
                               Expanded(
                                 flex: 1,
-                                child: Text(filteredProducts[index].rating.toString(),
-                                    style: TextStyle(color: Colors.white)),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(0,5,80,0),
+                                  child: Text(filteredProducts[index].rating.toString(),
+                                      style: TextStyle(color: Colors.white)),
+                                ),
                               ),
                               Expanded(
                                   flex: 10,
                                   child: Padding(
-                                      padding: EdgeInsets.only(right: 80.0),
+                                      padding: EdgeInsets.fromLTRB(0,5,80,0),
                                       child: Container(
                                         alignment: Alignment.centerLeft,
                                         // tag: 'hero',

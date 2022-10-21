@@ -23,11 +23,17 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  Completer<GoogleMapController> _controller = Completer();
-  Set<Marker> _markers = Set<Marker>();
-  Set<Polygon> _polygons = Set<Polygon>();
-  Set<Polyline> _polylines = Set<Polyline>();
-  List<LatLng> polygonLatLngs = <LatLng>[];
+
+  @override
+  final db = FirebaseFirestore.instance;
+
+  Future<String>saveFuneralPlan({required FuneralParlor funeralParlor,required String uid}) async {
+    final docUser = db.collection("userData").doc(uid).collection('Funeral').doc();
+    final json = funeralParlor.getJson();
+    await docUser.set(json);
+    return docUser.id;
+  }
+
   var productName = "";
   FuneralParlor? product;
 
@@ -35,6 +41,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState(){
     super.initState();
   }
+
+
+  Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> _markers = Set<Marker>();
+  Set<Polygon> _polygons = Set<Polygon>();
+  Set<Polyline> _polylines = Set<Polyline>();
+  List<LatLng> polygonLatLngs = <LatLng>[];
 
   @override
   void didChangeDependencies() {
@@ -57,33 +70,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _showMyDialog() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Notification'),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: const <Widget>[
-                  Text('Plan saved successfully'),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Go back to Home Page'),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
 
     CameraPosition funeralPosition = CameraPosition(
       target: LatLng(product!.corlat, product!.corlong),
@@ -114,39 +100,40 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     ));
 
     return Scaffold(
-      appBar: AppBar(title: Text(product!.name),),
+      appBar: AppBar(title: Text(product!.name),
+      backgroundColor: Colors.blue[200],),
       body: ListView(
           children: [
-            SizedBox(height: 15.0),
-            Padding(
-              padding: EdgeInsets.only(left: 20.0),
-
-            ),
-            SizedBox(height: 10.0),
             Center(
                 child: Image.asset('assets/images/funeral_parlour.jpeg',
                     height: 300.0,
                     width: 500.0,
-                    fit: BoxFit.contain
+                    fit: BoxFit.fitHeight
                 )
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 30.0),
             Center(
+            child: Container(
+            width: MediaQuery.of(context).size.width - 50.0,
               child: Text(product!.name,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))),
-            ),
+                      color: Colors.blue[200])),
+            )),
             SizedBox(height: 10.0),
             Center(
+            child: Container(
+            width: MediaQuery.of(context).size.width - 50.0,
               child: Text(product!.address,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color(0xFF575E67),
                       fontFamily: 'Varela',
                       fontSize: 16)),
-            ),
+            )),
             SizedBox(height: 20.0),
             Center(
               child: Container(
@@ -156,7 +143,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 16.0,
-                        color: Color(0xFFB4B8B9))
+                        color: Colors.grey)
                 ),
               ),
             ),
@@ -169,7 +156,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Colors.blue[200],
                         ),
                         child: Center(
                             child: Text('Call ' + product!.phone,
@@ -187,47 +174,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     }
                 )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
             Center(
                 child: Container(
                     width: MediaQuery.of(context).size.width - 50.0,
                     height: 50.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.0),
-                        color: Color(0xFFF17532)
                     ),
-                    child: Center(
                         child: ElevatedButton(
                           child: Text("Add to Plans"),
                           onPressed: () async {
-                            final FirebaseAuth auth = FirebaseAuth.instance;
-                            final User? user = auth.currentUser;
-                            final String uid = user!.uid;
-                            final db = FirebaseFirestore.instance;
-
-                            Map<String, dynamic>json = product!.toJson();
-                            final setFuneralPlan = db.collection('Funeral').doc();
-                            await setFuneralPlan.set(json);
-
-                            String newFuneralPlanID = setFuneralPlan.id;
-
-                            final updateMainPlan = db.collection('Plan').doc(
-                                uid);
-                            final snapshotPlan = await updateMainPlan.get();
-                            if (snapshotPlan.exists) {
-                              updateMainPlan.update({
-                                'funeralPlanID': newFuneralPlanID,
-                              });
-                            } else {
-                              print("Error: cannot find Plan");
-                            }
                             _showMyDialog();
                           },
                         )
                     )
-                )
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
 
             Center(
                 child: Container(
@@ -235,7 +198,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   height: 50.0,
                   child: ElevatedButton(
                       style:style,
-                      child: const Text('show in Maps'),
+                      child: const Text('Show in Maps'),
                       onPressed: () {showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
@@ -250,9 +213,101 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   );},
                 )
             ),
-          )
+          ),
+            SizedBox(height: 10.0),
         ],
       ),
+    );
+  }
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Are you sure that you want to save into plans?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () async {
+                final FirebaseAuth auth = FirebaseAuth.instance;
+                final User? user = auth.currentUser;
+                final String uid = user!.uid;
+                FuneralParlor funeralParlor = FuneralParlor(
+                    id : product!.id,
+                    name : product!.name,
+                    address : product!.address,
+                    description : product!.description,
+                    phone : product!.phone,
+                    rating: product!.rating,
+                    corlong : product!.corlong,
+                    corlat: product!.corlat
+                );
+
+                String docID = await saveFuneralPlan(
+                    funeralParlor: funeralParlor, uid:uid);
+
+                /*final planData = FirebaseFirestore.instance.collection(
+                    'Plan').doc(uid);
+                final snapshot = await planData.get();
+
+                print(docID);
+                if (snapshot.exists) {
+                  planData.update({
+                    'crematoriumApptID': docID!,
+                  });
+                } else {
+                  print("Error: cannot find Plan");
+                }*/
+                _showMyDialogconfirm();
+
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: ()  =>
+                  Navigator.pop(context),
+
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  Future<void> _showMyDialogconfirm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notification'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Plan Saved!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Go back to Home Page'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

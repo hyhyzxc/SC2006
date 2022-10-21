@@ -73,7 +73,7 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Booking"),
-        backgroundColor: Colors.orangeAccent,),
+        backgroundColor: Colors.orange[300],),
       body:Center(
         child:ListView(
             children: <Widget>[
@@ -232,7 +232,6 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
-                          color: Color(0xFFF17532)
                       ),
                       child: ElevatedButton(
                           child: Text('Add to plans',

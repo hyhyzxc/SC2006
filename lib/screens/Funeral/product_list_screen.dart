@@ -59,12 +59,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(title: Text("Funeral Parlours"),),
+        appBar: AppBar(title: Text("Funeral Parlours"),
+        backgroundColor: Colors.blue[200],),
         body:  Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: ElevatedButton(onPressed: readJsonFile, child: Text("Load Locations")),
+              child: ElevatedButton(onPressed: readJsonFile, child: Text("Load Locations"),
+                style: ElevatedButton.styleFrom(primary: Colors.blue[200]),),
             ),
             // if (allProducts.length > 0)
             Padding(
@@ -74,7 +76,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   SizedBox(height: 10,),
                   TextField(
                     onChanged: (value) => _runFilter(value),
-                    decoration: InputDecoration(labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),),labelText: 'Search', suffixIcon: Icon(Icons.search)),
                   ),
                   SizedBox(height: 10,),
                 ],
@@ -127,15 +129,54 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     },
                     child: Card(
                         margin: EdgeInsets.all(15.0),
-                        color: Colors.green,
+                        color: Colors.blue[100],
                         child: ListTile(
-                          title: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(filteredProducts[index].name),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                          leading: Container(
+                              padding: EdgeInsets.only(right: 12.0),
+                              decoration: new BoxDecoration(
+                                  border: new Border(
+                                      right: new BorderSide(width: 1.0, color: Colors.white24))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: Icon(Icons.location_city_outlined, color: Colors.blueGrey),
+                              )
                           ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(filteredProducts[index].rating.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
+                          title: Text(
+                            filteredProducts[index].name,
+                            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(0,5,80,0),
+                                  child: Text(filteredProducts[index].rating.toString(),
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 10,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0,5,80,0),
+                                      child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        // tag: 'hero',
+                                        child: LinearProgressIndicator(
+                                            backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
+                                            value: filteredProducts[index].rating.toDouble()/5,
+                                            valueColor: AlwaysStoppedAnimation(Colors.yellow[700])),
+                                      )
+                                  )
+                              )
+                            ],
+                          ),
+                          trailing: Container(
+                              child: Padding(
+                                child: Icon(Icons.keyboard_arrow_right, color: Colors.black26,size: 30.0),
+                                padding: const EdgeInsets.all(8.0),
+                              )
                           ),
                           onTap: () {
                             // print(jsonEncode(products[index]));

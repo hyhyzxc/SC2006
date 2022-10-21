@@ -35,8 +35,9 @@ class _WillConfirmState extends State<WillConfirm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Will')),
-      backgroundColor: Colors.lightGreen[200],
+      appBar: AppBar(title: Text('Will'),
+        backgroundColor: Colors.blueGrey[300],),
+      backgroundColor: Colors.blueGrey[100],
       body: ListView(
         children: <Widget>[
           Padding(padding: const EdgeInsets.all(10.0)),
@@ -356,7 +357,7 @@ class _WillConfirmState extends State<WillConfirm> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25.0),
-                    color: Color(0xFFF17532)
+                    color: Colors.blueGrey[300]
                 ),
                 child: Center(
                     child: Container(
@@ -367,7 +368,7 @@ class _WillConfirmState extends State<WillConfirm> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Colors.blueGrey[300]
                         ),
                         child: ElevatedButton(
                             child: Text('Add to plans',
