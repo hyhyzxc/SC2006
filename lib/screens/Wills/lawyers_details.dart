@@ -66,8 +66,9 @@ class _LawyerDetailState extends State<LawyerDetail> {
     ));
 
     return Scaffold(
-      appBar: AppBar(title: Text(product!.name),),
-      body: ListView(
+      appBar: AppBar(title: Text(product!.name),
+      backgroundColor: Colors.green[200],),
+      body: Column(
           children: [
             Center(
                 child: Image.asset('assets/images/willlawyer.jfif',
@@ -83,7 +84,7 @@ class _LawyerDetailState extends State<LawyerDetail> {
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey[300])),
+                      color: Colors.green[500],)),
             ),
             SizedBox(height: 10.0),
             Center(
@@ -114,11 +115,11 @@ class _LawyerDetailState extends State<LawyerDetail> {
                     style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 16.0,
-                        color: Color(0xFFB4B8B9))
+                      color: Colors.green[500],)
                 ),
               ),
             ),
-            SizedBox(height: 140.0),
+            Spacer(),
             Center(
                 child: InkWell(
 
@@ -130,9 +131,9 @@ class _LawyerDetailState extends State<LawyerDetail> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Colors.blueGrey[300]
+                            color: Colors.green[200],
                         ),
-                        child: Center(
+                          child: Center(
                             child: Text('Call ' + product!.phone,
                               style: TextStyle(
                                   fontFamily: 'Varela',
@@ -148,7 +149,7 @@ class _LawyerDetailState extends State<LawyerDetail> {
                     }
                 )
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 20.0),
           ]
       ),
     );

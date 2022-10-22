@@ -144,33 +144,44 @@ class _CrematoriaState extends State<Crematoria> {
                             filteredFacilities[index].name,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          subtitle: Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(0,5,80,0),
-                                  child: Text(filteredFacilities[index].rating.toString(),
-                                      style: TextStyle(color: Colors.white)),
-                                ),
-
-                              ),
-                              Expanded(
-                                  flex: 10,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0,5,80,0),
-                                      child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        // tag: 'hero',
-                                        child: LinearProgressIndicator(
-                                            backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                                            value: filteredFacilities[index].rating.toDouble()/5,
-                                            valueColor: AlwaysStoppedAnimation(Colors.yellow[300])),
-                                      )
-                                  )
-                              )
-                            ],
-                          ),
+                          subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  for(int x = filteredFacilities[index].rating; x>0; x--)...[
+                                    Container(
+                                      child: Icon(Icons.star, color: Colors.yellow[200],),
+                                    ),
+                                  ],
+                                ],
+                              )),
+                          // subtitle: Row(
+                          //   children: <Widget>[
+                          //     Expanded(
+                          //       flex: 1,
+                          //       child: Padding(
+                          //         padding: EdgeInsets.fromLTRB(0,5,80,0),
+                          //         child: Text(filteredFacilities[index].rating.toString(),
+                          //             style: TextStyle(color: Colors.white)),
+                          //       ),
+                          //
+                          //     ),
+                          //     Expanded(
+                          //         flex: 10,
+                          //         child: Padding(
+                          //             padding: EdgeInsets.fromLTRB(0,5,80,0),
+                          //             child: Container(
+                          //               alignment: Alignment.centerLeft,
+                          //               // tag: 'hero',
+                          //               child: LinearProgressIndicator(
+                          //                   backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
+                          //                   value: filteredFacilities[index].rating.toDouble()/5,
+                          //                   valueColor: AlwaysStoppedAnimation(Colors.yellow[300])),
+                          //             )
+                          //         )
+                          //     )
+                          //   ],
+                          // ),
                           trailing: Container(
                               child: Padding(
                                 child: Icon(Icons.keyboard_arrow_right, color: Colors.black26,size: 30.0),

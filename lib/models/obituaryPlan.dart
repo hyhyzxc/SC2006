@@ -7,6 +7,8 @@ class ObituaryPlan {
   String funeral_date;
   String funeral_time;
   String names_of_family;
+  String newspaper;
+  String phone;
 
 /**/
 
@@ -18,6 +20,8 @@ class ObituaryPlan {
     required this.funeral_date,
     required this.funeral_time,
     required this.names_of_family,
+    required this.newspaper,
+    required this.phone
 
   });
 
@@ -29,7 +33,9 @@ class ObituaryPlan {
       'location_of_wake' : this.location_of_wake,
       'funeral_date' : this.funeral_date,
       'funeral_time': this.funeral_time,
-      'names_of_family' : this.names_of_family
+      'names_of_family' : this.names_of_family,
+      'newspaper' : this.newspaper,
+      'phone' : this.phone
     };
   }
 

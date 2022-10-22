@@ -35,7 +35,7 @@ class _WillFormState extends State<WillForm> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey[300],
+          backgroundColor: Colors.green[200],
           title: Text('Will'),
         ),
         body: Center(

@@ -36,8 +36,8 @@ class _WillConfirmState extends State<WillConfirm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Will'),
-        backgroundColor: Colors.blueGrey[300],),
-      backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.green[200],),
+      backgroundColor: Colors.green[50],
       body: ListView(
         children: <Widget>[
           Padding(padding: const EdgeInsets.all(10.0)),

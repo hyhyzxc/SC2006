@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       GestureDetector(
                         onTap: () => Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => CrematoriumPlans())),
+                            context, MaterialPageRoute(builder: (context) => ViewPlans())),
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                           child: Column(children:[

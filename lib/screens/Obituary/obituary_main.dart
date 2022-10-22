@@ -59,7 +59,8 @@ class _ObituaryMainNewState extends State<ObituaryMainNew> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(title: Text("Obituary"),),
+        appBar: AppBar(title: Text("Obituary"),
+        backgroundColor: Colors.blueGrey[200],),
         body:  Column(
           children: [
             Padding(

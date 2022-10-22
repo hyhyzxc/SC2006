@@ -108,6 +108,9 @@ flutter:
     - family: CatalishHuntera
       fonts:
         - asset: assets/fonts/CatalishHuntera.ttf
+    - family: Varela
+      fonts:
+        - asset: assets/fonts/Varela-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -20,7 +20,8 @@ class _WillSelectionState extends State<WillSelection> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
           resizeToAvoidBottomInset: true,
-          appBar: AppBar(title: Text("Wills"),),
+          appBar: AppBar(title: Text("Will"),
+            backgroundColor: Colors.green[200],),
           body:  Column(
               children: [
                 Card(

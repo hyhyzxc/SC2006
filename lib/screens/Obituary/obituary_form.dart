@@ -77,6 +77,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Particulars'),
+          backgroundColor: Colors.brown[300],
         ),
         body: Center(
             child: ListView(
@@ -94,7 +95,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
                         filled: true,
                         hintStyle: TextStyle(color: Colors.grey[800]),
                         hintText: "Select Newspaper Provider",
-                        fillColor: Colors.blueGrey[50]
+                        fillColor: Colors.brown[50]
                     ),
                     value: _selectedCompany,
                     items: _dropdownMenuItems,
@@ -297,7 +298,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
                     textInputAction: TextInputAction.next,
                   ),
                 ),
-                SizedBox(height: 0,),
+                SizedBox(height: 20,),
                 if(pickedFile!=null)
                   Expanded(
                     child: Container(
@@ -307,17 +308,6 @@ class _ObituaryFormState extends State<ObituaryForm> {
                         )
                     ),
                   ),
-                // Container(
-                //   height: 70,
-                //   padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                //   child: ElevatedButton(
-                //     //icon: Icon(Icons.upload),
-                //     child: Text('SELECT FILE'),
-                //     onPressed: () async {
-                //       selectFile();
-                //     },
-                //   ),
-                // ),
                 Container(
                   height: 70,
                   padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -330,22 +320,10 @@ class _ObituaryFormState extends State<ObituaryForm> {
                     },
                   ),
                 ),
-                // Container(
-                //   height: 70,
-                //   padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                //   child: ElevatedButton(
-                //     //icon: Icon(Icons.upload),
-                //     child: Text('UPLOAD FILE'),
-                //     onPressed: () async {
-                //       selectFile();
-                //       uploadFile(pickedFile);
-                //     },
-                //   ),
-                // ),
 
                 Container(
                   height: 70,
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: ElevatedButton(
                     child: Text("Proceed"),
                     onPressed: () {

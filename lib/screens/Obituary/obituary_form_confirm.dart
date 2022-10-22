@@ -44,8 +44,9 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.trip.newspaper),),
-      backgroundColor: Colors.lightGreen[200],
+      appBar: AppBar(title: Text(widget.trip.newspaper),
+      backgroundColor: Colors.brown[300],),
+      backgroundColor: Colors.brown[100],
       body: ListView(
         children: <Widget>[
           Padding(padding: const EdgeInsets.all(10.0)),
@@ -369,7 +370,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
-                          color: Color(0xFFF17532)
+                          color: Colors.brown[300]
                       ),
                       child: Center(
                           child: Text('Call ' + widget.trip.phone,
@@ -387,7 +388,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                   }
               )
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           Center(
               child: Container(
                   width: MediaQuery
@@ -397,10 +398,10 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                   height: 50.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
-                      color: Color(0xFFF17532)
+                      color: Colors.brown[200]
                   ),
                   child: ElevatedButton(
-                      child: Text('Add to plans',
+                      child: Text('Add to Plans',
                         style: TextStyle(
                             fontFamily: 'Varela',
                             fontSize: 14.0,
@@ -410,34 +411,6 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                       ),
                       onPressed: () async {
                         _showMyDialog();
-//                         final FirebaseAuth auth = FirebaseAuth.instance;
-//                         final User? user = auth.currentUser;
-//                         final String uid = user!.uid;
-//                         ObituaryPlan obituary = ObituaryPlan(
-//                             user_id: uid,
-//                             deceased_name: widget.trip.name,
-//                             date_of_death: widget.trip.dateofdeath,
-//                             location_of_wake: widget.trip.locationofwake,
-//                             funeral_date: widget.trip.funeraldate,
-//                             funeral_time: widget.trip.funeraltime,
-//                             names_of_family: widget.trip.familynames);
-// /**/
-//                         String docID = await saveObituaryPlan(
-//                             obituary: obituary);
-//
-//                         final planData = FirebaseFirestore.instance.collection(
-//                             'Plan').doc(uid);
-//                         final snapshot = await planData.get();
-//
-//                         print(docID);
-//                         if (snapshot.exists) {
-//                           planData.update({
-//                             'obituaryPlanID': docID!,
-//                           });
-//                         } else {
-//                           print("Error: cannot find Plan");
-//                         }
-//                         _showMyDialog();
                       }
                   )
               )
@@ -478,7 +451,10 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                     location_of_wake : widget.trip!.locationofwake,
                     funeral_date : widget.trip!.funeraldate,
                     funeral_time: widget.trip!.funeraltime,
-                    names_of_family : widget.trip!.familynames);
+                    names_of_family : widget.trip!.familynames,
+                    newspaper: widget.trip!.newspaper,
+                    phone: widget.trip!.phone
+                );
 
                 String docID = await saveObituaryPlan(
                     obituaryPlan: obituaryPlan, uid:uid);
@@ -540,34 +516,6 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
     );
   }
 
-
-  // Future<void> _showMyDialog() async {
-  //   return showDialog<void>(
-  //     context: context,
-  //     barrierDismissible: false, // user must tap button!
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('Notification'),
-  //         content: SingleChildScrollView(
-  //           child: ListBody(
-  //             children: const <Widget>[
-  //               Text('Plan saved successfully'),
-  //             ],
-  //           ),
-  //         ),
-  //         actions: <Widget>[
-  //           TextButton(
-  //             child: const Text('Go back to Home Page'),
-  //             onPressed: () {
-  //               Navigator.push(context,
-  //                   MaterialPageRoute(builder: (context) => HomeScreen()));
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }
 
 _callNumber(String phoneNumber) async {

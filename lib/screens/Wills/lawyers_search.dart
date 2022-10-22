@@ -58,14 +58,15 @@ class _SearchLawyerState extends State<SearchLawyer> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(title: Text("Contact a Lawyer"),),
+        appBar: AppBar(title: Text("Contact a Lawyer"),
+        backgroundColor: Colors.green[200],),
         body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(onPressed: readJsonFile,
                   child: Text("Load Lawyers"),
-                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[300]),),
+                style: ElevatedButton.styleFrom(primary: Colors.green[200],),),
             ),
             // if (allProducts.length > 0)
             Padding(
@@ -125,7 +126,7 @@ class _SearchLawyerState extends State<SearchLawyer> {
                     },
                     child: Card(
                         margin: EdgeInsets.all(15.0),
-                        color: Colors.blueGrey[300],
+                        color: Colors.green[200],
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 10.0),

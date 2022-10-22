@@ -21,7 +21,7 @@ class _WillMainState extends State<WillMain> {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: Text('Will'),
-        backgroundColor: Colors.blueGrey[300],
+        backgroundColor: Colors.green[200],
         elevation: 0.0,
       ),
       body: Center(
@@ -42,7 +42,7 @@ class _WillMainState extends State<WillMain> {
             // Image(
             //   image: AssetImage('assets/images/Formalities of a will.PNG'),
             // ),
-            SizedBox(height: 60.0),
+            Spacer(),
             Container(
               width: MediaQuery.of(context).size.width - 50.0,
               height: 50.0,
@@ -58,7 +58,7 @@ class _WillMainState extends State<WillMain> {
                 ),
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 20.0),
           ],
         ),
       ),

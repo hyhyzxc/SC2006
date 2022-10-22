@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
         Crematoria.routeName:(context)=>Crematoria(),
         CrematoriaDetails.routeName:(context)=>CrematoriaDetails(),
         AddAppointmentCrematoria.routeName:(context)=>AddAppointmentCrematoria(),
-        CrematoriumPlans.routeName:(context)=>CrematoriumPlans(),
+        PlansCrematoria.routeName:(context)=>PlansCrematoria(),
       }
     );
   }

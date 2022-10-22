@@ -153,33 +153,17 @@ class _SearchDoctorState extends State<SearchDoctor> {
                           //     Text(filteredProducts[index].rating.toString(), style: TextStyle(color: Colors.blueGrey))
                           //   ],
                           // ),
-
-                          subtitle: Row(
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
                             children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(0,5,80,0),
-                                  child: Text(filteredProducts[index].rating.toString(),
-                                      style: TextStyle(color: Colors.white)),
+                              for(int x = filteredProducts[index].rating; x>0; x--)...[
+                                Container(
+                                  child: Icon(Icons.star, color: Colors.yellow[200],),
                                 ),
-                              ),
-                              Expanded(
-                                  flex: 10,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0,5,80,0),
-                                      child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        // tag: 'hero',
-                                        child: LinearProgressIndicator(
-                                            backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                                            value: filteredProducts[index].rating.toDouble()/5,
-                                            valueColor: AlwaysStoppedAnimation(Colors.yellow[700])),
-                                      )
-                                  )
-                              )
+                              ],
                             ],
-                          ),
+                          )),
                           trailing: Container(
                               child: Padding(
                                 child: Icon(Icons.keyboard_arrow_right, color: Colors.black26,size: 30.0),
