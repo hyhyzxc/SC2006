@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../Crematoria/crematoria_update_plan.dart';
+import '../homePage.dart';
 
 
 class PlansCrematoria extends StatefulWidget {
@@ -42,6 +46,85 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
   }
 
   Widget buildPlanCard(BuildContext context, DocumentSnapshot  data) {
+    Future<void> _showMyDialogconfirm() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Notification'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Plan Successfully Deleted!'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Go back to Home Page'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Notification'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Are you sure that you want to delete this plan?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Yes'),
+                onPressed: () async {
+                  final FirebaseAuth auth = FirebaseAuth.instance;
+                  final User? user = auth.currentUser;
+                  final String uid = user!.uid;
+                  String docID = data.id;
+                  final db = FirebaseFirestore.instance;
+                  db.collection('userData').doc(uid).collection('Crematoria').doc(docID).delete();
+
+                  /*final planData = FirebaseFirestore.instance.collection(
+                    'Plan').doc(uid);
+                final snapshot = await planData.get();
+
+                print(docID);
+                if (snapshot.exists) {
+                  planData.update({
+                    'crematoriumApptID': docID!,
+                  });
+                } else {
+                  print("Error: cannot find Plan");
+                }*/
+                  _showMyDialogconfirm();
+
+                },
+              ),
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: ()  =>
+                    Navigator.pop(context),
+
+              ),
+            ],
+          );
+        },
+      );
+    }
     return new Container(
       child: Container(
           padding: const EdgeInsets.fromLTRB(10,10,10,0),
@@ -61,8 +144,23 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Flexible(child: Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
+                            IconButton(
+                                onPressed: () {
+                                  final FirebaseAuth auth = FirebaseAuth.instance;
+                                  final User? user = auth.currentUser;
+                                  final String uid = user!.uid;
+                                  String docID = data!.id;
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => UpdateAppointmentCrematoria(ID: docID,)),
+                                  );
+                                },
+                                icon: Icon(Icons.edit, color: Colors.brown[500],)),
                         IconButton(
-                            onPressed: () { },
+                            onPressed: () {
+                              _showMyDialog();
+
+                            },
                             icon: Icon(Icons.delete, color: Colors.red[800],))
                       ]),
 

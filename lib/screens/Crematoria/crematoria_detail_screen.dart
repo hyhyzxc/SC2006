@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:next_stage/models/afterlifefacilities.dart' show AfterLifeFacilities;
 import 'dart:convert';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -60,6 +63,32 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
 
   @override
   Widget build(BuildContext context) {
+    Completer<GoogleMapController> _controller = Completer();
+    Set<Marker> _markers = Set<Marker>();
+    Set<Polygon> _polygons = Set<Polygon>();
+    Set<Polyline> _polylines = Set<Polyline>();
+    List<LatLng> polygonLatLngs = <LatLng>[];
+
+    CameraPosition funeralPosition = CameraPosition(
+      target: LatLng(facility!.corlat, facility!.corlong),
+      zoom: 14.4746,
+    );
+
+    void _setMarker(LatLng point) {
+      setState(() {
+        _markers.add(
+          Marker(
+            markerId: MarkerId('marker'),
+            infoWindow: InfoWindow(title: facility!.name),
+            position: point,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueRed),
+          ),
+        );
+      });
+    }
+    _setMarker(LatLng(facility!.corlat, facility!.corlong));
+
     final ButtonStyle style =
     ElevatedButton.styleFrom(textStyle: TextStyle(
         fontFamily: 'Varela',
@@ -226,24 +255,13 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                         showModalBottomSheet<void>(
                           context: context,
                           builder: (BuildContext context) {
-                            return Container(
-                              height: 200,
-                              color: Colors.amber,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    const Text('Modal BottomSheet'),
-                                    ElevatedButton(
-                                      // style: ElevatedButton.styleFrom(
-                                      //     primary: Colors.orangeAccent),
-                                      child: const Text('Close BottomSheet'),
-                                      onPressed: () => Navigator.pop(context),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                            return GoogleMap(
+                              mapType: MapType.normal,
+                              markers: _markers,
+                              initialCameraPosition: funeralPosition,
+                              onMapCreated: (GoogleMapController controller) {
+                                _controller.complete(controller);
+                              },
                             );
                           },
                         );

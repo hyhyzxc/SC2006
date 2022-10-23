@@ -32,6 +32,19 @@ class CrematoriumAppointment {
     };
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.user_id;
+    data['name'] = this.name;
+    data['address']=this.address;
+    data['description'] = this.description;
+    data['appt_date'] = this.appt_date;
+    data['appt_time'] = this.appt_time;
+    data['package'] = this.package;
+
+    return data;
+  }
+
 
 
 }
