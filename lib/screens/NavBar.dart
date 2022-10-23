@@ -73,47 +73,41 @@ class NavBar extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.favorite),
-                  title: const Text('Death Certificate'),
-                  onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => DeathCertMain())),
-                ),
-                ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text('Obituary'),
-                    onTap: () => Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => ObituaryForm(trip: newTrip, newspaper: newNewspaper)))),
-                ListTile(
-                  leading: Icon(Icons.share),
-                  title: Text('Funeral'),
-                  onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => ProductListScreen())),
-                ),
-                ListTile(
-                  leading: Icon(Icons.share),
+                  leading: Icon(Icons.person_outline),
                   title: Text('Will'),
                   onTap: () => Navigator.push(
                       context, MaterialPageRoute(builder: (context) => WillSelection())),
                 ),
                 ListTile(
-                  leading: Icon(Icons.notifications),
+                  leading: const Icon(Icons.health_and_safety_outlined),
+                  title: const Text('Death Certificate'),
+                  onTap: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => DeathCertMain())),
+                ),
+                ListTile(
+                    leading: const Icon(Icons.newspaper_outlined),
+                    title: const Text('Obituary'),
+                    onTap: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => ObituaryForm(trip: newTrip, newspaper: newNewspaper)))),
+                ListTile(
+                  leading: Icon(Icons.location_city_outlined),
                   title: Text('Crematoria'),
                    onTap: () => Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Crematoria())),
                 ),
                 ListTile(
-                  leading: Icon(Icons.notifications),
-                  title: Text('Doctors Detail'),
-                  /*    onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => DoctorDetail())),*/
+                  leading: Icon(Icons.location_city_outlined),
+                  title: Text('Funeral'),
+                  onTap: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => ProductListScreen())),
                 ),
                 ListTile(
-                  leading: Icon(Icons.notifications),
+                  leading: Icon(Icons.bookmark_border_outlined),
                   title: Text('Plans'),
                   onTap: () => Navigator.push(
                       context, MaterialPageRoute(builder: (context) => ViewPlans())),
                 ),
-                Divider(),
+                Divider(thickness: 1,),
                 ListTile(
                   title: Text('Exit'),
                   leading: Icon(Icons.exit_to_app),

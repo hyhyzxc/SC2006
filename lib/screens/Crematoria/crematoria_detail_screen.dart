@@ -70,17 +70,53 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
 
     return Scaffold(
       appBar: AppBar(title: Text(facility!.name),
-        backgroundColor: Colors.orange[300],),
+        backgroundColor: Colors.orange[200],),
       body: ListView(
+          padding: EdgeInsets.all(10.0),
           children: [
-            Center(
-                child: Image.asset('assets/images/funeral_parlour.jpeg',
-                    height: 300.0,
-                    width: 500.0,
-                    fit: BoxFit.fitHeight
-                )
+            Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              height: 250,
+              decoration: BoxDecoration(
+                color: Colors.orange[200],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                  bottom: Radius.circular(0),),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/funeral_parlour.jpeg'),
+                        fit: BoxFit.cover
+                    )
+                ),
+              ),
+
             ),
-            SizedBox(height: 30.0),
+
+            Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(25.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(0),
+                      bottom: Radius.circular(20),
+                    ),
+                    color: Colors.orange[50]
+                ),
+                child: Column(
+                    children: [
+                    SizedBox(height: 10.0),
             Center(
             child: Container(
             width: MediaQuery
@@ -93,7 +129,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.orange[300])),
+                      color: Colors.orange[500])),
             )),
             SizedBox(height: 10.0),
             Center(
@@ -121,11 +157,11 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                     style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 16.0,
-                        color: Color(0xFFB4B8B9))
+                        color: Colors.grey)
                 ),
               ),
-            ),
-            SizedBox(height: 60.0),
+            ),SizedBox(height: 10.0),],)),
+            SizedBox(height: 30.0),
             Center(
                 child: InkWell(
 
@@ -137,7 +173,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Colors.orange[300]
+                            color: Colors.orange[200]
                         ),
                         child: Center(
                             child: Text('Call ' + facility!.phone,
@@ -166,7 +202,7 @@ class _CrematoriaDetailsState extends State<CrematoriaDetails> {
                   child: ElevatedButton(
                       // style: ElevatedButton.styleFrom(
                       //     primary: Colors.orangeAccent),
-                      child: const Text('Book an appointment'),
+                      child: const Text('Book an Appointment'),
                       onPressed: () {
                         Navigator.of(context).pushNamed(AddAppointmentCrematoria.routeName, arguments: jsonEncode(facility));}
                   ),

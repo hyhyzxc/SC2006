@@ -77,7 +77,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Particulars'),
-          backgroundColor: Colors.brown[300],
+          backgroundColor: Colors.brown[200],
         ),
         body: Center(
             child: ListView(
@@ -95,7 +95,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
                         filled: true,
                         hintStyle: TextStyle(color: Colors.grey[800]),
                         hintText: "Select Newspaper Provider",
-                        fillColor: Colors.brown[50]
+                        //fillColor: Colors.brown[50]
                     ),
                     value: _selectedCompany,
                     items: _dropdownMenuItems,
@@ -282,7 +282,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
 
 
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.fromLTRB(10,10,10,10),
                   child: TextField(
                     controller: _familycontroller,
                     decoration: const InputDecoration(
@@ -298,7 +298,7 @@ class _ObituaryFormState extends State<ObituaryForm> {
                     textInputAction: TextInputAction.next,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 0,),
                 if(pickedFile!=null)
                   Expanded(
                     child: Container(

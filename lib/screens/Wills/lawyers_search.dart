@@ -77,6 +77,7 @@ class _SearchLawyerState extends State<SearchLawyer> {
                   TextField(
                     onChanged: (value) => _runFilter(value),
                     decoration: InputDecoration(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),),
                         labelText: 'Search', suffixIcon: Icon(Icons.search)),
                   ),
                   SizedBox(height: 10,),
@@ -138,7 +139,7 @@ class _SearchLawyerState extends State<SearchLawyer> {
                                           width: 1.0, color: Colors.white24))),
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
-                                child: Icon(Icons.person,),
+                                child: Icon(Icons.person,color: Colors.green[500],),
                               )
                           ),
                           title: Text(

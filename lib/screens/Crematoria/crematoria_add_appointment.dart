@@ -73,7 +73,7 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Booking"),
-        backgroundColor: Colors.orange[300],),
+        backgroundColor: Colors.orange[200],),
       body:Center(
         child:ListView(
             children: <Widget>[
@@ -196,13 +196,13 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
                 ),
               ),
               SizedBox(height: 10,),
-            Container(
+              Container(
                       padding:const EdgeInsets.fromLTRB(10, 20, 10, 0),
                       child: DropdownButtonFormField<String>(
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: const BorderRadius.all( const Radius.circular(5.0)),
-                          ),
+                          ),contentPadding: EdgeInsets.fromLTRB(20,20,20,20),
                             filled:true,
                             hintStyle:TextStyle(color:Colors.grey[800]),
                             hintText: "Select Crematorium Package",
@@ -222,7 +222,7 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
                         onChanged: (packageSelector)=>setState(() =>packageChoose=packageSelector),
                       ),
                     ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 250.0),
               Center(
                   child: Container(
                       width: MediaQuery
@@ -234,7 +234,7 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
                           borderRadius: BorderRadius.circular(25.0),
                       ),
                       child: ElevatedButton(
-                          child: Text('Add to plans',
+                          child: Text('Add to Plans',
                             style: TextStyle(
                                 fontFamily: 'Varela',
                                 fontSize: 14.0,

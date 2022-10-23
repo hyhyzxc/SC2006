@@ -60,13 +60,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(title: Text("Funeral Parlours"),
-        backgroundColor: Colors.blue[200],),
+        backgroundColor: Colors.blue[100],),
         body:  Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(onPressed: readJsonFile, child: Text("Load Locations"),
-                style: ElevatedButton.styleFrom(primary: Colors.blue[200]),),
+                style: ElevatedButton.styleFrom(primary: Colors.blue[100]),),
             ),
             // if (allProducts.length > 0)
             Padding(
@@ -139,39 +139,24 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                       right: new BorderSide(width: 1.0, color: Colors.white24))),
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
-                                child: Icon(Icons.location_city_outlined, color: Colors.blueGrey),
+                                child: Icon(Icons.location_city_outlined, color: Colors.blue[500]),
                               )
                           ),
                           title: Text(
                             filteredProducts[index].name,
-                            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          subtitle: Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(0,5,80,0),
-                                  child: Text(filteredProducts[index].rating.toString(),
-                                      style: TextStyle(color: Colors.white)),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 10,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0,5,80,0),
-                                      child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        // tag: 'hero',
-                                        child: LinearProgressIndicator(
-                                            backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                                            value: filteredProducts[index].rating.toDouble()/5,
-                                            valueColor: AlwaysStoppedAnimation(Colors.yellow[700])),
-                                      )
-                                  )
-                              )
-                            ],
-                          ),
+                          subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  for(int x = filteredProducts[index].rating; x>0; x--)...[
+                                    Container(
+                                      child: Icon(Icons.star, color: Colors.yellow[200],),
+                                    ),
+                                  ],
+                                ],
+                              )),
                           trailing: Container(
                               child: Padding(
                                 child: Icon(Icons.keyboard_arrow_right, color: Colors.black26,size: 30.0),

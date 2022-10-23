@@ -58,14 +58,14 @@ class _SearchDoctorState extends State<SearchDoctor> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(title: Text("Death at Home"),
-        backgroundColor: Colors.indigo[200],),
+        backgroundColor: Colors.indigo[100],),
         body:  Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(onPressed: readJsonFile,
                   child: Text("Load Death Certificate Doctors"),
-                  style: ElevatedButton.styleFrom(primary: Colors.indigo[200]),),
+                  style: ElevatedButton.styleFrom(primary: Colors.indigo[100]),),
             ),
             if (allProducts.length > 0)
             Padding(
@@ -128,7 +128,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
                     },
                     child: Card(
                         margin: EdgeInsets.all(15.0),
-                        color: Colors.indigo[200],
+                        color: Colors.indigo[100],
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                           leading: Container(
@@ -138,7 +138,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
                                       right: new BorderSide(width: 1.0, color: Colors.white24))),
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
-                                child: Icon(Icons.health_and_safety_outlined),
+                                child: Icon(Icons.health_and_safety_outlined, color: Colors.indigo[500]),
                               )
                           ),
                           title: Text(

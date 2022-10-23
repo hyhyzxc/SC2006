@@ -45,8 +45,8 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.trip.newspaper),
-      backgroundColor: Colors.brown[300],),
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.brown[200],),
+      backgroundColor: Colors.brown[50],
       body: ListView(
         children: <Widget>[
           Padding(padding: const EdgeInsets.all(10.0)),
@@ -370,7 +370,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
                       height: 50.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.0),
-                          color: Colors.brown[300]
+                          color: Colors.brown[200]
                       ),
                       child: Center(
                           child: Text('Call ' + widget.trip.phone,

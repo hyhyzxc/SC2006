@@ -57,14 +57,14 @@ class _CrematoriaState extends State<Crematoria> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(title: Text("Crematorium and Burial Facilities"),
-        backgroundColor: Colors.orange[300],),
+        backgroundColor: Colors.orange[200],),
         body:  Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(onPressed: readJsonFile,
                 child: Text("Load Facilities"),
-                style: ElevatedButton.styleFrom(primary: Colors.orange[300]),),
+                style: ElevatedButton.styleFrom(primary: Colors.orange[200]),),
             ),
             // if (allProducts.length > 0)
             Padding(
@@ -127,7 +127,7 @@ class _CrematoriaState extends State<Crematoria> {
                     },
                     child: Card(
                         margin: EdgeInsets.all(15.0),
-                        color: Colors.orange[300],
+                        color: Colors.orange[200],
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                           leading: Container(
@@ -136,8 +136,8 @@ class _CrematoriaState extends State<Crematoria> {
                                   border: new Border(
                                       right: new BorderSide(width: 1.0, color: Colors.white24))),
                               child: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Icon(Icons.location_city_outlined),
+                                padding: const EdgeInsets.all(8),
+                                child: Icon(Icons.location_city_outlined, color: Colors.orange[500],),
                               )
                           ),
                           title: Text(

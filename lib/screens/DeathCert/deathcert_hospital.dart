@@ -26,7 +26,7 @@ class _DeathAtHospitalState extends State<DeathAtHospital> {
 
     return Scaffold(
       appBar: AppBar(title: Text("Death At Hospital"),
-      backgroundColor: Colors.indigo[200],),
+      backgroundColor: Colors.indigo[100],),
       body: ListView(
           children: [
             SizedBox(height: 0.0),
@@ -44,7 +44,7 @@ class _DeathAtHospitalState extends State<DeathAtHospital> {
                       fontFamily: 'Varela',
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.indigo[200])),
+                      color: Colors.indigo[100])),
             ),
             SizedBox(height: 20.0),
             Center(

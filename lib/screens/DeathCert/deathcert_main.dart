@@ -22,14 +22,14 @@ class _DeathCertMainState extends State<DeathCertMain> {
       child: Scaffold(
           resizeToAvoidBottomInset: true,
           appBar: AppBar(title: Text("Location of Death"),
-          backgroundColor: Colors.indigo[200],),
+          backgroundColor: Colors.indigo[100],),
           body:  Column(
               children: [
                 Container(
                     height: 100,
                     alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.indigo[200],
+                    color: Colors.indigo[50],
                     child: ListTile(
                       leading: Container(
                           padding: EdgeInsets.only(right: 0),
@@ -57,7 +57,7 @@ class _DeathCertMainState extends State<DeathCertMain> {
                     height: 100,
                     alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.indigo[200],
+                    color: Colors.indigo[50],
                     child: ListTile(
                       leading: Container(
                           padding: EdgeInsets.only(right: 0),
@@ -85,7 +85,7 @@ class _DeathCertMainState extends State<DeathCertMain> {
                     height: 100,
                     alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.indigo[200],
+                    color: Colors.indigo[50],
                     child: ListTile(
                       leading: Container(
                           padding: EdgeInsets.only(right: 0),

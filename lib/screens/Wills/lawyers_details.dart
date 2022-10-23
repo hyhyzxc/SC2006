@@ -68,16 +68,51 @@ class _LawyerDetailState extends State<LawyerDetail> {
     return Scaffold(
       appBar: AppBar(title: Text(product!.name),
       backgroundColor: Colors.green[200],),
-      body: Column(
+      body: ListView(
+          padding: EdgeInsets.all(10.0),
           children: [
-            Center(
-                child: Image.asset('assets/images/willlawyer.jfif',
-                    height: 300.0,
-                    width: 500.0,
-                    fit: BoxFit.fitHeight
-                )
+            Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              height: 250,
+              decoration: BoxDecoration(
+                color: Colors.green[200],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                  bottom: Radius.circular(0),),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/willlawyer.jfif'),
+                        fit: BoxFit.cover
+                    )
+                ),
+              ),
+
             ),
-            SizedBox(height: 20.0),
+            Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(25.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(0),
+                      bottom: Radius.circular(20),
+                    ),
+                    color: Colors.green[50]
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10.0),
             Center(
               child: Text(product!.name,
                   style: TextStyle(
@@ -119,6 +154,9 @@ class _LawyerDetailState extends State<LawyerDetail> {
                 ),
               ),
             ),
+            SizedBox(height: 10,),
+            ],)),
+            SizedBox(height: 20,),
             Spacer(),
             Center(
                 child: InkWell(

@@ -24,12 +24,21 @@ class _WillSelectionState extends State<WillSelection> {
             backgroundColor: Colors.green[200],),
           body:  Column(
               children: [
-                Card(
+                Container(
+                    height: 100,
+                    alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.yellow[100],
+                    color: Colors.green[100],
                     child: ListTile(
+                      leading: Container(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Icon(Icons.edit_note_outlined),
+                          )
+                      ),
                       title: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(0),
                         child: Text("Make Will"),
                       ),
                       trailing: Container(
@@ -43,13 +52,22 @@ class _WillSelectionState extends State<WillSelection> {
                     )
                 ),
 
-                Card(
+                Container(
+                    height: 100,
+                    alignment: Alignment.center,
                     margin: EdgeInsets.all(15.0),
-                    color: Colors.yellow[100],
+                    color: Colors.green[100],
                     child: ListTile(
+                      leading: Container(
+                          padding: EdgeInsets.only(right: 0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Icon(Icons.balance_outlined),
+                          )
+                      ),
                       title: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("View Lawyers"),
+                        padding: const EdgeInsets.all(0),
+                        child: Text("Search Lawyer"),
                       ),
                       trailing: Container(
                         child:

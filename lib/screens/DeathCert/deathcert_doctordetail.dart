@@ -98,8 +98,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
 
     return Scaffold(
       appBar: AppBar(title: Text(product!.name),
-        backgroundColor: Colors.indigo[200],),
-      //backgroundColor: Colors.black,
+        backgroundColor: Colors.indigo[100],),
       body: ListView(
           padding: EdgeInsets.all(10.0),
           children: [
@@ -151,7 +150,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
                               fontFamily: 'Varela',
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.indigo[200])),
+                              color: Colors.indigo[500])),
                     ),
                     SizedBox(height: 10.0),
                     Center(
@@ -214,7 +213,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Colors.indigo[200]
+                            color: Colors.indigo[100]
                         ),
                         child: Center(
                             child: Text('Call ' + product!.phone,

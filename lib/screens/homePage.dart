@@ -6,6 +6,7 @@ import 'package:next_stage/screens/NavBar.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
 import 'package:next_stage/screens/Plans/crematorium_plans.dart';
+import 'package:next_stage/screens/Wills/selection_page.dart';
 
 import '../models/obituaryform.dart';
 import 'Crematoria/crematoria_list_screen.dart';
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children:[
                       GestureDetector(
                         onTap: () => Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => WillMain())),
+                            context, MaterialPageRoute(builder: (context) => WillSelection())),
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                           child: Column(children:[
@@ -158,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               alignment: Alignment.center,
                             ),
                             SizedBox(height: 5,),
-                            Text("Burial")
+                            Text("Crematoria")
                           ]),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
