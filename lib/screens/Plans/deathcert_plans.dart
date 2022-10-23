@@ -53,14 +53,27 @@ class _PlansDeathCertState extends State<PlansDeathCert> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 5, right: 5),
+                    padding: const EdgeInsets.only(top: 0, bottom: 4.0, left: 5, right: 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      child:
-                      Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),
 
-                    ),
-                  ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(child: Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
+                          IconButton(
+                              onPressed: () {
+                                // final docUser = FirebaseFirestore.instance
+                                //     .collection('userData')
+                                //     .doc(uid)
+                                //     .collection('Death Certificate')
+                                //     .snapshots();
+                                //
+                                // docUser.delete();
+                              },
+                              icon: Icon(Icons.delete, color: Colors.red[800],))
+                        ]),
+                    ),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 5, right: 5),
                     child: Container(
@@ -109,7 +122,7 @@ class _PlansDeathCertState extends State<PlansDeathCert> {
                       width: MediaQuery.of(context).size.width,
 
                       child: Row( children: [
-                        Icon(Icons.phone, color: Colors.indigo[500]),
+                        Icon(Icons.phone_outlined, color: Colors.indigo[500]),
                         SizedBox(width: 8,),
                         Text(
                           "${data!['phone']} ", style: new TextStyle(fontSize: 15.0, fontFamily: "Varela", color: Colors.black45),

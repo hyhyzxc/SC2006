@@ -53,14 +53,20 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 5, right: 5),
+                    padding: const EdgeInsets.only(top: 0, bottom: 4.0, left: 5, right: 0),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      child:
-                      Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),
 
-                    ),
-                  ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(child: Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
+                        IconButton(
+                            onPressed: () { },
+                            icon: Icon(Icons.delete, color: Colors.red[800],))
+                      ]),
+
+                    ),),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 4.0, left: 5, right: 5),
                     child: Container(

@@ -57,15 +57,14 @@ class _PlansObituaryState extends State<PlansObituary> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
 
-                      child: Row( children: [
-                        Text(data!['newspaper'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),
-                        Spacer(),
-                        IconButton(
-                            onPressed: () {
-
-                            },
-                            icon: Icon(Icons.edit, color: Colors.brown[500],))
-                      ]),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(child: Text(data!['newspaper'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
+                            IconButton(
+                                onPressed: () { },
+                                icon: Icon(Icons.edit, color: Colors.brown[500],))
+                          ]),
 
                     ),),
                   Padding(

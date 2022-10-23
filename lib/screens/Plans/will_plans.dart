@@ -57,15 +57,14 @@ class _PlansWillState extends State<PlansWill> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
 
-                      child: Row( children: [
-                        Text(data!['tester_name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),
-                        Spacer(),
-                        IconButton(
-                            onPressed: () {
-
-                            },
-                            icon: Icon(Icons.edit, color: Colors.green[500],))
-                      ]),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(child: Text(data!['tester_name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
+                            IconButton(
+                                onPressed: () { },
+                                icon: Icon(Icons.edit, color: Colors.green[500],))
+                          ]),
 
                     ),),
                   Padding(
