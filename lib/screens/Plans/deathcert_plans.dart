@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class PlansDeathCert extends StatefulWidget {
   const PlansDeathCert({Key? key}) : super(key: key);
   static const String routeName = '/deathcert-plans';
@@ -13,6 +12,8 @@ class PlansDeathCert extends StatefulWidget {
 }
 
 class _PlansDeathCertState extends State<PlansDeathCert> {
+
+  int count=0;
 
   final db = FirebaseFirestore.instance;
   Stream<QuerySnapshot<Object?>> getDeathCertSnapshots(BuildContext context) async* {
@@ -42,6 +43,74 @@ class _PlansDeathCertState extends State<PlansDeathCert> {
   }
 
   Widget buildPlanCard(BuildContext context, DocumentSnapshot  data) {
+    Future<void> _showMyDialogconfirm() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Notification'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Plan Successfully Deleted!'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Return'),
+                onPressed: ()  {
+                  count=0;
+                  Navigator.popUntil(context, (route) {
+                    return count++ == 2;
+                  });
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Notification'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Are you sure that you want to delete this plan?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Yes'),
+                onPressed: () async {
+                  final FirebaseAuth auth = FirebaseAuth.instance;
+                  final User? user = auth.currentUser;
+                  final String uid = user!.uid;
+                  String docID = data.id;
+                  final db = FirebaseFirestore.instance;
+                  db.collection('userData').doc(uid).collection('Death Certificate').doc(docID).delete();
+
+                  _showMyDialogconfirm();
+                },
+              ),
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: ()  =>
+                    Navigator.pop(context),
+
+              ),
+            ],
+          );
+        },
+      );
+    }
     return new Container(
       child: Container(
           padding: const EdgeInsets.fromLTRB(10,10,10,0),
@@ -63,13 +132,7 @@ class _PlansDeathCertState extends State<PlansDeathCert> {
                           Flexible(child: Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
                           IconButton(
                               onPressed: () {
-                                // final docUser = FirebaseFirestore.instance
-                                //     .collection('userData')
-                                //     .doc(uid)
-                                //     .collection('Death Certificate')
-                                //     .snapshots();
-                                //
-                                // docUser.delete();
+                                _showMyDialog();
                               },
                               icon: Icon(Icons.delete, color: Colors.red[800],))
                         ]),

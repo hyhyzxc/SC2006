@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -101,11 +100,9 @@ class _ObituaryFormState extends State<ObituaryForm> {
                     items: _dropdownMenuItems,
                     onTap: () async {
                       if(_selectedCompany != null){
-                        setState(() {
-                          _selectedCompany = _selectedCompany;
+                        setState(() => _selectedCompany=_selectedCompany);
                           _phonecontroller.text = _selectedCompany?.phone as String; //set output date to TextField value.
                           _newscontroller.text = _selectedCompany?.name as String;
-                        });
                       }else{
                         return;
                       }},

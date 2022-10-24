@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../Obituary/obituary_update_plans.dart';
+
 
 class PlansObituary extends StatefulWidget {
   const PlansObituary({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class PlansObituary extends StatefulWidget {
 }
 
 class _PlansObituaryState extends State<PlansObituary> {
+
+  int count=0;
 
   final db = FirebaseFirestore.instance;
   Stream<QuerySnapshot<Object?>> getObituarySnapshots(BuildContext context) async* {
@@ -42,6 +46,74 @@ class _PlansObituaryState extends State<PlansObituary> {
   }
 
   Widget buildPlanCard(BuildContext context, DocumentSnapshot  data) {
+    Future<void> _showMyDialogconfirm() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Notification'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Plan Successfully Deleted!'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Return'),
+                onPressed: ()  {
+                  count=0;
+                  Navigator.popUntil(context, (route) {
+                    return count++ == 2;
+                  });
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Notification'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Are you sure that you want to delete this plan?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Yes'),
+                onPressed: () async {
+                  final FirebaseAuth auth = FirebaseAuth.instance;
+                  final User? user = auth.currentUser;
+                  final String uid = user!.uid;
+                  String docID = data.id;
+                  final db = FirebaseFirestore.instance;
+                  db.collection('userData').doc(uid).collection('Obituary').doc(docID).delete();
+
+                  _showMyDialogconfirm();
+                },
+              ),
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: ()  =>
+                    Navigator.pop(context),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return new Container(
       child: Container(
           padding: const EdgeInsets.fromLTRB(10,10,10,0),
@@ -60,10 +132,30 @@ class _PlansObituaryState extends State<PlansObituary> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Flexible(child: Text(data!['newspaper'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
-                            IconButton(
-                                onPressed: () { },
-                                icon: Icon(Icons.edit, color: Colors.brown[500],))
+                            Flexible(child: Text("${data!['newspaper']}", style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
+                            SizedBox(
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        final FirebaseAuth auth = FirebaseAuth.instance;
+                                        final User? user = auth.currentUser;
+                                        final String uid = user!.uid;
+                                        String docID = data!.id;
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => UpdateObituary(ID: docID,)),
+                                        );
+                                      },
+                                      icon: Icon(Icons.edit, color: Colors.green[500],)),
+                                  IconButton(
+                                      onPressed: () {
+                                        _showMyDialog();
+                                      },
+                                      icon: Icon(Icons.delete, color: Colors.red[800],))
+                                ],
+                              ),
+                            ),
                           ]),
 
                     ),),

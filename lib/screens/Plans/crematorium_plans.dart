@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,6 +16,8 @@ class PlansCrematoria extends StatefulWidget {
 }
 
 class _PlansCrematoriaState extends State<PlansCrematoria> {
+
+  int count=0;
 
   final db = FirebaseFirestore.instance;
   Stream<QuerySnapshot<Object?>> getCrematoriaSnapshots(BuildContext context) async* {
@@ -62,10 +63,12 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text('Go back to Home Page'),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                child: const Text('Return'),
+                onPressed: ()  {
+                  count=0;
+                  Navigator.popUntil(context, (route) {
+                    return count++ == 2;
+                  });
                 },
               ),
             ],
@@ -144,24 +147,29 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Flexible(child: Text(data!['name'], style: new TextStyle(fontSize: 20.0, fontFamily: "Varela", fontWeight: FontWeight.bold),overflow: TextOverflow.clip,),),
-                            IconButton(
-                                onPressed: () {
-                                  final FirebaseAuth auth = FirebaseAuth.instance;
-                                  final User? user = auth.currentUser;
-                                  final String uid = user!.uid;
-                                  String docID = data!.id;
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => UpdateAppointmentCrematoria(ID: docID,)),
-                                  );
-                                },
-                                icon: Icon(Icons.edit, color: Colors.brown[500],)),
-                        IconButton(
-                            onPressed: () {
-                              _showMyDialog();
-
-                            },
-                            icon: Icon(Icons.delete, color: Colors.red[800],))
+                            SizedBox(
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        final FirebaseAuth auth = FirebaseAuth.instance;
+                                        final User? user = auth.currentUser;
+                                        final String uid = user!.uid;
+                                        String docID = data!.id;
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => UpdateAppointmentCrematoria(ID: docID,)),
+                                        );
+                                      },
+                                      icon: Icon(Icons.edit, color: Colors.green[500],)),
+                                  IconButton(
+                                      onPressed: () {
+                                        _showMyDialog();
+                                      },
+                                      icon: Icon(Icons.delete, color: Colors.red[800],))
+                                ],
+                              ),
+                            ),
                       ]),
 
                     ),),

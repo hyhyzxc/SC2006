@@ -23,6 +23,8 @@ class UpdateAppointmentCrematoria extends StatefulWidget {
 
 class _UpdateAppointmentCrematoriaState extends State<UpdateAppointmentCrematoria> {
 
+  int count=0;
+
   @override
   // 1. Setting up database with Firestore database functions
   final db = FirebaseFirestore.instance;
@@ -316,10 +318,12 @@ class _UpdateAppointmentCrematoriaState extends State<UpdateAppointmentCrematori
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Go back to Home Page'),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              child: const Text('Return'),
+              onPressed: ()  {
+                count=0;
+                Navigator.popUntil(context, (route) {
+                  return count++ == 3;
+                });
               },
             ),
           ],
