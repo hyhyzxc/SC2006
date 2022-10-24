@@ -83,15 +83,9 @@ class _UpdateObituaryState extends State<UpdateObituary> {
                       filled: true,
                       hintStyle: TextStyle(color: Colors.grey[800]),
                       hintText: "Select Newspaper Provider",
-                      //fillColor: Colors.brown[50]
                     ),
                     value: _selectedCompany,
                     items: _dropdownMenuItems,
-                    onTap: () async {
-                      setState(() => _selectedCompany = _selectedCompany);
-                      _phonecontroller.text = _selectedCompany?.phone as String; //set output date to TextField value.
-                      _newscontroller.text = _selectedCompany?.name as String;
-                    },
                     onChanged: onChangeDropdownItem,
                   ),
 
@@ -132,6 +126,10 @@ class _UpdateObituaryState extends State<UpdateObituary> {
                                     color: Colors.black38)
                             ),
                             textInputAction: TextInputAction.next,
+                            onTap: () {
+                              _phonecontroller.text = _selectedCompany?.phone as String; //set output date to TextField value.
+                              _newscontroller.text = _selectedCompany?.name as String;
+                            },
                           ),
                         ),
                         SizedBox(width: 16,),
