@@ -20,8 +20,11 @@ class ObituaryForm extends StatefulWidget {
 }
 
 class _ObituaryFormState extends State<ObituaryForm> {
+
+  final GlobalKey<FormState> _key=GlobalKey<FormState>();
+
   TextEditingController _nameController = new TextEditingController();
-  TextEditingController _dateoofdeathController = new TextEditingController();
+  TextEditingController _dateofdeathController = new TextEditingController();
   TextEditingController _locationofwakeController = new TextEditingController();
   TextEditingController _funeraldatecontroller = new TextEditingController();
   TextEditingController _funeraltimecontroller = new TextEditingController();
@@ -81,214 +84,238 @@ class _ObituaryFormState extends State<ObituaryForm> {
         body: Center(
             child: ListView(
               children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,20,10,0),
-                  child: DropdownButtonFormField(
-                    decoration: InputDecoration(
-                      //constraints: 10,
-                        border: OutlineInputBorder(
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(5.0),
+                Form(
+                  key:_key,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,20,10,0),
+                        child: DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            //constraints: 10,
+                              border: OutlineInputBorder(
+                                borderRadius: const BorderRadius.all(
+                                  const Radius.circular(5.0),
+                                ),
+                              ),
+                              filled: true,
+                              hintStyle: TextStyle(color: Colors.grey[800]),
+                              hintText: "Select Newspaper Provider",
+                              //fillColor: Colors.brown[50]
                           ),
+                          value: _selectedCompany,
+                          items: _dropdownMenuItems,
+                          onChanged: onChangeDropdownItem,
+                          validator: (value) {
+                            if (_selectedCompany==null) {
+                              return "Newspaper Provider required";
+                            }
+                            return null;
+                          },
                         ),
-                        filled: true,
-                        hintStyle: TextStyle(color: Colors.grey[800]),
-                        hintText: "Select Newspaper Provider",
-                        //fillColor: Colors.brown[50]
-                    ),
-                    value: _selectedCompany,
-                    items: _dropdownMenuItems,
-                    onChanged: onChangeDropdownItem,
-                  ),
-
-                ),
-                Container(
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.fromLTRB(20,20,10,0),
-                    child: const Text(
-                      'Please key in Particulars of Deceased below',
-                      style: TextStyle(
-                          fontFamily: 'NATS',
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black
                       ),
-                    )),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 0.8,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                SizedBox(height: 10,),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                      children:[
-                        Expanded(
-                          child: TextField(
-                            controller: _nameController,
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Name of Deceased',
-                                labelStyle: TextStyle(
-                                    fontFamily: 'NATS',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black38)
+                      Container(
+                          alignment: Alignment.topLeft,
+                          padding: const EdgeInsets.fromLTRB(20,20,10,0),
+                          child: const Text(
+                            'Please key in Particulars of Deceased below',
+                            style: TextStyle(
+                                fontFamily: 'NATS',
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black
                             ),
-                            textInputAction: TextInputAction.next,
-                            onTap: () {
-                              _phonecontroller.text = _selectedCompany?.phone as String; //set output date to TextField value.
-                              _newscontroller.text = _selectedCompany?.name as String;
-                            },
-                          ),
+                          )),
+                      Divider(
+                        color: Colors.grey,
+                        thickness: 0.8,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      SizedBox(height: 10,),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                            children:[
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _nameController,
+                                  validator: validateNotEmpty,
+                                  decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Name of Deceased',
+                                      labelStyle: TextStyle(
+                                          fontFamily: 'NATS',
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black38)
+                                  ),
+                                  onTap:() {
+                                    _phonecontroller.text = _selectedCompany?.phone as String; //set output date to TextField value.
+                                    _newscontroller.text = _selectedCompany?.name as String;
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              SizedBox(width: 16,),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _dateofdeathController,
+                                  keyboardType: TextInputType.datetime,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      prefixIcon: Icon(Icons.calendar_today_outlined),
+                                      labelText: "Date of Death",
+                                      labelStyle: TextStyle(
+                                          fontFamily: 'NATS',
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black38)
+                                  ),
+                                  onTap: () async {
+                                    DateTime? pickedDate1 = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1900), //DateTime.now() - not to allow to choose before today.
+                                        lastDate: DateTime.now()
+                                    );
+                                    if(pickedDate1 != null){
+                                      setState(() {
+                                        // date = formattedDate;
+                                        _dateofdeathController.text = DateFormat('yyyy-MM-dd').format(pickedDate1); //set output date to TextField value.
+                                      });
+                                    }
+                                  },
+                                  validator: (value) {
+                                    if (_dateofdeathController.text=='') {
+                                      return "Date of Death required";
+                                    }
+                                    return null;
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                            ]
                         ),
-                        SizedBox(width: 16,),
-                        Expanded(
-                          child: TextField(
-                            controller: _dateoofdeathController,
-                            keyboardType: TextInputType.datetime,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.calendar_today_outlined),
-                                labelText: "Date of Death",
-                                labelStyle: TextStyle(
-                                    fontFamily: 'NATS',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black38)
-                            ),
-                            onTap: () async {
-                              DateTime? pickedDate1 = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1900), //DateTime.now() - not to allow to choose before today.
-                                  lastDate: DateTime.now()
-                              );
-                              if(pickedDate1 != null){
-                                setState(() {
-                                  // date = formattedDate;
-                                  _dateoofdeathController.text = DateFormat('yyyy-MM-dd').format(pickedDate1); //set output date to TextField value.
-                                });
-                              }else{
-                                return;
-                              }
-                            },
-                            textInputAction: TextInputAction.next,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: TextFormField(
+                          controller: _locationofwakeController,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Location of Wake',
+                              labelStyle: TextStyle(
+                                  fontFamily: 'NATS',
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black38)
                           ),
+                          textInputAction: TextInputAction.next,
                         ),
-                      ]
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: TextField(
-                    controller: _locationofwakeController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Location of Wake',
-                        labelStyle: TextStyle(
-                            fontFamily: 'NATS',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black38)
-                    ),
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                      children:[
-                        Expanded(
-                          child: TextField(
-                            controller: _funeraldatecontroller,
-                            keyboardType: TextInputType.datetime,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.calendar_today_outlined),
-                                labelText: "Funeral Date",
-                                labelStyle: TextStyle(
-                                    fontFamily: 'NATS',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black38)
-                            ),
-                            onTap: () async {
-                              DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.now(), //DateTime.now() - not to allow to choose before today.
-                                  lastDate: DateTime(2030)
-                              );
-                              if(pickedDate != null){
-                                setState(() {
-                                  // date = formattedDate;
-                                  _funeraldatecontroller.text = DateFormat('yyyy-MM-dd').format(pickedDate); //set output date to TextField value.
-                                });
-                              }else{
-                                return;
-                              }
-                            },
-                            textInputAction: TextInputAction.next,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                            children:[
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _funeraldatecontroller,
+                                  keyboardType: TextInputType.datetime,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      prefixIcon: Icon(Icons.calendar_today_outlined),
+                                      labelText: "Funeral Date",
+                                      labelStyle: TextStyle(
+                                          fontFamily: 'NATS',
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black38)
+                                  ),
+                                  onTap: () async {
+                                    DateTime? pickedDate = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime.now(), //DateTime.now() - not to allow to choose before today.
+                                        lastDate: DateTime(2030)
+                                    );
+                                    if(pickedDate != null){
+                                      setState(() {
+                                        _funeraldatecontroller.text = DateFormat('yyyy-MM-dd').format(pickedDate); //set output date to TextField value.
+                                      });
+                                    }
+                                  },
+                                  validator: (value) {
+                                    if (_funeraldatecontroller.text=='') {
+                                      return "Funeral Date required";
+                                    }
+                                    return null;
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                              SizedBox(width: 16,),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _funeraltimecontroller,
+                                  keyboardType: TextInputType.datetime,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      prefixIcon: Icon(Icons.timer_outlined),
+                                      labelText: "Funeral Time",
+                                      labelStyle: TextStyle(
+                                          fontFamily: 'NATS',
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black38)
+                                  ),
+                                  onTap: () async {
+                                    TimeOfDay? pickedTime =  await showTimePicker(
+                                      initialTime: TimeOfDay.now(),
+                                      context: context,
+                                    );
+
+                                    if(pickedTime != null ){
+                                      print(pickedTime.format(context));   //output 10:51 PM
+                                      DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+
+                                      setState(() {
+                                        _funeraltimecontroller.text = DateFormat('HH:mm:ss').format(parsedTime);; //set the value of text field.
+                                      });
+                                    }
+                                  },
+                                  validator: (value) {
+                                    if (_funeraltimecontroller.text=='') {
+                                      return "Funeral Time required";
+                                    }
+                                    return null;
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                ),
+                              ),
+                            ]
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,10,10,10),
+                        child: TextFormField(
+                          controller: _familycontroller,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Names of Family Members',
+                            labelStyle: TextStyle(
+                                fontFamily: 'NATS',
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black38),
+                            contentPadding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
                           ),
+                          textInputAction: TextInputAction.next,
                         ),
-                        SizedBox(width: 16,),
-                        Expanded(
-                          child: TextField(
-                            controller: _funeraltimecontroller,
-                            keyboardType: TextInputType.datetime,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.timer_outlined),
-                                labelText: "Funeral Time",
-                                labelStyle: TextStyle(
-                                    fontFamily: 'NATS',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black38)
-                            ),
-                            onTap: () async {
-                              TimeOfDay? pickedTime =  await showTimePicker(
-                                initialTime: TimeOfDay.now(),
-                                context: context,
-                              );
-
-                              if(pickedTime != null ){
-                                print(pickedTime.format(context));   //output 10:51 PM
-                                DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
-
-                                setState(() {
-                                  _funeraltimecontroller.text = DateFormat('HH:mm:ss').format(parsedTime);; //set the value of text field.
-                                });
-                              }else{
-                                print("Time is not selected");
-                              }
-                            },
-                            textInputAction: TextInputAction.next,
-                          ),
-                        ),
-                      ]
-                  ),
-                ),
-
-
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,10,10,10),
-                  child: TextField(
-                    controller: _familycontroller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Names of Family Members',
-                      labelStyle: TextStyle(
-                          fontFamily: 'NATS',
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black38),
-                      contentPadding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-                    ),
-                    textInputAction: TextInputAction.next,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 0,),
@@ -320,19 +347,24 @@ class _ObituaryFormState extends State<ObituaryForm> {
                   child: ElevatedButton(
                     child: Text("Proceed"),
                     onPressed: () {
-                      widget.trip.name = _nameController.text;
-                      widget.trip.dateofdeath = _dateoofdeathController.text;
-                      widget.trip.locationofwake = _locationofwakeController.text;
-                      widget.trip.funeraldate = _funeraldatecontroller.text;
-                      widget.trip.funeraltime = _funeraltimecontroller.text;
-                      widget.trip.familynames = _familycontroller.text;
-                      widget.trip.newspaper = _newscontroller.text;
-                      widget.trip.phone = _phonecontroller.text;
-                      uploadFile(pickedFile);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ObituaryConfirm(trip: widget.trip, newspaper: widget.newspaper)),
-                      );
+                      if (_key.currentState!.validate()) {
+                        widget.trip.name = _nameController.text;
+                        widget.trip.dateofdeath = _dateofdeathController.text;
+                        widget.trip.locationofwake =
+                            _locationofwakeController.text;
+                        widget.trip.funeraldate = _funeraldatecontroller.text;
+                        widget.trip.funeraltime = _funeraltimecontroller.text;
+                        widget.trip.familynames = _familycontroller.text;
+                        widget.trip.newspaper = _newscontroller.text;
+                        widget.trip.phone = _phonecontroller.text;
+                        uploadFile(pickedFile);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              ObituaryConfirm(trip: widget.trip,
+                                  newspaper: widget.newspaper)),
+                        );
+                      }
                     },
                   ),),
                 SizedBox(height: 10,),
@@ -416,5 +448,13 @@ class NewspaperData {
   }
 
 }
+
+String? validateNotEmpty(String? field) {
+  if (field==null || field.isEmpty) {
+    return "Field required";
+  }
+  return null;
+}
+
 
 

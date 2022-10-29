@@ -20,11 +20,8 @@ import 'package:next_stage/screens/Wills/lawyers_search.dart';
 import 'package:next_stage/screens/Wills/willFilling.dart';
 import 'package:next_stage/screens/Wills/will_confirm.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
-import 'package:next_stage/screens/homePage.dart';
 import 'package:next_stage/screens/loginPage.dart';
 import 'package:next_stage/models/willform.dart';
-
-import 'models/obituary.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +38,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ObituaryTrip = new obiTrip("","","","","","","","");
     final WillTrip = new Trip("","","","","","","");
-    final newObituary = new Obituary();
     final newNewspaper = new NewspaperData(0,"","","");
     return MaterialApp(
       title: 'Flutter Demo',

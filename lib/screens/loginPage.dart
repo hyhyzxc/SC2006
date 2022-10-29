@@ -16,6 +16,8 @@ class _loginPageState extends State<loginPage> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _key=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,29 +60,38 @@ class _loginPageState extends State<loginPage> {
                           'Sign in',
                           style: TextStyle(fontSize: 20),
                         )),
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                    Form(
+                      key: _key,
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            child: TextFormField(
+                              controller: nameController,
+                              validator: validateEmail,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: 'Email',
+                              ),
+                            ),
                           ),
-                          labelText: 'Email',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: TextField(
-                        obscureText: true,
-                        controller: passwordController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                            child: TextFormField(
+                              obscureText: true,
+                              controller: passwordController,
+                              validator: validatePassword,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: 'Password',
+                              ),
+                            ),
                           ),
-                          labelText: 'Password',
-                        ),
+                        ],
                       ),
                     ),
                     SizedBox(height: 120,),
@@ -118,17 +129,20 @@ class _loginPageState extends State<loginPage> {
                               ),
                             ),
                           ),
-                          onTap: () {
-                            FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                                email: nameController.text,
-                                password: passwordController.text)
-                                .then((value) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => HomeScreen()));
-                            }).onError((error, stackTrace) {
-                              print("Error ${error.toString()}");
-                            });
+                          onTap: () async {
+                            if (_key.currentState!.validate()) {
+                              FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                  email: nameController.text,
+                                  password: passwordController.text)
+                                  .then((value) {
+                                Navigator.push(context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomeScreen()));
+                              }).onError((error, stackTrace) {
+                                print("Error ${error.toString()}");
+                              });
+                            }
                             //print(nameController.text);
                             //print(passwordController.text);
                             //Navigator.push(context,
@@ -160,125 +174,26 @@ class _loginPageState extends State<loginPage> {
   }
 }
 
+String? validateEmail(String? formEmail) {
+  if (formEmail == null || formEmail.isEmpty) {
+    return 'E-mail address required';
+  }
+  String pattern = r'\w+@\w+\.\w+';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formEmail)) return 'Invalid E-mail Address format.';
+  return null;
+}
 
-
-// import 'package:flutter/material.dart';
-// import 'package:next_stage/screens/registrationPage.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-//
-// import 'homePage.dart';
-//
-// class loginPage extends StatefulWidget {
-//   const loginPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<loginPage> createState() => _loginPageState();
-// }
-//
-// class _loginPageState extends State<loginPage> {
-//
-//
-//   TextEditingController nameController = TextEditingController();
-//   TextEditingController passwordController = TextEditingController();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           centerTitle: true,
-//           title: Text('LOGIN PAGE DUDE'),
-//           automaticallyImplyLeading: false,
-//         ),
-//       //  padding: const EdgeInsets.all(10),
-//       body: Center(
-//         child: ListView(
-//           children: <Widget>[
-//             Container(
-//                 alignment: Alignment.center,
-//                 padding: const EdgeInsets.all(10),
-//                 child: const Text(
-//                   'ONE-STOP AFTERLIFE PROCEDURE',
-//                   style: TextStyle(
-//                       color: Colors.black54,
-//                       fontWeight: FontWeight.w500,
-//                       fontSize: 23),
-//                 )),
-//             Container(
-//                 alignment: Alignment.center,
-//                 padding: const EdgeInsets.all(10),
-//                 child: const Text(
-//                   'Sign in',
-//                   style: TextStyle(fontSize: 20),
-//                 )),
-//             Container(
-//               padding: const EdgeInsets.all(10),
-//               child: TextField(
-//                 controller: nameController,
-//                 decoration: const InputDecoration(
-//                   border: OutlineInputBorder(),
-//                   labelText: 'Email',
-//                 ),
-//               ),
-//             ),
-//             Container(
-//               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-//               child: TextField(
-//                 obscureText: true,
-//                 controller: passwordController,
-//                 decoration: const InputDecoration(
-//                   border: OutlineInputBorder(),
-//                   labelText: 'Password',
-//                 ),
-//               ),
-//             ),
-//             TextButton(
-//               onPressed: () {
-//
-//                 //forgot password screen
-//               },
-//               child: const Text('Forgot Password',),
-//             ),
-//             Container(
-//                 height: 50,
-//                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-//                 child: ElevatedButton(
-//                   child: const Text('Login'),
-//                   onPressed: () {
-//                     FirebaseAuth.instance
-//                         .signInWithEmailAndPassword(
-//                         email: nameController.text,
-//                         password: passwordController.text)
-//                         .then((value) {
-//                       Navigator.push(context,
-//                           MaterialPageRoute(builder: (context) => HomeScreen()));
-//                     }).onError((error, stackTrace) {
-//                       print("Error ${error.toString()}");
-//                     });
-//                     //print(nameController.text);
-//                     //print(passwordController.text);
-//                     //Navigator.push(context,
-//                     // MaterialPageRoute(builder: (context) => HomeScreen()));
-//                   },
-//                 )
-//             ),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: <Widget>[
-//                 const Text('Does not have account?'),
-//                 TextButton(
-//                   child: const Text(
-//                     'Sign up',
-//                     style: TextStyle(fontSize: 15),
-//                   ),
-//                   onPressed: () {
-//                     Navigator.push(context,
-//                         MaterialPageRoute(builder: (context) => registerPage()));
-//
-//                     //signup screen
-//                   },
-//                 )
-//               ],
-//             ),
-//           ],
-//         )));
-//   }
-// }
+String? validatePassword(String? formPassword) {
+  if (formPassword == null || formPassword.isEmpty) {
+    return 'Password required';
+  }
+  String pattern =
+      r'^(?=.*?[a-z]).{8,}$';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formPassword))
+    return '''
+      Password must be at least 8 characters,
+      ''';
+  return null;
+}

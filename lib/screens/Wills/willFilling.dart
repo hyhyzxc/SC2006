@@ -18,6 +18,8 @@ class WillForm extends StatefulWidget {
 }
 
 class _WillFormState extends State<WillForm> {
+  final GlobalKey<FormState> _key=GlobalKey<FormState>();
+
   TextEditingController _testerController = new TextEditingController();
   TextEditingController _assetsPassedController = new TextEditingController();
   TextEditingController _executorsandtrusteeController = new TextEditingController();
@@ -60,119 +62,132 @@ class _WillFormState extends State<WillForm> {
                   endIndent: 20,
                 ),
                 SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: TextField(
-                    controller: _testerController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Tester Particulars',
-                        labelStyle: TextStyle(
-                            fontFamily: 'NATS',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black38)
-                    ),
-                    onTap: () {
-                      _assetsPassedController.text=selectedOption!;
-                    },
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: TextField(
-                    controller: _executorsandtrusteeController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Executors and Trustees',
-                        labelStyle: TextStyle(
-                            fontFamily: 'NATS',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black38)
-                    ),
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: DropdownButton<String>(
-                    value: selectedOption,
-                    items: options.map((option)
-                    => DropdownMenuItem<String> (
-                      value: option,
-                      child: Text(
-                          option,
-                          style: TextStyle(
-                              fontSize:20.0,
-                              fontFamily:'NATS',
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black38)
+                Form(
+                  key: _key,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: TextFormField(
+                          controller: _testerController,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Tester Particulars',
+                              labelStyle: TextStyle(
+                                  fontFamily: 'NATS',
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black38)
+                          ),
+                          onTap: () {
+                            _assetsPassedController.text=selectedOption!;
+                          },
+                          textInputAction: TextInputAction.next,
+                        ),
                       ),
-                    )).toList(),
-                    onChanged: (option) {
-                      setState(() => selectedOption=option);
-                      _assetsPassedController.text=option!;
-                    },
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: TextField(
-                    controller: _executor1Controller,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Executor 1',
-                        labelStyle: TextStyle(
-                            fontFamily: 'NATS',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black38)
-                    ),
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: TextField(
-                    controller: _substituteexecutorController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Substitute Executors',
-                        labelStyle: TextStyle(
-                            fontFamily: 'NATS',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black38)
-                    ),
-                    textInputAction: TextInputAction.next,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: Row(
-                      children:[
-                        SizedBox(width: 16,),
-                      ]
-                  ),
-                ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: TextFormField(
+                          controller: _executorsandtrusteeController,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Executors and Trustees',
+                              labelStyle: TextStyle(
+                                  fontFamily: 'NATS',
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black38)
+                          ),
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          value: selectedOption,
+                          items: options.map((option)
+                          => DropdownMenuItem<String> (
+                            value: option,
+                            child: Text(
+                                option,
+                                style: TextStyle(
+                                    fontSize:20.0,
+                                    fontFamily:'NATS',
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black38)
+                            ),
+                          )).toList(),
+                          onChanged: (option) {
+                            setState(() => selectedOption=option);
+                            _assetsPassedController.text=option!;
+                          },
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: TextFormField(
+                          controller: _executor1Controller,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Executor 1',
+                              labelStyle: TextStyle(
+                                  fontFamily: 'NATS',
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black38)
+                          ),
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: TextFormField(
+                          controller: _substituteexecutorController,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Substitute Executors',
+                              labelStyle: TextStyle(
+                                  fontFamily: 'NATS',
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black38)
+                          ),
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: Row(
+                            children:[
+                              SizedBox(width: 16,),
+                            ]
+                        ),
+                      ),
 
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
-                  child: TextField(
-                    controller: _specificgiftsController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Specific gifts',
-                      labelStyle: TextStyle(
-                          fontFamily: 'NATS',
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black38),
-                      contentPadding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-                    ),
-                    textInputAction: TextInputAction.next,
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                        child: TextFormField(
+                          controller: _specificgiftsController,
+                          validator: validateNotEmpty,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Specific gifts',
+                            labelStyle: TextStyle(
+                                fontFamily: 'NATS',
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black38),
+                            contentPadding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+                          ),
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
@@ -186,16 +201,21 @@ class _WillFormState extends State<WillForm> {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      widget.trip.tester = _testerController.text;
-                      widget.trip.typeOfAssets = _assetsPassedController.text;
-                      widget.trip.executorAndTrustee = _executorsandtrusteeController.text;
-                      widget.trip.executor1 = _executor1Controller.text;
-                      widget.trip.substituteExecutor = _substituteexecutorController.text;
-                      widget.trip.gifts = _specificgiftsController.text;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => WillConfirm(trip: widget.trip),
-                      ));
+                      if (_key.currentState!.validate()) {
+                        widget.trip.tester = _testerController.text;
+                        widget.trip.typeOfAssets = _assetsPassedController.text;
+                        widget.trip.executorAndTrustee =
+                            _executorsandtrusteeController.text;
+                        widget.trip.executor1 = _executor1Controller.text;
+                        widget.trip.substituteExecutor =
+                            _substituteexecutorController.text;
+                        widget.trip.gifts = _specificgiftsController.text;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>
+                                WillConfirm(trip: widget.trip),
+                            ));
+                      }
                     },
                     child: Text(
                       'Proceed',
@@ -250,15 +270,6 @@ class _WillFormState extends State<WillForm> {
         )
     );
   }
-// uploadImage() async {
-// _getDateFromUser() async {
-//   DateTime? _pickerDate = await showDatePicker(
-//       context: context,
-//       initialDate: DateTime(2022),
-//       firstDate: DateTime(2022),
-//       lastDate: DateTime(2022)
-//   );
-// }
 }
 
 class LawyerData {
@@ -278,4 +289,11 @@ class LawyerData {
           'Jin', '92330041', 'airpodspro2@gmail.com'),
     ];
   }
+}
+
+String? validateNotEmpty(String? field) {
+  if (field==null || field.isEmpty) {
+    return "Field required";
+  }
+  return null;
 }

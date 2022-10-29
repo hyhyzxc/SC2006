@@ -1,8 +1,5 @@
-
-
 import 'package:next_stage/models/afterlifefacilities.dart';
 import 'dart:convert';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -32,6 +29,8 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
     await docUser.set(json);
     return docUser.id;
   }
+
+  final GlobalKey<FormState> _key=GlobalKey<FormState>();
 
   List<String> packageSelector=['Taoist Package','Buddhist Package','Christian Package','Muslim Package','Hindu Package'];
   String? packageChoose ='Taoist Package';
@@ -97,131 +96,152 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
                     endIndent: 20,
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                    children:[
-                    Expanded(
-                    child: TextField(
-                    controller: _nameController,
-                    decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Name of Deceased',
-                    labelStyle: TextStyle(
-                    fontFamily: 'NATS',
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black38)
-                    ),
-                    textInputAction: TextInputAction.next,
-                    ),
-                    ),
-        ]
-                )
-
-             ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                    children:[
-                      Expanded(
-                        child: TextField(
-                          controller: _apptdatecontroller,
-                          keyboardType: TextInputType.datetime,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.calendar_today_outlined),
-                              labelText: "Funeral Date",
-                              labelStyle: TextStyle(
-                                  fontFamily: 'NATS',
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black38)
+                    Form(
+                      key: _key,
+                      child: Column(
+                        children: [
+                          Container(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                          children:[
+                          Expanded(
+                          child: TextFormField(
+                          validator: validateNotEmpty,
+                          controller: _nameController,
+                          decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Name of Deceased',
+                          labelStyle: TextStyle(
+                          fontFamily: 'NATS',
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black38)
                           ),
-                          onTap: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now().add(Duration(days: 5)),
-                                firstDate: DateTime.now(),//DateTime.now() - not to allow to choose before today.
-                                lastDate: DateTime.now().add(Duration(days: 40))
-                            );
-                            if(pickedDate != null){
-                              setState(() {
-                                // date = formattedDate;
-                                _apptdatecontroller.text = DateFormat('yyyy-MM-dd').format(pickedDate); //set output date to TextField value.
-                              });
-                            }else{
-                              return;
-                            }
-                          },
                           textInputAction: TextInputAction.next,
-                        ),
-                      ),
-                      SizedBox(width: 16,),
-                      Expanded(
-                        child: TextField(
-                          controller: _appttimecontroller,
-                          keyboardType: TextInputType.datetime,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.timer_outlined),
-                              labelText: "Funeral Time",
-                              labelStyle: TextStyle(
-                                  fontFamily: 'NATS',
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black38)
                           ),
-                          onTap: () async {
-                            TimeOfDay? pickedTime =  await showTimePicker(
-                              initialTime: TimeOfDay.now(),
-                              context: context,
-                            );
+                          ),
+                         ]
+                      )
+                    ),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                                children:[
+                                  Expanded(
+                                    child: TextFormField(
+                                      controller: _apptdatecontroller,
+                                      keyboardType: TextInputType.datetime,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          prefixIcon: Icon(Icons.calendar_today_outlined),
+                                          labelText: "Funeral Date",
+                                          labelStyle: TextStyle(
+                                              fontFamily: 'NATS',
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black38)
+                                      ),
+                                      onTap: () async {
+                                        DateTime? pickedDate = await showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now().add(Duration(days: 5)),
+                                            firstDate: DateTime.now(),//DateTime.now() - not to allow to choose before today.
+                                            lastDate: DateTime.now().add(Duration(days: 40))
+                                        );
+                                        if(pickedDate != null){
+                                          setState(() {
+                                            // date = formattedDate;
+                                            _apptdatecontroller.text = DateFormat('yyyy-MM-dd').format(pickedDate); //set output date to TextField value.
+                                          });
+                                        }
+                                      },
+                                      validator: (value) {
+                                        if (_apptdatecontroller.text=='') {
+                                          return "Funeral Date required";
+                                        }
+                                        return null;
+                                      },
+                                      textInputAction: TextInputAction.next,
+                                    ),
+                                  ),
+                                  SizedBox(width: 16,),
+                                  Expanded(
+                                    child: TextFormField(
+                                      controller: _appttimecontroller,
+                                      keyboardType: TextInputType.datetime,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          prefixIcon: Icon(Icons.timer_outlined),
+                                          labelText: "Funeral Time",
+                                          labelStyle: TextStyle(
+                                              fontFamily: 'NATS',
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black38)
+                                      ),
+                                      onTap: () async {
+                                        TimeOfDay? pickedTime =  await showTimePicker(
+                                          initialTime: TimeOfDay.now(),
+                                          context: context,
+                                        );
 
-                            if(pickedTime != null ){
-                              print(pickedTime.format(context));   //output 10:51 PM
-                              DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+                                        if(pickedTime != null ){
+                                          print(pickedTime.format(context));   //output 10:51 PM
+                                          DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
 
-                              setState(() {
-                                _appttimecontroller.text = DateFormat('HH:mm:ss').format(parsedTime);; //set the value of text field.
-                              });
-                            }else{
-                              print("Time is not selected");
-                            }
-                          },
-                          textInputAction: TextInputAction.next,
-                        ),
-                      ),
-                    ]
+                                          setState(() {
+                                            _appttimecontroller.text = DateFormat('HH:mm:ss').format(parsedTime);; //set the value of text field.
+                                          });
+                                        }
+                                      },
+                                      validator: (value) {
+                                        if (_appttimecontroller.text=='') {
+                                          return "Funeral Time required";
+                                        }
+                                        return null;
+                                      },
+                                      textInputAction: TextInputAction.next,
+                                    ),
+                                  ),
+                                ]
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            padding:const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: const BorderRadius.all( const Radius.circular(5.0)),
+                                ),contentPadding: EdgeInsets.fromLTRB(20,20,20,20),
+                                filled:true,
+                                hintStyle:TextStyle(color:Colors.grey[800]),
+                                hintText: "Select Crematorium Package",
+
+                              ),
+                              value:packageChoose,
+                              items:packageSelector
+                                  .map((packageSelector) => DropdownMenuItem<String>(
+                                  value: packageSelector,
+                                  child: Text(packageSelector,style: TextStyle(
+                                      fontFamily: 'NATS',
+                                      fontWeight: FontWeight.normal,
+                                      color:Colors.black,
+                                      fontSize: 18),)
+                              ))
+                                  .toList(),
+                              onChanged: (packageSelector)=>setState(() =>packageChoose=packageSelector),
+                              validator: (value) {
+                                if (packageChoose==null) {
+                                  return "Crematorium Package required";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                  ],
                 ),
               ),
-              SizedBox(height: 10,),
-              Container(
-                      padding:const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                      child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: const BorderRadius.all( const Radius.circular(5.0)),
-                          ),contentPadding: EdgeInsets.fromLTRB(20,20,20,20),
-                            filled:true,
-                            hintStyle:TextStyle(color:Colors.grey[800]),
-                            hintText: "Select Crematorium Package",
-
-                        ),
-                        value:packageChoose,
-                        items:packageSelector
-                            .map((packageSelector) => DropdownMenuItem<String>(
-                            value: packageSelector,
-                            child: Text(packageSelector,style: TextStyle(
-                                fontFamily: 'NATS',
-                                fontWeight: FontWeight.normal,
-                                color:Colors.black,
-                                fontSize: 18),)
-                        ))
-                          .toList(),
-                        onChanged: (packageSelector)=>setState(() =>packageChoose=packageSelector),
-                      ),
-                    ),
               SizedBox(height: 250.0),
               Center(
                   child: Container(
@@ -243,7 +263,9 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
                             ),
                           ),
                           onPressed: () async {
-                            _showMyDialog();
+                            if (_key.currentState!.validate()) {
+                              _showMyDialog();
+                            }
                           }
                       )
                   )
@@ -276,36 +298,23 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
             TextButton(
               child: const Text('Yes'),
               onPressed: () async {
-                final FirebaseAuth auth = FirebaseAuth.instance;
-                final User? user = auth.currentUser;
-                final String uid = user!.uid;
-                CrematoriumAppointment crematoriumAppointment = CrematoriumAppointment(
-                    user_id : uid,
-                    name : place!.name,
-                    address : place!.address,
-                    description : place!.description,
-                    appt_date : _apptdatecontroller!.text,
-                    appt_time: _appttimecontroller!.text,
-                    package : packageChoose!);
+                  final FirebaseAuth auth = FirebaseAuth.instance;
+                  final User? user = auth.currentUser;
+                  final String uid = user!.uid;
+                  CrematoriumAppointment crematoriumAppointment = CrematoriumAppointment(
+                      user_id: uid,
+                      name: place!.name,
+                      address: place!.address,
+                      description: place!.description,
+                      appt_date: _apptdatecontroller!.text,
+                      appt_time: _appttimecontroller!.text,
+                      package: packageChoose!);
 
-                String docID = await saveCrematoriaAppointmentPlan(
-                    crematoriumAppointment: crematoriumAppointment, uid:uid);
+                  String docID = await saveCrematoriaAppointmentPlan(
+                      crematoriumAppointment: crematoriumAppointment, uid: uid);
 
-                /*final planData = FirebaseFirestore.instance.collection(
-                    'Plan').doc(uid);
-                final snapshot = await planData.get();
-
-                print(docID);
-                if (snapshot.exists) {
-                  planData.update({
-                    'crematoriumApptID': docID!,
-                  });
-                } else {
-                  print("Error: cannot find Plan");
-                }*/
-                _showMyDialogconfirm();
-
-              },
+                  _showMyDialogconfirm();
+                },
             ),
             TextButton(
               child: const Text('Cancel'),
@@ -350,5 +359,10 @@ class _AddAppointmentCrematoriaState extends State<AddAppointmentCrematoria> {
 
 }
 
-
+String? validateNotEmpty(String? field) {
+  if (field==null || field.isEmpty) {
+    return "Field required";
+  }
+  return null;
+}
 
