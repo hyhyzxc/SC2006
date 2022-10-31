@@ -27,7 +27,7 @@ class _WillFormState extends State<WillForm> {
   TextEditingController _substituteexecutorController = new TextEditingController();
   TextEditingController _specificgiftsController = new TextEditingController();
 
-  List<String> options=['Singapore Assets Only','Worldwide Assets Only'];
+  List<String> options=['Singapore Assets Only','Worldwide Assets'];
   String? selectedOption='Singapore Assets Only';
 
   String title='AlertDialog';
