@@ -188,7 +188,25 @@ class _registerPageState extends State<registerPage> {
                                     MaterialPageRoute(
                                         builder: (context) => HomeScreen()));
                               }).onError((error, stackTrace) {
+
                                 print("Error ${error.toString()}");
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Login fail"),
+                                      content: Text(error.toString()),
+                                      actions: [
+                                        TextButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               });
                             }
                           },
@@ -243,3 +261,6 @@ String? validateNumber(String? formNumber) {
       ''';
   return null;
 }
+
+
+

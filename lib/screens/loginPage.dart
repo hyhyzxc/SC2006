@@ -133,7 +133,27 @@ class _loginPageState extends State<loginPage> {
                                     MaterialPageRoute(
                                         builder: (context) => HomeScreen()));
                               }).onError((error, stackTrace) {
+
+
                                 print("Error ${error.toString()}");
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Login fail"),
+                                      content: Text(error.toString()),
+                                      actions: [
+                                        TextButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
+
                               });
                             }
                             //print(nameController.text);
@@ -190,3 +210,5 @@ String? validatePassword(String? formPassword) {
       ''';
   return null;
 }
+
+
