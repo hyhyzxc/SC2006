@@ -144,14 +144,6 @@ class _SearchDoctorState extends State<SearchDoctor> {
                             filteredProducts[index].name,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                          // subtitle: Row(
-                          //   children: <Widget>[
-                          //     Icon(Icons.linear_scale, color: Colors.yellow[500]),
-                          //     Text(filteredProducts[index].rating.toString(), style: TextStyle(color: Colors.blueGrey))
-                          //   ],
-                          // ),
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                               child: Row(
@@ -181,10 +173,6 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
             ),
             SizedBox(height: 30,)
-
-            // else
-            // Container(child: Text("No products"),)
-
           ],
         ),
 

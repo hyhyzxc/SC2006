@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
-
 import '../../models/lawyer.dart';
 import 'lawyers_details.dart';
 
@@ -198,10 +197,6 @@ class _SearchLawyerState extends State<SearchLawyer> {
 
             ),
             SizedBox(height: 30,)
-
-            // else
-            // Container(child: Text("No products"),)
-
           ],
         ),
 

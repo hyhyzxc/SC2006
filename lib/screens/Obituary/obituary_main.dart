@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:next_stage/models/obituary.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
-
 import 'dart:convert';
+
+import '../NavBar.dart';
 
 
 class ObituaryMainNew extends StatefulWidget {
@@ -59,6 +60,7 @@ class _ObituaryMainNewState extends State<ObituaryMainNew> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
+        drawer: NavBar(),
         appBar: AppBar(title: Text("Obituary"),
         backgroundColor: Colors.blueGrey[200],),
         body:  Column(
@@ -146,10 +148,6 @@ class _ObituaryMainNewState extends State<ObituaryMainNew> {
 
             ),
             SizedBox(height: 30,)
-
-            // else
-            // Container(child: Text("No products"),)
-
           ],
         ),
 

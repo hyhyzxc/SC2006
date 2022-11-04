@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -7,11 +6,7 @@ import 'package:next_stage/models/funeralparlor.dart';
 import 'dart:convert';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-
-import '../googleMap.dart';
 import '../homePage.dart';
-
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({ Key? key }) : super(key: key);
@@ -289,18 +284,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 String docID = await saveFuneralPlan(
                     funeralParlor: funeralParlor, uid:uid);
 
-                /*final planData = FirebaseFirestore.instance.collection(
-                    'Plan').doc(uid);
-                final snapshot = await planData.get();
-
-                print(docID);
-                if (snapshot.exists) {
-                  planData.update({
-                    'crematoriumApptID': docID!,
-                  });
-                } else {
-                  print("Error: cannot find Plan");
-                }*/
                 _showMyDialogconfirm();
 
               },

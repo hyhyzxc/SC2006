@@ -2,20 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:next_stage/models/user.dart';
-import 'package:next_stage/screens/DeathCert/deathcert_doctordetail.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
-import 'package:next_stage/screens/Plans/crematorium_plans.dart';
 import 'package:next_stage/screens/Wills/selection_page.dart';
 import 'package:next_stage/screens/loginPage.dart';
 
 import '../models/obituary.dart';
 import '../models/obituaryform.dart';
-import 'Funeral/product_detail_screen.dart';
-import 'Funeral/product_list_screen.dart';
+import 'Funeral/funeral_list.dart';
 import 'Obituary/obituary_form.dart';
 import 'Plans/plans_main.dart';
-import 'Wills/will_main.dart';
-import 'package:next_stage/screens/Crematoria/crematoria_detail_screen.dart';
 import 'package:next_stage/screens/Crematoria/crematoria_list_screen.dart';
 
 class NavBar extends StatelessWidget {

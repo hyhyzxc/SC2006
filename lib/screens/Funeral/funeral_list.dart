@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'dart:convert';
 import 'package:next_stage/models/funeralparlor.dart';
+import 'package:next_stage/screens/Funeral/funeral_details.dart';
 
-import 'package:next_stage/screens/Funeral/product_detail_screen.dart';
+import '../NavBar.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({ Key? key }) : super(key: key);
@@ -59,6 +59,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
+        drawer: NavBar(),
         appBar: AppBar(title: Text("Funeral Parlours"),
         backgroundColor: Colors.blue[100],),
         body:  Column(
@@ -175,10 +176,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
             ),
             SizedBox(height: 30,)
-
-            // else
-            // Container(child: Text("No products"),)
-
           ],
         ),
 

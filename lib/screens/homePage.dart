@@ -1,17 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
 import 'package:next_stage/screens/NavBar.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';
-import 'package:next_stage/screens/Plans/crematorium_plans.dart';
 import 'package:next_stage/screens/Wills/selection_page.dart';
-
 import '../models/obituaryform.dart';
 import 'Crematoria/crematoria_list_screen.dart';
-import 'Funeral/product_list_screen.dart';
-import 'Wills/will_main.dart';
+import 'Funeral/funeral_list.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -211,32 +207,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-
-                      // Card(
-                      //   color: Colors.transparent,
-                      //   elevation: 0,
-                      //   child: Container(
-                      //     decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(20),
-                      //         image: DecorationImage(
-                      //             image: AssetImage('assets/images/clinic.jpg'),
-                      //             fit: BoxFit.cover
-                      //         )
-                      //     ),
-                      //     child: Transform.translate(
-                      //       offset: Offset(50, -50),
-                      //       child: Container(
-                      //         margin: EdgeInsets.symmetric(horizontal: 65, vertical: 63),
-                      //         decoration: BoxDecoration(
-                      //             borderRadius: BorderRadius.circular(10),
-                      //             color: Colors.white
-                      //         ),
-                      //         child: Icon(Icons.bookmark_border, size: 15,),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
                     ]
                 ),
               )
@@ -247,43 +217,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-// import 'package:next_stage/screens/googleMap.dart';
-//
-// import '../main.dart';
-// import 'NavBar.dart';
-// import 'loginPage.dart';
-//
-// class HomeScreen extends StatefulWidget {
-//   const HomeScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   _HomeScreenState createState() => _HomeScreenState();
-// }
-//
-// class _HomeScreenState extends State<HomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       drawer: NavBar(),
-//       appBar: AppBar(
-//         centerTitle: true,
-//         title: Text('MENU'),
-//         automaticallyImplyLeading: true,
-//       ),
-//       body: Center(
-//         child: Container(
-//           alignment: Alignment.center,
-//           padding: const EdgeInsets.all(10),
-//           child: FloatingActionButton(
-//             child: Text("Google Maps"),
-//             onPressed: () {
-//               Navigator.push(context,
-//                 MaterialPageRoute(builder: (context) => MapSample()));
-//             },
-//           )
-//         ),
-//       ),
-//     );
-//   }
-// }

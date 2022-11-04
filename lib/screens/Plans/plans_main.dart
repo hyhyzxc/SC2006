@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:next_stage/screens/DeathCert/deathcert_hospital.dart';
-import 'package:next_stage/screens/DeathCert/deathcert_searchdoctor.dart';
-import 'package:next_stage/screens/DeathCert/deathcert_viewcert.dart';
 import 'package:next_stage/screens/Plans/crematorium_plans.dart';
 import 'package:next_stage/screens/Plans/will_plans.dart';
-
+import '../NavBar.dart';
 import 'deathcert_plans.dart';
 import 'funeral_plans.dart';
 import 'obituary_plans.dart';
-// import 'package:next_stage/screens/Plans/plans_crematoria.dart';
-// import 'package:next_stage/screens/Plans/plans_deathcertdoctors.dart';
-// import 'package:next_stage/screens/Plans/plans_funeral.dart';
-// import 'package:next_stage/screens/Plans/plans_obituary.dart';
-// import 'package:next_stage/screens/Plans/plans_will.dart';
 
 class ViewPlans extends StatefulWidget {
   const ViewPlans({ Key? key }) : super(key: key);
@@ -32,6 +24,7 @@ class _ViewPlansState extends State<ViewPlans> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
           resizeToAvoidBottomInset: true,
+          drawer: NavBar(),
           appBar: AppBar(title: Text("Plans"),
             backgroundColor: Colors.blueGrey[300],),
           body:  Column(

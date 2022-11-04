@@ -83,11 +83,6 @@ class _WillSelectionState extends State<WillSelection> {
           )
 
       ),
-
-
-      // else
-      // Container(child: Text("No products"),)
-
     );
   }
 }

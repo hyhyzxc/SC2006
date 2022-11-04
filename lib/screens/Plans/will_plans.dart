@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:next_stage/screens/Wills/will_update_plan.dart';
 
-
 class PlansWill extends StatefulWidget {
   const PlansWill({Key? key}) : super(key: key);
   static const String routeName = '/will-plans';

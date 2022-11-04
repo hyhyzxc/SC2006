@@ -21,12 +21,6 @@ class _loginPageState extends State<loginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text('LOGIN'),
-      //   automaticallyImplyLeading: false,
-      // ),
-      //  padding: const EdgeInsets.all(10),
         body: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -156,10 +150,6 @@ class _loginPageState extends State<loginPage> {
 
                               });
                             }
-                            //print(nameController.text);
-                            //print(passwordController.text);
-                            //Navigator.push(context,
-                            // MaterialPageRoute(builder: (context) => HomeScreen()));
                           },
                         )
                     ),
@@ -175,7 +165,6 @@ class _loginPageState extends State<loginPage> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => registerPage()));
-
                             //signup screen
                           },
                         )

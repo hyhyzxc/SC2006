@@ -477,8 +477,3 @@ class _WillConfirmState extends State<WillConfirm> {
     );
   }
 }
-
-_callNumber(String phoneNumber) async {
-  String number = phoneNumber;
-  await FlutterPhoneDirectCaller.callNumber(number);
-}

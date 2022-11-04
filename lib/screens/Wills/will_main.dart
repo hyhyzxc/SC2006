@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/models/willform.dart';
 import 'package:next_stage/screens/Wills/willFilling.dart';
 
+import '../NavBar.dart';
+
 class WillMain extends StatefulWidget {
   static const String routeName = '/willFill';
 
@@ -19,6 +21,7 @@ class _WillMainState extends State<WillMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text('Will'),
         backgroundColor: Colors.green[200],

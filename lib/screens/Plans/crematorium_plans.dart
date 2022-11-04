@@ -2,10 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../Crematoria/crematoria_update_plan.dart';
-import '../homePage.dart';
-
 
 class PlansCrematoria extends StatefulWidget {
   const PlansCrematoria({Key? key}) : super(key: key);
@@ -101,18 +98,6 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
                   final db = FirebaseFirestore.instance;
                   db.collection('userData').doc(uid).collection('Crematoria').doc(docID).delete();
 
-                  /*final planData = FirebaseFirestore.instance.collection(
-                    'Plan').doc(uid);
-                final snapshot = await planData.get();
-
-                print(docID);
-                if (snapshot.exists) {
-                  planData.update({
-                    'crematoriumApptID': docID!,
-                  });
-                } else {
-                  print("Error: cannot find Plan");
-                }*/
                   _showMyDialogconfirm();
 
                 },

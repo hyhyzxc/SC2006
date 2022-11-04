@@ -3,6 +3,8 @@ import 'package:next_stage/screens/DeathCert/deathcert_hospital.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_searchdoctor.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_viewcert.dart';
 
+import '../NavBar.dart';
+
 class DeathCertMain extends StatefulWidget {
   const DeathCertMain({ Key? key }) : super(key: key);
 
@@ -21,6 +23,7 @@ class _DeathCertMainState extends State<DeathCertMain> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
           resizeToAvoidBottomInset: true,
+          drawer: NavBar(),
           appBar: AppBar(title: Text("Location of Death"),
           backgroundColor: Colors.indigo[100],),
           body:  Column(
@@ -113,11 +116,6 @@ class _DeathCertMainState extends State<DeathCertMain> {
           )
 
       ),
-
-
-      // else
-      // Container(child: Text("No products"),)
-
     );
   }
 }

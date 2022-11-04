@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'dart:convert';
 import 'package:next_stage/models/afterlifefacilities.dart';
-
 import 'package:next_stage/screens/Crematoria/crematoria_detail_screen.dart';
+
+import '../NavBar.dart';
 
 class Crematoria extends StatefulWidget {
   const Crematoria({Key? key}) : super(key: key);
@@ -56,6 +56,7 @@ class _CrematoriaState extends State<Crematoria> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: true,
+        drawer: NavBar(),
         appBar: AppBar(title: Text("Crematorium and Burial Facilities"),
         backgroundColor: Colors.orange[200],),
         body:  Column(
@@ -155,33 +156,6 @@ class _CrematoriaState extends State<Crematoria> {
                                   ],
                                 ],
                               )),
-                          // subtitle: Row(
-                          //   children: <Widget>[
-                          //     Expanded(
-                          //       flex: 1,
-                          //       child: Padding(
-                          //         padding: EdgeInsets.fromLTRB(0,5,80,0),
-                          //         child: Text(filteredFacilities[index].rating.toString(),
-                          //             style: TextStyle(color: Colors.white)),
-                          //       ),
-                          //
-                          //     ),
-                          //     Expanded(
-                          //         flex: 10,
-                          //         child: Padding(
-                          //             padding: EdgeInsets.fromLTRB(0,5,80,0),
-                          //             child: Container(
-                          //               alignment: Alignment.centerLeft,
-                          //               // tag: 'hero',
-                          //               child: LinearProgressIndicator(
-                          //                   backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                          //                   value: filteredFacilities[index].rating.toDouble()/5,
-                          //                   valueColor: AlwaysStoppedAnimation(Colors.yellow[300])),
-                          //             )
-                          //         )
-                          //     )
-                          //   ],
-                          // ),
                           trailing: Container(
                               child: Padding(
                                 child: Icon(Icons.keyboard_arrow_right, color: Colors.black26,size: 30.0),
@@ -200,10 +174,6 @@ class _CrematoriaState extends State<Crematoria> {
 
             ),
             SizedBox(height: 30,)
-
-            // else
-            // Container(child: Text("No products"),)
-
           ],
         ),
 

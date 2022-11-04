@@ -35,12 +35,6 @@ class _registerPageState extends State<registerPage> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text('Registration Page'),
-      //   automaticallyImplyLeading: false,
-      // ),
-      //  padding: const EdgeInsets.all(10),
         body: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
