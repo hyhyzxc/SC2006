@@ -37,14 +37,11 @@ class _WillMainState extends State<WillMain> {
               height: 520,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/Formalities of a will.PNG'),
+                      image: AssetImage('assets/images/Capture.png'),
                       fit: BoxFit.fitHeight
                   )
               ),
             ),
-            // Image(
-            //   image: AssetImage('assets/images/Formalities of a will.PNG'),
-            // ),
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width - 50.0,
