@@ -156,7 +156,7 @@ class _loginPageState extends State<loginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text('Does not have account?'),
+                        const Text('First Time User?'),
                         TextButton(
                           child: const Text(
                             'Sign up',
@@ -165,7 +165,10 @@ class _loginPageState extends State<loginPage> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => registerPage()));
+<<<<<<< Updated upstream
                             //signup screen
+=======
+>>>>>>> Stashed changes
                           },
                         )
                       ],

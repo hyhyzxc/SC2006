@@ -71,7 +71,7 @@ class _WillFormState extends State<WillForm> {
                           validator: validateNotEmpty,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Tester Particulars',
+                              labelText: 'Testator Particulars',
                               labelStyle: TextStyle(
                                   fontFamily: 'NATS',
                                   fontSize: 20.0,

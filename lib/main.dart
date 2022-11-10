@@ -9,8 +9,13 @@ import 'package:next_stage/screens/DeathCert/deathcert_searchdoctor.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_hospital.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_viewcert.dart';
 import 'package:next_stage/screens/Obituary/obituary_main.dart';
+<<<<<<< Updated upstream
 import 'package:next_stage/screens/Funeral/funeral_details.dart';
 import 'package:next_stage/screens/Funeral/funeral_list.dart';
+=======
+import 'package:next_stage/screens/Funeral/product_detail_screen.dart';
+import 'package:next_stage/screens/Funeral/FuneralList.dart';
+>>>>>>> Stashed changes
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/models/obituaryform.dart';
 import 'package:next_stage/screens/Plans/plans_main.dart';

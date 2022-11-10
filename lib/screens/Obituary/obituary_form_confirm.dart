@@ -7,7 +7,6 @@ import 'package:next_stage/screens/Obituary/obituary_form.dart';
 import 'package:next_stage/screens/homePage.dart';
 import '../../models/obituaryPlan.dart';
 
-
 class ObituaryConfirm extends StatefulWidget {
   final obiTrip trip;
 
@@ -415,7 +414,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Notification'),
@@ -467,7 +466,7 @@ class _ObituaryConfirmState extends State<ObituaryConfirm> {
   Future<void> _showMyDialogconfirm() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Notification'),

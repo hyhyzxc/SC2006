@@ -1,5 +1,3 @@
-
-
 class Trip {
   String tester;
   String executorAndTrustee;

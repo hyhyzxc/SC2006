@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/screens/Wills/lawyers_search.dart';
 import 'package:next_stage/screens/Wills/will_main.dart';
 
+import '../NavBar.dart';
+
 class WillSelection extends StatefulWidget {
   const WillSelection({ Key? key }) : super(key: key);
 
@@ -20,6 +22,7 @@ class _WillSelectionState extends State<WillSelection> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
           resizeToAvoidBottomInset: true,
+          drawer: NavBar(),
           appBar: AppBar(title: Text("Will"),
             backgroundColor: Colors.green[200],),
           body:  Column(
@@ -81,7 +84,6 @@ class _WillSelectionState extends State<WillSelection> {
                 ),
               ]
           )
-
       ),
     );
   }

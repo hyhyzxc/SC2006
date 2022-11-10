@@ -285,7 +285,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     funeralParlor: funeralParlor, uid:uid);
 
                 _showMyDialogconfirm();
-
               },
             ),
             TextButton(
@@ -329,8 +328,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     );
   }
 }
-
-
 
 _callNumber(String phoneNumber) async {
   String number = phoneNumber;

@@ -8,7 +8,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import '../homePage.dart';
 
-
 class DoctorDetail extends StatefulWidget {
   const DoctorDetail({ Key? key }) : super(key: key);
 
@@ -188,9 +187,11 @@ class _DoctorDetailState extends State<DoctorDetail> {
                     SizedBox(height: 10.0),
                   ],
                 )
-
             ),
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             SizedBox(height: 10.0),
             Center(
                 child: InkWell(
@@ -361,4 +362,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
 _callNumber(String phoneNumber) async {
   String number = phoneNumber;
   await FlutterPhoneDirectCaller.callNumber(number);
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

@@ -1,4 +1,3 @@
-
 class ObituaryPlan {
   String user_id;
   String deceased_name;

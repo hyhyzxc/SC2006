@@ -8,7 +8,11 @@ import 'package:next_stage/screens/loginPage.dart';
 
 import '../models/obituary.dart';
 import '../models/obituaryform.dart';
+<<<<<<< Updated upstream
 import 'Funeral/funeral_list.dart';
+=======
+import 'Funeral/FuneralList.dart';
+>>>>>>> Stashed changes
 import 'Obituary/obituary_form.dart';
 import 'Plans/plans_main.dart';
 import 'package:next_stage/screens/Crematoria/crematoria_list_screen.dart';

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Obituary/obituary_update_plans.dart';
 
-
 class PlansObituary extends StatefulWidget {
   const PlansObituary({Key? key}) : super(key: key);
   static const String routeName = '/obituary-plans';

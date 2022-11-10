@@ -37,7 +37,11 @@ class _WillMainState extends State<WillMain> {
               height: 520,
               decoration: BoxDecoration(
                   image: DecorationImage(
+<<<<<<< Updated upstream
                       image: AssetImage('assets/images/Capture.png'),
+=======
+                      image: AssetImage('assets/images/Capture.PNG'),
+>>>>>>> Stashed changes
                       fit: BoxFit.fitHeight
                   )
               ),

@@ -7,8 +7,6 @@ class obiTrip {
   String familynames;
   String phone;
   String newspaper;
-  //DateTime startDate;
-  //DateTime endDate;
 
   obiTrip(
       this.name,

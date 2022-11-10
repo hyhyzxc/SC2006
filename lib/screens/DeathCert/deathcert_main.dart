@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_hospital.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_searchdoctor.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_viewcert.dart';
+import '../NavBar.dart';
 
 import '../NavBar.dart';
 
@@ -114,7 +115,6 @@ class _DeathCertMainState extends State<DeathCertMain> {
                 ),
               ]
           )
-
       ),
     );
   }

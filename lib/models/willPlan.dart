@@ -1,6 +1,6 @@
 class WillPlan {
   String user_id;
-  String tester_name;
+  String testator_name;
   String executor_and_trustee;
   String type_of_assets;
   String executor_1;
@@ -11,7 +11,7 @@ class WillPlan {
 
   WillPlan( {
     this.user_id = "",
-    required this.tester_name,
+    required this.testator_name,
     required this.executor_and_trustee,
     required this.type_of_assets,
     required this.executor_1,
@@ -22,7 +22,7 @@ class WillPlan {
   Map<String, String> getJson() {
     return {
       'user_id' : this.user_id,
-      'tester_name' : this.tester_name,
+      'tester_name' : this.testator_name,
       'executor_and_trustee' : this.executor_and_trustee,
       'type_of_assets' : this.type_of_assets,
       'executor_1' : this.executor_1,

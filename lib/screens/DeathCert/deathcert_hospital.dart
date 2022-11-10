@@ -61,9 +61,6 @@ class _DeathAtHospitalState extends State<DeathAtHospital> {
             ),
           ]
       ),
-
-
-
     );
   }
 }

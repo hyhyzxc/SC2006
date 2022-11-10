@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:next_stage/screens/DeathCert/deathcert_main.dart';
 import 'package:next_stage/screens/NavBar.dart';
 import 'package:next_stage/screens/Obituary/obituary_form.dart';
@@ -7,7 +6,11 @@ import 'package:next_stage/screens/Plans/plans_main.dart';
 import 'package:next_stage/screens/Wills/selection_page.dart';
 import '../models/obituaryform.dart';
 import 'Crematoria/crematoria_list_screen.dart';
+<<<<<<< Updated upstream
 import 'Funeral/funeral_list.dart';
+=======
+import 'Funeral/FuneralList.dart';
+>>>>>>> Stashed changes
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -216,4 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

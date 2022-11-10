@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:next_stage/models/afterlifefacilities.dart';
 import 'package:next_stage/screens/Crematoria/crematoria_detail_screen.dart';
+import '../NavBar.dart';
 
 import '../NavBar.dart';
 

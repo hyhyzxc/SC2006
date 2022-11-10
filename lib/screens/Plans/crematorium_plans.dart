@@ -219,7 +219,6 @@ class _PlansCrematoriaState extends State<PlansCrematoria> {
                           "${data!['appt_time']} ", style: new TextStyle(fontSize: 15.0, fontFamily: "Varela", color: Colors.black45),
                           overflow: TextOverflow.clip,
                           textAlign: TextAlign.left,),
-
                     ]),
                   ),)
                 ],

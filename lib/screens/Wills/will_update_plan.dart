@@ -17,7 +17,6 @@ class _UpdateWillState extends State<UpdateWill> {
   int count=0;
 
   @override
-  // 1. Setting up database with Firestore database functions
   final db = FirebaseFirestore.instance;
 
   Future<String>saveWillPlan({required String uid, required String docID}) async {
@@ -26,7 +25,7 @@ class _UpdateWillState extends State<UpdateWill> {
         'Will').doc(docID);
     print(docUser);
     docUser.update({
-      'tester_name': _testerController.text,
+      'testator_name': _testerController.text,
       'executor_1': _executor1Controller.text,
       'executor_and_trustee': _executorsandtrusteeController.text,
       'substitute_executor': _substituteexecutorController.text,
@@ -45,10 +44,9 @@ class _UpdateWillState extends State<UpdateWill> {
   TextEditingController _substituteexecutorController = new TextEditingController();
   TextEditingController _specificgiftsController = new TextEditingController();
 
-  List<String> options=['Singapore Assets Only','Worldwide Assets Only'];
+  List<String> options=['Singapore Assets Only','Worldwide Assets'];
   String? selectedOption='Singapore Assets Only';
 
-  // This is to set up the data which was routed from the last page
   @override
   void initState(){
     super.initState();
@@ -96,7 +94,7 @@ class _UpdateWillState extends State<UpdateWill> {
                                   controller: _testerController,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
-                                      labelText: 'Tester Name',
+                                      labelText: 'Testator Name',
                                       labelStyle: TextStyle(
                                           fontFamily: 'NATS',
                                           fontSize: 20.0,

@@ -98,7 +98,7 @@ class _WillConfirmState extends State<WillConfirm> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Tester Name',
+                          'Testator Name',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Varela',
@@ -416,7 +416,7 @@ class _WillConfirmState extends State<WillConfirm> {
                 final String uid = user!.uid;
                 WillPlan will = WillPlan(
                     user_id: uid,
-                    tester_name: widget.trip.tester,
+                    testator_name: widget.trip.tester,
                     executor_and_trustee: widget.trip.executorAndTrustee,
                     type_of_assets: widget.trip.typeOfAssets,
                     executor_1: widget.trip.executor1,
